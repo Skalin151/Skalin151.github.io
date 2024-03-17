@@ -517,6 +517,7 @@ img {
   background-color: var(--first-color);
 }
 
+<!--Frontend--> 
 .skills__html {
   width: 90%;
 }
@@ -533,6 +534,7 @@ img {
   width: 40%;
 }
 
+<!--Backend--> 
 .skills__php {
   width: 90%;
 }
@@ -549,6 +551,7 @@ img {
   width: 94%;
 }
 
+<!--Media Editor--> 
 .skills__filmora {
   width: 50%;
 }
@@ -560,6 +563,28 @@ img {
 .skills__adobeillustrator {
   width: 62%;
 }
+
+.skills__flstudio {
+  width: 40%;
+}
+
+<!--Personnal--> 
+.skills__flstudio {
+  width: 40%;
+}
+
+.skills__flstudio {
+  width: 40%;
+}
+
+.skills__flstudio {
+  width: 40%;
+}
+
+.skills__flstudio {
+  width: 40%;
+}
+
 
 .skills__close .skills__list {
   height: 0;
