@@ -845,6 +845,110 @@
             color: var(--text-color);
         }
 
+        /* Portfolio Modals */
+        .portfolio__modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .portfolio__modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .portfolio__modal-content {
+            background: rgba(15, 15, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(139, 44, 245, 0.5);
+            box-shadow: 0 8px 32px rgba(139, 44, 245, 0.4);
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio__modal.active .portfolio__modal-content {
+            transform: scale(1);
+        }
+
+        .portfolio__modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: none;
+            transition: color 0.3s ease;
+        }
+
+        .portfolio__modal-close:hover {
+            color: var(--synth-pink);
+        }
+
+        .portfolio__modal-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(139, 44, 245, 0.3);
+        }
+
+        .portfolio__modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--synth-pink);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .portfolio__modal-description {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .portfolio__modal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0 auto;
+            display: block;
+            width: fit-content;
+        }
+
+        .portfolio__modal-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 44, 245, 0.6);
+        }
+
         .portfolio__container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -862,6 +966,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            cursor: none;
         }
 
         .portfolio__content:hover {
@@ -1541,20 +1646,18 @@
             <span class="section__subtitle"> My Introduction</span>
 
             <div class="about__container container">
-                <img src="assets/img/about.jpg" alt="" class="about__img" />
+                <img src="assets/img/comp.png" alt="" class="about__img" />
 
                 <div class="about__data">
                     <p class="about__description">
-                        Hi I'm João Cruz. I'm 20 years old. When I have free time, I indulge in some of my favorite hobbies like programming and exploring
-                        different kinds of new technology. <br>
+                        Hi I'm João Cruz. I'm 21 years old. I program applications as a hobby and I'm actively expanding my expertise into areas like 3D modeling, sound design, and music production. <br>
 
-                        I'm a full-stack developer. I have learnt HTML, CSS, JS, C, C++. I am interested in
-                        working on projects with an open-source focus.
+                        I'm a full-stack developer with predominant focus on Node.js, experienced with databases like PostgreSQL and MongoDB. I'm also proficient in Markdown due to my extensive use of Obsidian for documentation and note-taking. I'm passionate about working on open-source projects and exploring new technologies.
                     </p>
 
                     <div class="about_info">
                         <div>
-                            <span class="about__info-title">02+</span>
+                            <span class="about__info-title">05+</span>
                             <span class="about__info-name">Years <br />
                                 experience</span>
                         </div>
@@ -1829,40 +1932,66 @@
 
             <div class="portfolio__container container">
                 <!--==================== PORTFOLIO 1 ====================-->
-                <div class="portfolio__content">
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal1')">
                     <img src="/assets/img/v1.png" alt="" class="portfolio__img">
 
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Discord Bot</h3>
                         <p class="portfolio__description">A discord bot i solely made with a lot of fun commands.</p>
-                        <a href="https://discord.com/oauth2/authorize?client_id=1395891659333439518&permissions=8&integration_type=0&scope=bot" class="portfolio__button">
+                        <a href="https://discord.com/oauth2/authorize?client_id=1395891659333439518&permissions=8&integration_type=0&scope=bot" class="portfolio__button" onclick="event.stopPropagation()">
                             Invite
                             <i class="synth-icon synth-icon-arrow-right"></i>
                         </a>
                     </div>
                 </div>
                 <!--==================== PORTFOLIO 2 ====================-->
-                <div class="portfolio__content">
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal2')">
                     <img src="/assets/img/coding.gif" alt="" class="portfolio__img">
 
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Coding Projects</h3>
                         <p class="portfolio__description">Multiple projects I made during my academic career, and some side projects I started for fun.</p>
-                        <a href="#" class="portfolio__button">
+                        <a href="#" class="portfolio__button" onclick="event.stopPropagation()">
                             Projects
                             <i class="synth-icon synth-icon-arrow-right"></i>
                         </a>
                     </div>
                 </div>
                 <!--==================== PORTFOLIO 3 ====================-->
-                <div class="portfolio__content">
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal3')">
                     <img src="/assets/img/synth.gif" alt="" class="portfolio__img">
 
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Music Album</h3>
                         <p class="portfolio__description">Playlist with different genres of music, made by me using FL Studio.</p>
-                        <a href="https://youtube.com/playlist?list=PLX8r__0dlA2WN4sBAf8xgFX8odjtBBynk&si=9gE8ZHkWmfCgs5xM" class="portfolio__button">
+                        <a href="https://youtube.com/playlist?list=PLX8r__0dlA2WN4sBAf8xgFX8odjtBBynk&si=9gE8ZHkWmfCgs5xM" class="portfolio__button" onclick="event.stopPropagation()">
                             Playlist
+                            <i class="synth-icon synth-icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!--==================== PORTFOLIO 4 ====================-->
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal4')">
+                    <img src="/assets/img/flutter.png" alt="" class="portfolio__img">
+
+                    <div class="portfolio__data">
+                        <h3 class="portfolio__title">Flutter App</h3>
+                        <p class="portfolio__description">A Flutter-based mobile app for managing educational courses, featuring enrollment, assignments, quizzes, notifications, forums, and certificates in a user-friendly interface.</p>
+                        <a href="#" class="portfolio__button" onclick="event.stopPropagation()">
+                            View
+                            <i class="synth-icon synth-icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!--==================== PORTFOLIO 5 ====================-->
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal5')">
+                    <img src="/assets/img/steam.jpg" alt="" class="portfolio__img">
+
+                    <div class="portfolio__data">
+                        <h3 class="portfolio__title">Steam Family</h3>
+                        <p class="portfolio__description">A tool fully written in python to fetch the games from all user's in a family using Steam's API.</p>
+                        <a href="https://github.com/Skalin151/Steam-Games-Aggregator" class="portfolio__button" onclick="event.stopPropagation()">
+                            Fetch
                             <i class="synth-icon synth-icon-arrow-right"></i>
                         </a>
                     </div>
@@ -1944,7 +2073,7 @@
             <ul class="services__modal-services">
                 <li class="services__modal-service">
                     <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
-                    <p>I develop the user interface.</p>
+                    <p>I create the User Interface usign figma.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
@@ -2023,7 +2152,7 @@
         <div class="footer__container">
             <div>
                 <h1 class="footer__title">Skalin151</h1>
-                <span class="footer__subtitle">Synthwave Developer</span>
+                <span class="footer__subtitle">21 y/o Synthwave Developer</span>
             </div>
 
             <div>
@@ -2080,7 +2209,7 @@
                 </div>
             </div>
         </div>
-        <p class="footer__copy">© 2024 Skalin151 | All Rights Reserved</p>
+        <p class="footer__copy">© 2025 Skalin151 | All Rights Reserved</p>
     </footer>
 
 
@@ -2223,6 +2352,50 @@
         });
     </script>
 
+    <!--=================== Portfolio Modal Script ===============-->
+    <script>
+        // Portfolio Modal Functions
+        function openPortfolioModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+        }
+
+        function closePortfolioModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const portfolioModals = document.querySelectorAll('.portfolio__modal');
+            const portfolioCloseButtons = document.querySelectorAll('.portfolio__modal-close');
+            
+            // Close button functionality
+            portfolioCloseButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    button.closest('.portfolio__modal').classList.remove('active');
+                });
+            });
+            
+            // Click outside modal to close
+            portfolioModals.forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            });
+
+            // Escape key to close modals
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    portfolioModals.forEach(modal => {
+                        modal.classList.remove('active');
+                    });
+                }
+            });
+        });
+    </script>
+
     <!--=================== Skills Animation Script ===============-->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -2288,6 +2461,98 @@
             });
         });
     </script>
+
+    <!--==================== PORTFOLIO MODALS ====================-->
+    <!-- Portfolio Modal 1 -->
+    <div id="portfolioModal1" class="portfolio__modal">
+        <div class="portfolio__modal-content">
+            <span class="portfolio__modal-close">&times;</span>
+            <img src="/assets/img/v1.png" alt="Discord Bot" class="portfolio__modal-img">
+            <h3 class="portfolio__modal-title">Discord Bot - Full Project Details</h3>
+            <p class="portfolio__modal-description">
+                A complete all-in-one Discord bot developed from scratch with a wide range of functionalities. 
+                Includes character system with rolls and collection, automatic horse races with dynamic weather, 
+                pet system, item shop, turn-based combat with up to 4 players, minigames (tic-tac-toe, 
+                rock-paper-scissors), music playback with full controls, ticket system for support, 
+                advanced moderation, Steam integration for game queries, and much more. Built with Discord.js 
+                and database (MongoDB) for data persistence.
+            </p>
+            <a href="https://discord.com/oauth2/authorize?client_id=1395891659333439518&permissions=8&integration_type=0&scope=bot" class="portfolio__modal-link">
+                <i class="fab fa-discord" style="color: white;"></i> Invite Bot
+            </a>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 2 -->
+    <div id="portfolioModal2" class="portfolio__modal">
+        <div class="portfolio__modal-content">
+            <span class="portfolio__modal-close">&times;</span>
+            <img src="/assets/img/coding.gif" alt="Coding Projects" class="portfolio__modal-img">
+            <h3 class="portfolio__modal-title">Coding Projects - Development Portfolio</h3>
+            <p class="portfolio__modal-description">
+                A collection of diverse programming projects spanning web development, mobile applications, and 
+                desktop software. Includes full-stack web applications built with modern frameworks like React 
+                and Node.js, Python automation scripts, Java desktop applications, and various academic projects 
+                demonstrating algorithm implementation and data structure usage. Each project showcases different 
+                aspects of software development from UI/UX design to backend architecture.
+            </p>
+            <a href="#" class="portfolio__modal-link">
+                <i class="fab fa-github" style="color: white;"></i> View Projects
+            </a>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 3 -->
+    <div id="portfolioModal3" class="portfolio__modal">
+        <div class="portfolio__modal-content">
+            <span class="portfolio__modal-close">&times;</span>
+            <img src="/assets/img/synth.gif" alt="Music Album" class="portfolio__modal-img">
+            <h3 class="portfolio__modal-title">Music Album - Synthwave Collection</h3>
+            <p class="portfolio__modal-description">
+                A curated collection of original electronic music tracks spanning multiple genres including synthwave, 
+                retrowave, and ambient soundscapes. Created using FL Studio with custom synthesizers and sound design, 
+                this playlist showcases a journey through nostalgic 80s-inspired melodies, atmospheric pads, and 
+                driving electronic beats. Each composition demonstrates different aspects of electronic music production, 
+                from vintage analog warmth to modern digital precision, creating an immersive audio experience that 
+                complements the synthwave aesthetic.
+            </p>
+            <a href="https://youtube.com/playlist?list=PLX8r__0dlA2WN4sBAf8xgFX8odjtBBynk&si=9gE8ZHkWmfCgs5xM" class="portfolio__modal-link">
+                <i class="fas fa-play" style="color: white;"></i> Listen to Playlist
+            </a>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 4 -->
+    <div id="portfolioModal4" class="portfolio__modal">
+        <div class="portfolio__modal-content">
+            <span class="portfolio__modal-close">&times;</span>
+            <img src="/assets/img/flutter.png" alt="Flutter app" class="portfolio__modal-img">
+            <h3 class="portfolio__modal-title">Mobile App - Synthwave Collection</h3>
+            <p class="portfolio__modal-description">
+                A comprehensive mobile application for managing educational courses and learning paths, built with Flutter. Features include account management with email verification, password reset, and customizable settings page. Users can enroll in and track courses with restricted access, receive push notifications for updates, submit assignments, and view educational content (videos, links, files). Progress tracking, grade viewing, and automatic certificate generation are integrated.
+
+The app offers built-in quizzes, a forum for sharing and posting content, attachments in comments, and topic-based discussions. It also includes notification systems (push/email) and gamification elements like rankings and badges to boost engagement. All functionalities are wrapped in a user-friendly interface focused on learner experience and intuitive navigation.
+            </p>
+            <a href="" class="portfolio__modal-link">
+                <i class="fas fa-search" style="color: white;"></i> Explore App
+            </a>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 5 -->
+    <div id="portfolioModal5" class="portfolio__modal">
+        <div class="portfolio__modal-content">
+            <span class="portfolio__modal-close">&times;</span>
+            <img src="/assets/img/steam.jpg" alt="Steam Games" class="portfolio__modal-img">
+            <h3 class="portfolio__modal-title">Steam Family - Library Games</h3>
+            <p class="portfolio__modal-description">
+                A Python application that uses the Steam API to retrieve and aggregate all games from a user's Steam library, either by Steam account (owner) or by specific app ID. It fetches detailed information for each game, including titles, metadata, and other relevant details, organizing and presenting the game library in a clear and accessible format. The tool is designed for efficient game collection management and easy exploration of Steam libraries.
+            </p>
+            <a href="https://youtube.com/playlist?list=PLX8r__0dlA2WN4sBAf8xgFX8odjtBBynk&si=9gE8ZHkWmfCgs5xM" class="portfolio__modal-link">
+                <i class="fab fa-steam" style="color: white;"></i> Fetch
+            </a>
+        </div>
+    </div>
 
 </body>
 
