@@ -61,7 +61,7 @@
             position: fixed;
             transform: translate(-50%, -50%);
             pointer-events: none;
-            z-index: 9999;
+            z-index: 10001;
             transition: none;
             box-shadow: 
                 0 0 15px var(--synth-pink),
@@ -95,7 +95,7 @@
             position: fixed;
             transform: translate(-50%, -50%);
             pointer-events: none;
-            z-index: 9998;
+            z-index: 10000;
             transition: none;
             background: radial-gradient(circle, rgba(255, 0, 110, 0.6) 30%, rgba(139, 44, 245, 0.4) 60%, transparent 100%);
             box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
@@ -582,6 +582,14 @@
             gap: 2rem;
         }
 
+        .skills__container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .skills__content {
             background: rgba(15, 15, 30, 0.6);
             backdrop-filter: blur(10px);
@@ -599,15 +607,18 @@
 
         .skills__header {
             display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
             margin-bottom: 1.5rem;
-            cursor: pointer;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(139, 44, 245, 0.3);
         }
 
         .skills__icon {
-            font-size: 1.5rem;
+            font-size: 2.5rem;
             color: var(--synth-pink);
-            margin-right: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .skills__title {
@@ -615,42 +626,44 @@
             font-size: 1.3rem;
             font-weight: 600;
             color: var(--text-color);
+            margin-bottom: 0.3rem;
         }
 
         .skills__subtitle {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
         }
 
-        .skills__arrow {
-            margin-left: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .skills__content.skills__open .skills__arrow {
-            transform: rotate(180deg);
-        }
-
         .skills__list {
-            display: none;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .skills__content.skills__open .skills__list {
-            display: grid;
+            list-style: none;
+            padding: 0;
         }
 
         .skills__data {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            background: rgba(139, 44, 245, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--synth-pink);
+            transition: all 0.3s ease;
+        }
+
+        .skills__data:hover {
+            background: rgba(139, 44, 245, 0.1);
+            transform: translateX(5px);
+        }
+
+        .skills__titles {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .skills__name {
             display: flex;
             align-items: center;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-color);
-            margin-bottom: 0.5rem;
         }
 
         .skills__logo {
@@ -658,26 +671,10 @@
         }
 
         .skills__number {
-            margin-left: auto;
             font-family: 'Orbitron', sans-serif;
             font-weight: 600;
             color: var(--synth-cyan);
-        }
-
-        .skills__bar {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skills__percentage {
-            height: 100%;
-            border-radius: 4px;
-            background: linear-gradient(90deg, var(--synth-purple), var(--synth-pink));
-            box-shadow: 0 0 10px rgba(139, 44, 245, 0.5);
-            width: 0;
-            transition: width 1s ease;
+            font-size: 0.9rem;
         }
 
         .services__container {
@@ -1075,7 +1072,7 @@
         .contact__inputs {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            gap: 2rem;
             margin-bottom: 1rem;
         }
 
@@ -1100,6 +1097,7 @@
             font-family: 'Rajdhani', sans-serif;
             font-size: 1rem;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
         }
 
         .contact__input:focus, .contact__textarea:focus {
@@ -1346,6 +1344,12 @@
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z'/%3E%3C/svg%3E") no-repeat center;
         }
 
+        .synth-icon-shield {
+            background: linear-gradient(45deg, var(--synth-purple), var(--synth-cyan));
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V16H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z'/%3E%3C/svg%3E") no-repeat center;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V16H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z'/%3E%3C/svg%3E") no-repeat center;
+        }
+
         .synth-icon-apps {
             background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
             -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16,20H20V16H16M16,14H20V10H16M10,20H14V16H10M10,14H14V10H10M4,20H8V16H4M4,14H8V10H4M16,8H20V4H16M10,8H14V4H10M4,8H8V4H4Z'/%3E%3C/svg%3E") no-repeat center;
@@ -1437,6 +1441,32 @@
 
         /* Responsive adjustments */
         @media screen and (max-width: 768px) {
+            /* Hide custom cursor on mobile devices */
+            .cursor,
+            .cursor-trail {
+                display: none !important;
+            }
+
+            /* Restore default cursor for mobile */
+            * {
+                cursor: auto !important;
+            }
+
+            /* Hide navbar on mobile devices */
+            .header {
+                display: none !important;
+            }
+
+            /* Adjust main content to account for hidden navbar */
+            .main {
+                margin-top: 0;
+            }
+
+            .home {
+                min-height: 100vh;
+                padding-top: 2rem;
+            }
+
             .nav__menu {
                 position: fixed;
                 top: 80px;
@@ -1482,6 +1512,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .skills__container {
+                grid-template-columns: 1fr;
+            }
+
             .contact__container {
                 grid-template-columns: 1fr;
             }
@@ -1501,6 +1535,39 @@
 
             .footer__socials {
                 justify-content: center;
+            }
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .skills__container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Hide cursor on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            .cursor,
+            .cursor-trail {
+                display: none !important;
+            }
+
+            * {
+                cursor: auto !important;
+            }
+
+            /* Hide navbar on touch devices */
+            .header {
+                display: none !important;
+            }
+
+            /* Adjust main content for touch devices */
+            .main {
+                margin-top: 0;
+            }
+
+            .home {
+                min-height: 100vh;
+                padding-top: 2rem;
             }
         }
     </style>
@@ -1657,12 +1724,12 @@
 
                     <div class="about_info">
                         <div>
-                            <span class="about__info-title">05+</span>
+                            <span class="about__info-title">03+</span>
                             <span class="about__info-name">Years <br />
                                 experience</span>
                         </div>
                         <div>
-                            <span class="about__info-title">20+</span>
+                            <span class="about__info-title">10+</span>
                             <span class="about__info-name">Completed <br />
                                 project</span>
                         </div>
@@ -1673,7 +1740,7 @@
                         </div>
                     </div>
                     <div class="about__buttons"></div>
-                        <a download="" href="assets/pdf/mrinmoy-cv.pdf" class="button button--flex">
+                        <a download="" href="assets/CV Resume.pdf" class="button button--flex">
                             Download CV <i class="fas fa-download" style="color: white;"></i>
                         </a>
                     </div>
@@ -1687,185 +1754,144 @@
             <span class="section__subtitle">My technical level</span>
 
             <div class="skills__container container">
-                <div>
-                    <!--==================== SKILL 1 ====================-->
-                    <div class="skills__content skills__open">
-                        <div class="skills__header">
-                            <i class="synth-icon synth-icon-brackets-curly skills__icon"></i>
-
-                            <div>
-                                <h1 class="skills__title">Fullstack developer</h1>
-                                <span class="skills__subtitle">More than 2 years</span>
-                            </div>
-
-                            <i class="synth-icon synth-icon-angle-down skills__arrow"></i>
-                        </div>
-
-                        <div class="skills__list">
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/html.png" class="skills__logo"
-                                            width="25px" alt=""> HTML</h3>
-                                    <span class="skills__number">90%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__html"></span>
-                                </div>
-                            </div>
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/css.png" class="skills__logo"
-                                            width="20px" alt=""> CSS</h3>
-                                    <span class="skills__number">80%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__css"></span>
-                                </div>
-                            </div>
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/javascript.png" class="skills__logo"
-                                            width="20px" alt=""> JavaScript</h3>
-
-                                    <span class="skills__number">70%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__js"></span>
-                                </div>
-                            </div>
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/react.png" class="skills__logo"
-                                            width="20px" alt=""> React</h3>
-                                    <span class="skills__number">40%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__react"></span>
-                                </div>
-                            </div>
-                        </div>
+                <!--==================== SKILL 1 ====================-->
+                <div class="skills__content">
+                    <div class="skills__header">
+                        <i class="synth-icon synth-icon-brackets-curly skills__icon"></i>
+                        <h1 class="skills__title">Fullstack developer</h1>
+                        <span class="skills__subtitle">More than 2 years</span>
                     </div>
 
-                    <!--==================== SKILL 2 ====================-->
-                    <div class="skills__content skills__close">
-                        <div class="skills__header">
-                            <i class="synth-icon synth-icon-server-network skills__icon"></i>
-
-                            <div>
-                                <h1 class="skills__title">Backend developer</h1>
-                                <span class="skills__subtitle">More than 1 years</span>
+                    <ul class="skills__list">
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/html.png" class="skills__logo" width="25px" alt=""> HTML
+                                </h3>
+                                <span class="skills__number">90%</span>
                             </div>
-
-                            <i class="synth-icon synth-icon-angle-down skills__arrow"></i>
-                        </div>
-
-                        <div class="skills__list">
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/php.png" class="skills__logo"
-                                            width="20px" alt=""> PHP</h3>
-                                    <span class="skills__number">90%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__php"></span>
-                                </div>
+                        </li>
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/css.png" class="skills__logo" width="20px" alt=""> CSS
+                                </h3>
+                                <span class="skills__number">80%</span>
                             </div>
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/sql.png" class="skills__logo"
-                                            width="20px" alt=""> MySQL</h3>
-                                    <span class="skills__number">72%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__mysql"></span>
-                                </div>
+                        </li>
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/javascript.png" class="skills__logo" width="20px" alt=""> JavaScript
+                                </h3>
+                                <span class="skills__number">70%</span>
                             </div>
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/node.png" class="skills__logo"
-                                            width="20px" alt=""> Node Js</h3>
-
-                                    <span class="skills__number">58%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__node"></span>
-                                </div>
+                        </li>
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/react.png" class="skills__logo" width="20px" alt=""> React
+                                </h3>
+                                <span class="skills__number">40%</span>
                             </div>
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/python.png" class="skills__logo"
-                                            width="20px" alt=""> Python</h3>
-                                    <span class="skills__number">94%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__python"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
 
-                <div>
-                    <!--==================== SKILL 3 ====================-->
-                    <div class="skills__content skills__close">
-                        <div class="skills__header">
-                            <i class="synth-icon synth-icon-video skills__icon"></i>
-
-                            <div>
-                                <h1 class="skills__titles">Media Editor</h1>
-                                <span class="skills__subtitle">More than 4 years</span>
-                            </div>
-
-                            <i class="synth-icon synth-icon-angle-down skills__arrow"></i>
-                        </div>
-
-                        <div class="skills__list">
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/filmora.png" class="skills__logo"
-                                            width="20px" alt=""> Wondershare Filmora</h3>
-                                    <span class="skills__number">90%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__filmora"></span>
-                                </div>
-                            </div>
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/ps.png" class="skills__logo"
-                                            width="20px" alt=""> Adobe Photoshop</h3>
-                                    <span class="skills__number">70%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__photoshop"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/illustrator.png" class="skills__logo"
-                                            width="20px" alt=""> Adobe Illustrator
-                                    </h3>
-                                    <span class="skills__number">50%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__adobeillustrator"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name"><img src="/assets/img/flstudio.png" class="skills__logo"
-                                            width="20px" alt=""> FL Studio
-                                    </h3>
-                                    <span class="skills__number">40%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__flstudio"></span>
-                                </div>
-                            </div>
-                        </div>
+                <!--==================== SKILL 2 ====================-->
+                <div class="skills__content">
+                    <div class="skills__header">
+                        <i class="synth-icon synth-icon-server-network skills__icon"></i>
+                        <h1 class="skills__title">Backend developer</h1>
+                        <span class="skills__subtitle">More than 1 years</span>
                     </div>
+
+                    <ul class="skills__list">
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/php.png" class="skills__logo" width="20px" alt=""> PHP
+                                </h3>
+                                <span class="skills__number">90%</span>
+                            </div>
+                        </li>
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/sql.png" class="skills__logo" width="20px" alt=""> MySQL
+                                </h3>
+                                <span class="skills__number">72%</span>
+                            </div>
+                        </li>
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/node.png" class="skills__logo" width="20px" alt=""> Node Js
+                                </h3>
+                                <span class="skills__number">58%</span>
+                            </div>
+                        </li>
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/python.png" class="skills__logo" width="20px" alt=""> Python
+                                </h3>
+                                <span class="skills__number">94%</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--==================== SKILL 3 ====================-->
+                <div class="skills__content">
+                    <div class="skills__header">
+                        <i class="synth-icon synth-icon-video skills__icon"></i>
+                        <h1 class="skills__title">Media Editor</h1>
+                        <span class="skills__subtitle">More than 4 years</span>
+                    </div>
+
+                    <ul class="skills__list">
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/filmora.png" class="skills__logo" width="20px" alt=""> Wondershare Filmora
+                                </h3>
+                                <span class="skills__number">90%</span>
+                            </div>
+                        </li>
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/ps.png" class="skills__logo" width="20px" alt=""> Adobe Photoshop
+                                </h3>
+                                <span class="skills__number">70%</span>
+                            </div>
+                        </li>
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/illustrator.png" class="skills__logo" width="20px" alt=""> Adobe Illustrator
+                                </h3>
+                                <span class="skills__number">50%</span>
+                            </div>
+                        </li>
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/flstudio.png" class="skills__logo" width="20px" alt=""> FL Studio
+                                </h3>
+                                <span class="skills__number">40%</span>
+                            </div>
+                        </li>
+                        <li class="skills__data">
+                            <div class="skills__titles">
+                                <h3 class="skills__name">
+                                    <img src="/assets/img/blender.png" class="skills__logo" width="20px" alt=""> Blender
+                                </h3>
+                                <span class="skills__number">30%</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -1917,6 +1943,34 @@
 
                     <div>
                         <button class="services__button" data-service="3">
+                            <span>View More</span>
+                            <i class="synth-icon synth-icon-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <!--==================== SERVICES 4 ====================-->
+                <div class="services__content">
+                    <div>
+                        <i class="synth-icon synth-icon-server-network services__icon"></i>
+                        <h3 class="services__title">PC Build & <br> Maintenance</h3>
+                    </div>
+
+                    <div>
+                        <button class="services__button" data-service="4"><
+                            <span>View More</span>
+                            <i class="synth-icon synth-icon-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <!--==================== SERVICES 5 ====================-->
+                <div class="services__content">
+                    <div>
+                        <i class="synth-icon synth-icon-shield services__icon"></i>
+                        <h3 class="services__title">Cyber <br> Security</h3>
+                    </div>
+
+                    <div>
+                        <button class="services__button" data-service="5">
                             <span>View More</span>
                             <i class="synth-icon synth-icon-arrow-right"></i>
                         </button>
@@ -1996,6 +2050,19 @@
                         </a>
                     </div>
                 </div>
+                <!--==================== PORTFOLIO 6 ====================-->
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal6')">
+                    <img src="/assets/img/homelab.png" alt="" class="portfolio__img">
+
+                    <div class="portfolio__data">
+                        <h3 class="portfolio__title">Home Lab</h3>
+                        <p class="portfolio__description">I personally built, using old computer parts, a home server that hosts the services I use, for exemple, a self hosted Media Player, a Web Monitor, a Smart Home Interface and a Automation Site.</p>
+                        <a href="#" class="portfolio__button" onclick="event.stopPropagation()">
+                            Check
+                            <i class="synth-icon synth-icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -2054,7 +2121,7 @@
                     <div>
                         <button type="submit" class="button button--flex">
                             Send Message
-                            <i class="synth-icon synth-icon-message"></i>
+                            <i class="fas fa-paper-plane" style="color: white;"></i>
                         </button>
                     </div>
                 </form>
@@ -2142,6 +2209,62 @@
                 <li class="services__modal-service">
                     <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
                     <p>I create logos for your brand.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="services__modal" id="service-modal-4">
+        <div class="services__modal-content">
+            <h4 class="services__modal-title">PC Build & <br> Maintenance</h4>
+            <button class="services__modal-close">
+                <i class="synth-icon synth-icon-close"></i>
+            </button>
+
+            <ul class="services__modal-services">
+                <li class="services__modal-service">
+                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <p>I build custom PCs for gaming and workstations.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <p>I provide hardware troubleshooting and repair.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <p>I offer system optimization and performance tuning.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <p>I provide regular maintenance and upgrades.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="services__modal" id="service-modal-5">
+        <div class="services__modal-content">
+            <h4 class="services__modal-title">Cyber <br> Security</h4>
+            <button class="services__modal-close">
+                <i class="synth-icon synth-icon-close"></i>
+            </button>
+
+            <ul class="services__modal-services">
+                <li class="services__modal-service">
+                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <p>I perform security audits and vulnerability assessments.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <p>I implement security protocols and best practices.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <p>I provide penetration testing services.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <p>I offer security training and consultation.</p>
                 </li>
             </ul>
         </div>
@@ -2397,36 +2520,7 @@
     </script>
 
     <!--=================== Skills Animation Script ===============-->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const skillsHeaders = document.querySelectorAll('.skills__header');
-            
-            skillsHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const skillsContent = header.closest('.skills__content');
-                    skillsContent.classList.toggle('skills__open');
-                    
-                    // Animate skill bars when opening
-                    if (skillsContent.classList.contains('skills__open')) {
-                        const skillBars = skillsContent.querySelectorAll('.skills__percentage');
-                        skillBars.forEach(bar => {
-                            const skillValue = bar.parentElement.previousElementSibling.querySelector('.skills__number').textContent;
-                            bar.style.width = skillValue;
-                        });
-                    }
-                });
-            });
-            
-            // Animate skill bars on page load for open skills
-            const openSkills = document.querySelectorAll('.skills__open .skills__percentage');
-            openSkills.forEach(bar => {
-                const skillValue = bar.parentElement.previousElementSibling.querySelector('.skills__number').textContent;
-                setTimeout(() => {
-                    bar.style.width = skillValue;
-                }, 500);
-            });
-        });
-    </script>
+    <!-- Skills animation removed - now using static 3-column layout -->
 
     <!--=================== Mobile Menu Script ===============-->
     <script>
@@ -2606,7 +2700,45 @@ The app offers built-in quizzes, a forum for sharing and posting content, attach
             </a>
         </div>
     </div>
-
+    <!-- Portfolio Modal 6 -->
+    <div id="portfolioModal6" class="portfolio__modal">
+        <div class="portfolio__modal-content">
+            <span class="portfolio__modal-close">&times;</span>
+            <img src="/assets/img/homelab.png" alt="Home Lab" class="portfolio__modal-img">
+            <h3 class="portfolio__modal-title">Home Lab - Self-Hosted Infrastructure</h3>
+            <p class="portfolio__modal-description">
+                A custom-built home server infrastructure using recycled computer parts to create a powerful self-hosted environment. This project demonstrates system administration, network configuration, and service deployment skills.
+                <br><br>
+                <strong>Hardware Setup:</strong>
+                <br>• Assembled from repurposed computer components
+                <br>• Custom cooling and power management solutions
+                <br>• Multiple storage drives in RAID configuration
+                <br>• Network-attached storage (NAS) capabilities
+                <br><br>
+                <strong>Self-Hosted Services:</strong>
+                <br>• Swing Music for personal mp3 player
+                <br>• Jellyfin as an alternative media solution
+                <br>• N8N for developing task automation
+                <br>• Home Assistant for smart home automation
+                <br><br>
+                <strong>Monitoring & Management:</strong>
+                <br>• Netdata dashboards for system monitoring
+                <br>• Prometheus for metrics collection
+                <br>• Uptime Kuma for service availability monitoring
+                <br>• Custom web interface for service management
+                <br><br>
+                <strong>Automation & Integration:</strong>
+                <br>• Docker containerization for all services
+                <br>• Automated backup solutions
+                <br>• VPN access for remote management
+                <br>• Custom scripts for maintenance and updates
+                <br><br>
+            </p>
+            <a href="#" class="portfolio__modal-link">
+                <i class="fas fa-server" style="color: white;"></i> Explore Infrastructure
+            </a>
+        </div>
+    </div>
 </body>
 
 </html>
