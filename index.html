@@ -8,7 +8,7 @@
     <meta name="keywords" content="Skalin, Skalin151, THK, THK Skalin, THK Skalin151 ">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
 
     <!-- Font Awesome for Synthwave Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,15 +27,20 @@
     <style>
         /* ===== SYNTHWAVE THEME ===== */
         :root {
-            --synth-bg: #0a0a12;
-            --synth-dark: #0f0f1e;
-            --synth-purple: #8b2cf5;
-            --synth-pink: #ff006e;
-            --synth-cyan: #00f5ff;
-            --synth-blue: #2d00f7;
-            --synth-grid: rgba(139, 44, 245, 0.1);
-            --text-color: #e0e0ff;
-            --text-secondary: #a0a0d0;
+            /* Palette matching the reference image */
+            --synth-bg: #120c29;
+            --synth-bg-gradient: linear-gradient(to bottom, #120c29, #1f1c39);
+            --synth-pink: #ff2a6d; /* Neon Pink */
+            --synth-cyan: #05d9e8; /* Neon Cyan */
+            --synth-purple: #8b2cf5; /* Deep Purple accent */
+            --synth-grid: rgba(5, 217, 232, 0.2); /* Cyan grid */
+            --text-color: #ffffff;
+            --text-secondary: #d1d1e9;
+            
+            /* Fonts */
+            --font-logo: 'VT323', monospace;
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Rajdhani', sans-serif;
         }
 
         /* Custom Cursor */
@@ -43,14 +48,34 @@
             cursor: none;
         }
 
-        body {
-            background: var(--synth-bg);
-            color: var(--text-color);
-            font-family: 'Rajdhani', sans-serif;
+        html {
             overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--synth-bg-gradient);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            overflow-x: hidden; /* Ensure it's hidden here too */
             position: relative;
             margin: 0;
             padding: 0;
+        }
+
+        /* Custom Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+            background-color: var(--synth-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--synth-purple);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--synth-pink);
         }
 
         .cursor {
@@ -131,47 +156,85 @@
             height: 8px;
         }
 
-        body::before {
-            content: "";
+        /* BACKGROUND ELEMENTS */
+        .starfield {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                linear-gradient(rgba(10, 10, 18, 0.9), rgba(10, 10, 18, 0.9)),
-                url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none" stroke="rgba(139, 44, 245, 0.1)" stroke-width="0.5"/></svg>');
-            background-size: 100px 100px;
-            z-index: -2;
+            z-index: -3;
+            background-image: 
+                radial-gradient(#ffffff 1px, transparent 1px),
+                radial-gradient(#ffffff 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            opacity: 0.3;
+            animation: stars-move 100s linear infinite;
         }
 
-        body::after {
-            content: "";
+        @keyframes stars-move {
+            from { background-position: 0 0, 25px 25px; }
+            to { background-position: 1000px 1000px, 1025px 1025px; }
+        }
+
+        .planet {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 55vh;
+            height: 55vh;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1f1c39, #050505);
+            box-shadow: 
+                inset -20px -20px 50px rgba(0,0,0,0.8),
+                0 0 20px rgba(139, 44, 245, 0.3); /* Slight outer glow */
+            z-index: -2;
+            opacity: 1; /* Increased opacity for better visibility */
+        }
+
+        .planet::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            border-radius: 50%;
+            border: 25px solid rgba(139, 44, 245, 0.25); /* More visible ring base */
+            border-top-color: rgba(139, 44, 245, 0.6); /* Highlights */
+            border-bottom-color: rgba(5, 217, 232, 0.6); /* Highlights */
+            transform: translate(-50%, -50%) rotateX(75deg) rotateY(10deg);
+            box-shadow: 0 0 30px rgba(139, 44, 245, 0.4);
+        }
+
+        .perspective-grid {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 200px;
-            background: linear-gradient(to top, rgba(139, 44, 245, 0.3), transparent);
-            z-index: -1;
+            height: 50vh;
+            background: 
+                linear-gradient(transparent 0%, var(--synth-bg) 100%),
+                linear-gradient(0deg, rgba(5, 217, 232, 0.4) 1px, transparent 1px), /* Brighter grid lines */
+                linear-gradient(90deg, rgba(5, 217, 232, 0.4) 1px, transparent 1px);
+            background-size: 100% 100%, 80px 80px, 80px 80px;
+            transform: perspective(300px) rotateX(50deg) scale(2);
+            transform-origin: bottom;
+            z-index: -2;
+            opacity: 0.8; /* Significantly increased opacity */
+            box-shadow: 0 -50px 100px rgba(5, 217, 232, 0.1); /* Horizon glow */
         }
 
-        .synthwave-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(139, 44, 245, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
-            z-index: -1;
-        }
         .neon-text {
             color: white;
+            font-family: var(--font-display);
+            text-transform: uppercase;
             text-shadow: 
-            0 0 10px var(--synth-pink),
-            0 0 20px var(--synth-pink),
-            0 0 30px var(--synth-pink);
-            animation: neon-pulse 2s infinite alternate;
+                0 0 5px var(--synth-pink),
+                0 0 10px var(--synth-pink),
+                0 0 20px var(--synth-pink);
         }
 
         .neon-purple {
@@ -206,24 +269,24 @@
         }
 
         .header {
-            background: rgba(15, 15, 30, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--synth-purple);
-            box-shadow: 0 0 20px rgba(139, 44, 245, 0.3);
-            position: fixed;
+            background: transparent;
+            backdrop-filter: none;
+            border-bottom: none;
+            box-shadow: none;
+            position: absolute; /* Top absolute per spec */
             top: 0;
             left: 0;
             width: 100%;
             z-index: 10000;
-            height: 80px;
+            height: 100px;
             display: flex;
             align-items: center;
         }
 
         .nav {
-            max-width: 1200px;
+            max-width: 1600px; /* Wider container for right align */
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -232,23 +295,23 @@
         }
 
         .nav__logo {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            font-size: 1.5rem;
-            color: var(--text-color);
-            text-shadow: 0 0 15px var(--synth-pink);
+            font-family: var(--font-logo);
+            font-weight: 400;
+            font-size: 2.2rem;
+            color: var(--synth-pink);
+            text-shadow: 2px 2px 0px rgba(255, 42, 109, 0.3);
             text-decoration: none;
-            transition: all 0.3s ease;
+            letter-spacing: 2px;
         }
 
         .nav__logo:hover {
-            text-shadow: 0 0 20px var(--synth-pink), 0 0 30px var(--synth-pink);
+            text-shadow: 0 0 15px var(--synth-pink);
         }
 
         .nav__menu {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            margin-left: auto; /* Push to right */
         }
 
         .nav__list {
@@ -256,37 +319,23 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 1.5rem;
+            gap: 3rem; /* Spaced out */
         }
 
         .nav__link {
+            font-family: var(--font-body);
             color: var(--text-color);
             text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
         }
 
         .nav__link:hover {
-            color: var(--synth-pink);
-        }
-
-        .nav__link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--synth-pink);
-            transition: width 0.3s ease;
-        }
-
-        .nav__link:hover::after {
-            width: 100%;
+            color: var(--synth-cyan);
+            text-shadow: 0 0 8px var(--synth-cyan);
         }
 
         .nav__toggle {
@@ -299,7 +348,49 @@
         }
 
         .main {
-            margin-top: 80px;
+            margin-top: 0;
+        }
+        
+        .social-sidebar {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50px;
+            z-index: 100;
+        }
+
+        .social-line {
+            width: 2px;
+            height: 100px;
+            background: var(--synth-pink);
+            box-shadow: 0 0 10px var(--synth-pink);
+            margin-bottom: 2rem;
+        }
+
+        .social-sidebar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            border: 1px solid transparent;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .social-sidebar a:hover {
+            color: var(--synth-cyan);
+            text-shadow: 0 0 10px var(--synth-cyan);
+            border-color: var(--synth-cyan);
+            box-shadow: 0 0 10px rgba(5, 217, 232, 0.3);
         }
 
         .section {
@@ -347,115 +438,88 @@
             display: block;
         }
 
+        /* Hero Section Refined */
         .home {
-            min-height: calc(100vh - 80px);
-            display: flex;
-            align-items: center;
-            padding: 5rem 0;
-        }
-
-        .home__container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .home__content {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .home__social {
-            position: absolute;
-            top: 50%;
-            right: -3.5rem;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .home__social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(139, 44, 245, 0.2);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-color);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-size: 18px;
-            line-height: 1;
-        }
-
-        .home__social-icon .synth-icon,
-        .footer__social .synth-icon {
-            margin-right: 0;
-            width: 20px;
-            height: 20px;
-        }
-
-        .home__img {
             position: relative;
-            justify-self: center;
-            align-self: center;
+            padding: 0;
         }
 
-        .home__blob {
-            width: 300px;
-            height: 300px;
-            fill: var(--synth-purple);
-            filter: drop-shadow(0 0 20px rgba(139, 44, 245, 0.5));
+        .home__container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 10;
         }
 
+        /* Styling existing content to look like the design */
         .home__data {
-            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .home_title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--synth-pink), var(--synth-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 800;
             color: transparent;
-            text-shadow: none;
-            margin-bottom: 1rem;
+            -webkit-text-stroke: 2px var(--synth-pink);
+            text-shadow: 0 0 30px rgba(255, 42, 109, 0.4);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
         }
-
+        
         .home__subtitle {
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: var(--text-color);
-            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--synth-cyan);
+            text-shadow: 0 0 20px rgba(5, 217, 232, 0.4);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
         }
 
         .home__description {
-            font-size: 1.2rem;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
             color: var(--text-secondary);
             max-width: 600px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 3rem;
+            letter-spacing: 1px;
+        }
+
+        .home__buttons-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .button {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 30px;
+            background: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--synth-cyan);
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-family: var(--font-display);
             font-weight: 600;
-            font-size: 1rem;
-            cursor: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(139, 44, 245, 0.4);
             text-transform: uppercase;
             letter-spacing: 1px;
+            cursor: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(5, 217, 232, 0.1);
             position: relative;
             overflow: hidden;
             display: inline-flex;
@@ -464,31 +528,19 @@
             text-decoration: none;
         }
 
-        .button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.5s ease;
-        }
-
-        .button:hover::before {
-            left: 100%;
-        }
-
         .button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(139, 44, 245, 0.6);
+            background: rgba(5, 217, 232, 0.1);
+            box-shadow: 0 0 30px rgba(5, 217, 232, 0.4);
+            transform: translateY(-2px);
+            text-shadow: 0 0 8px var(--text-color);
+        }
+
+        .home__img {
+            display: none; /* Hiding blob image to match clean text aesthetic of reference */
         }
 
         .home__scroll {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
+            display: none;
         }
 
         .home__scroll-button {
@@ -578,14 +630,8 @@
 
         .skills__container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skills__container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -593,16 +639,16 @@
         .skills__content {
             background: rgba(15, 15, 30, 0.6);
             backdrop-filter: blur(10px);
-            border-radius: 15px;
+            border-radius: 12px;
             border: 1px solid rgba(139, 44, 245, 0.3);
             box-shadow: 0 8px 32px rgba(139, 44, 245, 0.2);
-            padding: 1.5rem;
+            padding: 1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .skills__content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(139, 44, 245, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139, 44, 245, 0.4);
         }
 
         .skills__header {
@@ -610,64 +656,79 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid rgba(139, 44, 245, 0.3);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(139, 44, 245, 0.3);
         }
 
         .skills__icon {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--synth-pink);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .skills__title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-color);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
 
         .skills__subtitle {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
         }
 
         .skills__list {
-            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
             padding: 0;
         }
 
         .skills__data {
-            margin-bottom: 1.2rem;
-            padding: 0.8rem;
-            background: rgba(139, 44, 245, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(139, 44, 245, 0.1);
+            border: 1px solid rgba(139, 44, 245, 0.2);
             border-radius: 8px;
-            border-left: 3px solid var(--synth-pink);
+            padding: 0.5rem;
             transition: all 0.3s ease;
+            text-align: center;
+            height: 80px;
         }
 
         .skills__data:hover {
-            background: rgba(139, 44, 245, 0.1);
-            transform: translateX(5px);
+            background: rgba(139, 44, 245, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(139, 44, 245, 0.3);
+            border-color: var(--synth-cyan);
         }
 
         .skills__titles {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: none; /* Hide old structure if present */
         }
 
         .skills__name {
-            display: flex;
-            align-items: center;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             color: var(--text-color);
+            margin-top: 0.3rem;
+            font-weight: 500;
         }
 
         .skills__logo {
-            margin-right: 0.5rem;
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            margin-bottom: 0.3rem;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+        }
+
+        .skills__number {
+            display: none; /* Hide percentages */
         }
 
         .skills__number {
@@ -875,9 +936,28 @@
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
+            overflow-x: hidden; /* Hide horizontal scrollbar specifically for modal */
             position: relative;
             transform: scale(0.8);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Modal specific scrollbar styling */
+        .portfolio__modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .portfolio__modal-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+        
+        .portfolio__modal-content::-webkit-scrollbar-thumb {
+            background-color: var(--synth-pink);
+            border-radius: 4px;
         }
 
         .portfolio__modal.active .portfolio__modal-content {
@@ -997,32 +1077,29 @@
             margin-bottom: 0.5rem;
         }
 
-        .portfolio__description {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .portfolio__button {
-            align-self: flex-start;
-            background: none;
-            border: 1px solid var(--synth-pink);
-            color: var(--synth-pink);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: none;
-            transition: all 0.3s ease;
+        .portfolio__modal-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            background: transparent;
+            border: 2px solid var(--synth-cyan);
+            color: var(--text-color);
+            padding: 10px 25px;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .portfolio__button:hover {
-            background: var(--synth-pink);
-            color: white;
+        .portfolio__modal-link:hover {
+            background: rgba(5, 217, 232, 0.1);
+            box-shadow: 0 0 20px rgba(5, 217, 232, 0.4);
+            transform: translateY(-3px);
+            text-shadow: 0 0 8px var(--synth-cyan);
         }
 
         .contact__container {
@@ -1206,197 +1283,57 @@
             border-top: 1px solid rgba(139, 44, 245, 0.2);
         }
 
-        .scrollup {
-            position: fixed;
-            right: 1rem;
-            bottom: -20%;
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            color: white;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            z-index: 10;
-            transition: bottom 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0;
-            text-decoration: none;
+        .footer__icon {
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            color: var(--synth-pink);
+            transition: transform 0.3s ease;
         }
 
-        .scrollup .synth-icon {
-            margin: 0;
+        .footer__link:hover .footer__icon {
+            transform: translateX(5px);
+        }
+
+        .scrollup {
+            position: fixed;
+            right: 2rem;
+            bottom: -20%;
+            background: rgba(15, 15, 30, 0.8);
+            border: 2px solid var(--synth-cyan);
+            color: var(--synth-cyan);
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 10px; /* More techy, less round */
+            z-index: 10;
+            transition: all 0.3s ease;
+            opacity: 0;
+            text-decoration: none;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(5, 217, 232, 0.3);
         }
 
         .scrollup:hover {
             transform: translateY(-5px);
+            background: var(--synth-cyan);
+            color: var(--synth-bg);
+            box-shadow: 0 0 25px rgba(5, 217, 232, 0.6);
         }
 
         .scrollup.show {
-            bottom: 2rem;
+            bottom: 3rem;
             opacity: 1;
         }
 
-        /* Synthwave Icons */
+        /* Synthwave Icons - REMOVED custom SVG masks in favor of standard Font Awesome */
+        /* Keeping basic sizing for any remaining usage */
         .synth-icon {
-            position: relative;
             display: inline-block;
-            width: 24px;
-            height: 24px;
+            font-size: 1.2rem;
             margin-right: 0.5rem;
-        }
-
-        .synth-icon-discord {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-github {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-link {
-            background: linear-gradient(45deg, var(--synth-pink), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-home {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-user {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-file {
-            background: linear-gradient(45deg, var(--synth-pink), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-briefcase {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10,4V2H14V4H19A1,1 0 0,1 20,5V19A1,1 0 0,1 19,20H5A1,1 0 0,1 4,19V5A1,1 0 0,1 5,4H10M12,6A4,4 0 0,0 8,10A4,4 0 0,0 12,14A4,4 0 0,0 16,10A4,4 0 0,0 12,6Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10,4V2H14V4H19A1,1 0 0,1 20,5V19A1,1 0 0,1 19,20H5A1,1 0 0,1 4,19V5A1,1 0 0,1 5,4H10M12,6A4,4 0 0,0 8,10A4,4 0 0,0 12,14A4,4 0 0,0 16,10A4,4 0 0,0 12,6Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-scenery {
-            background: linear-gradient(45deg, var(--synth-pink), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,18.5L10.5,17L7,20.5V6H17V20.5L13.5,17L12,18.5M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6A2,2 0 0,1 10,4A2,2 0 0,1 12,2M12,2L7,6.5V21L12,16L17,21V6.5L12,2Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,18.5L10.5,17L7,20.5V6H17V20.5L13.5,17L12,18.5M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6A2,2 0 0,1 10,4A2,2 0 0,1 12,2M12,2L7,6.5V21L12,16L17,21V6.5L12,2Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-message {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-envelope {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-download {
-            background: linear-gradient(45deg, var(--synth-pink), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-arrow-right {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-close {
-            background: linear-gradient(45deg, var(--synth-pink), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-angle-down {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-mouse {
-            background: linear-gradient(45deg, var(--synth-pink), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11,1.07C7.05,1.56 4,4.92 4,9H11M13,1.07V9H20C20,4.92 16.95,1.56 13,1.07M4,11V15A7,7 0 0,0 11,22H13A7,7 0 0,0 20,15V11H4Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11,1.07C7.05,1.56 4,4.92 4,9H11M13,1.07V9H20C20,4.92 16.95,1.56 13,1.07M4,11V15A7,7 0 0,0 11,22H13A7,7 0 0,0 20,15V11H4Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-arrow-down {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41,8.59L12,13.17L16.59,8.59L18,10L12,16L6,10L7.41,8.59Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41,8.59L12,13.17L16.59,8.59L18,10L12,16L6,10L7.41,8.59Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-arrow-up {
-            background: linear-gradient(45deg, var(--synth-pink), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-shield {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V16H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V16H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-apps {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16,20H20V16H16M16,14H20V10H16M10,20H14V16H10M10,14H14V10H10M4,20H8V16H4M4,14H8V10H4M16,8H20V4H16M10,8H14V4H10M4,8H8V4H4Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16,20H20V16H16M16,14H20V10H16M10,20H14V16H10M10,14H14V10H10M4,20H8V16H4M4,14H8V10H4M16,8H20V4H16M10,8H14V4H10M4,8H8V4H4Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-check-circle {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-brackets-curly {
-            background: linear-gradient(45deg, var(--synth-pink), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4,19H6V21H4V19M4,13H6V15H4V13M4,7H6V9H4V7M20,19H22V21H20V19M20,13H22V15H20V13M20,7H22V9H20V7M20,3H22V5H20V3M16,3H18V5H16V3M12,3H14V5H12V3M8,3H10V5H8V3M4,3H6V5H4V3M4,19H6V21H4V19M8,21H10V19H8V21M12,21H14V19H12V21M16,21H18V19H16V21Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4,19H6V21H4V19M4,13H6V15H4V13M4,7H6V9H4V7M20,19H22V21H20V19M20,13H22V15H20V13M20,7H22V9H20V7M20,3H22V5H20V3M16,3H18V5H16V3M12,3H14V5H12V3M8,3H10V5H8V3M4,3H6V5H4V3M4,19H6V21H4V19M8,21H10V19H8V21M12,21H14V19H12V21M16,21H18V19H16V21Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-server-network {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M13,18H14A1,1 0 0,1 15,19H22V21H15A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21H2V19H9A1,1 0 0,1 10,18H11V16H4A1,1 0 0,1 3,15V11A1,1 0 0,1 4,10H20A1,1 0 0,1 21,11V15A1,1 0 0,1 20,16H13V18M4,2H20A1,1 0 0,1 21,3V7A1,1 0 0,1 20,8H4A1,1 0 0,1 3,7V3A1,1 0 0,1 4,2M9,16H15V18H9V16Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M13,18H14A1,1 0 0,1 15,19H22V21H15A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21H2V19H9A1,1 0 0,1 10,18H11V16H4A1,1 0 0,1 3,15V11A1,1 0 0,1 4,10H20A1,1 0 0,1 21,11V15A1,1 0 0,1 20,16H13V18M4,2H20A1,1 0 0,1 21,3V7A1,1 0 0,1 20,8H4A1,1 0 0,1 3,7V3A1,1 0 0,1 4,2M9,16H15V18H9V16Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-video {
-            background: linear-gradient(45deg, var(--synth-pink), var(--synth-cyan));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-grid {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10,4V8H14V4H10M16,4V8H20V4H16M16,10V14H20V10H16M16,16V20H20V16H16M14,20V16H10V20H14M8,20V16H4V20H8M8,14V10H4V14H8M8,8V4H4V8H8M10,14H14V10H10V14M4,2H20A2,2 0 0,1 22,4V20A2,2 0 0,1 20,22H4C2.89,22 2,21.1 2,20V4A2,2 0 0,1 4,2Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10,4V8H14V4H10M16,4V8H20V4H16M16,10V14H20V10H16M16,16V20H20V16H16M14,20V16H10V20H14M8,20V16H4V20H8M8,14V10H4V14H8M8,8V4H4V8H8M10,14H14V10H10V14M4,2H20A2,2 0 0,1 22,4V20A2,2 0 0,1 20,22H4C2.89,22 2,21.1 2,20V4A2,2 0 0,1 4,2Z'/%3E%3C/svg%3E") no-repeat center;
-        }
-
-        .synth-icon-film {
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18,4L20,8H17L15,4H13L15,8H12L10,4H8L10,8H7L5,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8L18,4Z'/%3E%3C/svg%3E") no-repeat center;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18,4L20,8H17L15,4H13L15,8H12L10,4H8L10,8H7L5,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8L18,4Z'/%3E%3C/svg%3E") no-repeat center;
+            color: var(--synth-pink);
         }
 
         /* Nav container icons - all white */
@@ -1404,12 +1341,20 @@
             background: #ffffff !important;
         }
 
-        /* Footer explore section icons - all white */
-        .footer__link .synth-icon {
-            background: #ffffff !important;
+        /* Services Icons - White */
+        .services__icon {
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        /* Animated background elements */
+        /* Modal Service List Bullets */
+        .services__modal-icon {
+            color: var(--synth-pink);
+            font-size: 0.6rem; /* Smaller, bullet-like */
+            margin-right: 0.5rem;
+            margin-top: 0.4rem; /* Align with text */
+        }
         .synthwave-sun {
             position: fixed;
             bottom: -150px;
@@ -1469,9 +1414,13 @@
                 cursor: auto !important;
             }
 
-            /* Hide navbar on mobile devices */
+            /* Hide navbar on mobile devices - ADJUSTED for transparency logic */
             .header {
                 display: none !important;
+            }
+            
+            .social-sidebar {
+                display: none;
             }
 
             /* Adjust main content to account for hidden navbar */
@@ -1601,61 +1550,48 @@
     <div class="cursor-trail" id="trail-6"></div>
     
     <!-- Synthwave Background Elements -->
-    <div class="synthwave-sun"></div>
-    <div class="synthwave-grid"></div>
-    <div class="synthwave-mountains"></div>
-    <div class="synthwave-bg"></div>
+    <div class="starfield"></div>
+    <div class="planet"></div>
+    <div class="perspective-grid"></div>
+    
+    <!-- Sidebar -->
+    <div class="social-sidebar">
+        <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/Skalin151" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://allmylinks.com/skalin151yt" target="_blank"><i class="fas fa-link"></i></a>
+    </div>
     
     <!--==================== HEADER ====================-->
     <header class="header" id="header">
-        <nav class="nav container">
-            <a href="#" class="nav__logo">Skalin</a>
+        <nav class="nav">
+            <a href="#" class="nav__logo">THK</a>
             
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__items">
                         <a href="#home" class="nav__link active-link">
-                            <i class="synth-icon synth-icon-home"></i> Home
+                            <i class=""></i> Home
                         </a>
                     </li>
-
                     <li class="nav__items">
                         <a href="#about" class="nav__link">
-                            <i class="synth-icon synth-icon-user"></i> About
+                            <i class=""></i> About
                         </a>
                     </li>
-
-                    <li class="nav__items">
-                        <a href="#skills" class="nav__link">
-                            <i class="synth-icon synth-icon-file"></i> Skills
-                        </a>
-                    </li>
-
-                    <li class="nav__items">
-                        <a href="#services" class="nav__link">
-                            <i class="synth-icon synth-icon-briefcase"></i> Services
-                        </a>
-                    </li>
-
                     <li class="nav__items">
                         <a href="#portfolio" class="nav__link">
-                            <i class="synth-icon synth-icon-grid"></i> Portfolio
+                            <i class=""></i> Portfolio
                         </a>
                     </li>
-
                     <li class="nav__items">
                         <a href="#contact" class="nav__link">
-                            <i class="synth-icon synth-icon-message"></i> Contact
-                        </a>
-                    </li>
-
-                    <li class="nav__items">
-                        <a href="https://allmylinks.com/skalin151yt">
-                            <b class="neon-text">THK</b>
+                            <i class=""></i> Contact
                         </a>
                     </li>
                 </ul>
             </div>
+
+
 
             <div class="nav__toggle" id="nav-toggle">
                 <i class="synth-icon synth-icon-apps"></i>
@@ -1667,60 +1603,23 @@
     <main class="main">
         <!--==================== HOME ====================-->
         <section class="home section" id="home">
-            <div class="home__container container">
-                <div class="home__content">
-                    <div class="home__data">
-                        <h1 class="home_title">Hi!<span class="wave">👋</span> I'm Skalin</h1>
-                        <h3 class="home__subtitle">
-                            and I'm <span class="auto-input"></span>
-                        </h3>
-                        <p class="home__description">
-                            High level experience in web design and development knowledge, producing quality work.
-                        </p>
-                        <a href="#contact" class="button button--flex">
-                            Contact Me <i class="fas fa-envelope" style="color: white;"></i>
-                        </a>
-                    </div>
-
-                    <div class="home__social">
-                        <a href="https://discord.gg/vtPE9BvUS95Qxcrhqb"
-                            target="_blank" class="home__social-icon">
-                            <i class="synth-icon synth-icon-discord"></i>
-                        </a>
-                        <a href="https://github.com/Skalin151" target="_blank" class="home__social-icon">
-                            <i class="synth-icon synth-icon-github"></i>
-                        </a>
-                        <a href="https://allmylinks.com/skalin151yt" target="_blank" class="home__social-icon">
-                            <i class="synth-icon synth-icon-link"></i>
+            <div class="home__container">
+                <div class="home__data">
+                    <h1 class="home_title">Hi! I'm Skalin</h1>
+                    <h3 class="home__subtitle">Fullstack Developer</h3>
+                    <p class="home__description">
+                        High level experience in web design and development.
+                    </p>
+                    <div class="home__buttons-container">
+                        <a href="assets/CV Resume.pdf" download="" class="button">
+                            <i class="fas fa-download"></i> Download CV
                         </a>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="home__img">
-                        <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <mask id="mask0" mask-type="alpha">
-                                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                                130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                                97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-                                0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
-                            </mask>
-                            <g mask="url(#mask0)">
-                                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
-                                165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
-                                129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
-                                -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
-                                
-                                <image class="home__blob-img" x="-5" y="0" width="220" height="220" xlink:href="assets/img/Tohkapfp.gif"/>
-                            </g>
-                        </svg>
-                    </div>
-                </div>
 
-                <div class="home__scroll">
-                    <a href="#about" class="home__scroll-button button--flex">
-                    </a>
-                </div>
             </div>
         </section>
 
@@ -1756,11 +1655,6 @@
                                 support</span>
                         </div>
                     </div>
-                    <div class="about__buttons"></div>
-                        <a download="" href="assets/CV Resume.pdf" class="button button--flex">
-                            Download CV <i class="fas fa-download" style="color: white;"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -1768,147 +1662,206 @@
         <!--==================== SKILLS ====================-->
         <section class="skills section" id="skills">
             <h2 class="section__title">Skills</h2>
-            <span class="section__subtitle">My technical level</span>
+            <span class="section__subtitle">My Technical Arsenal</span>
 
             <div class="skills__container container">
-                <!--==================== SKILL 1 ====================-->
+                <!--==================== Web Development ====================-->
                 <div class="skills__content">
                     <div class="skills__header">
-                        <i class="synth-icon synth-icon-brackets-curly skills__icon"></i>
-                        <h1 class="skills__title">Fullstack developer</h1>
-                        <span class="skills__subtitle">More than 2 years</span>
+                        <i class="fas fa-globe skills__icon" style="color: #fff;"></i>
+                        <h1 class="skills__title">Web Development</h1>
                     </div>
 
-                    <ul class="skills__list">
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/html.png" class="skills__logo" width="25px" alt=""> HTML
-                                </h3>
-                                <span class="skills__number">90%</span>
-                            </div>
-                        </li>
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/css.png" class="skills__logo" width="20px" alt=""> CSS
-                                </h3>
-                                <span class="skills__number">80%</span>
-                            </div>
-                        </li>
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/javascript.png" class="skills__logo" width="20px" alt=""> JavaScript
-                                </h3>
-                                <span class="skills__number">70%</span>
-                            </div>
-                        </li>
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/react.png" class="skills__logo" width="20px" alt=""> React
-                                </h3>
-                                <span class="skills__number">40%</span>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="skills__list grid">
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="skills__logo" alt="HTML5">
+                            <span class="skills__name">HTML5</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="skills__logo" alt="CSS3">
+                            <span class="skills__name">CSS3</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="skills__logo" alt="JavaScript">
+                            <span class="skills__name">JavaScript</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="skills__logo" alt="React">
+                            <span class="skills__name">React</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="skills__logo" alt="Bootstrap">
+                            <span class="skills__name">Bootstrap</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="skills__logo" alt="Node.js">
+                            <span class="skills__name">Node.js</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!--==================== SKILL 2 ====================-->
+                <!--==================== Software & Systems ====================-->
                 <div class="skills__content">
                     <div class="skills__header">
-                        <i class="synth-icon synth-icon-server-network skills__icon"></i>
-                        <h1 class="skills__title">Backend developer</h1>
-                        <span class="skills__subtitle">More than 1 years</span>
+                        <i class="fas fa-terminal skills__icon" style="color: #fff;"></i>
+                        <h1 class="skills__title">Software & Systems</h1>
                     </div>
 
-                    <ul class="skills__list">
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/php.png" class="skills__logo" width="20px" alt=""> PHP
-                                </h3>
-                                <span class="skills__number">90%</span>
-                            </div>
-                        </li>
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/sql.png" class="skills__logo" width="20px" alt=""> MySQL
-                                </h3>
-                                <span class="skills__number">72%</span>
-                            </div>
-                        </li>
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/node.png" class="skills__logo" width="20px" alt=""> Node Js
-                                </h3>
-                                <span class="skills__number">58%</span>
-                            </div>
-                        </li>
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/python.png" class="skills__logo" width="20px" alt=""> Python
-                                </h3>
-                                <span class="skills__number">94%</span>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="skills__list grid">
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="skills__logo" alt="C">
+                            <span class="skills__name">C</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="skills__logo" alt="C++">
+                            <span class="skills__name">C++</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skills__logo" alt="Python">
+                            <span class="skills__name">Python</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" class="skills__logo" alt="Bash">
+                            <span class="skills__name">Bash</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="skills__logo" alt="Linux">
+                            <span class="skills__name">Linux</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" class="skills__logo" alt="Windows">
+                            <span class="skills__name">Windows</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!--==================== SKILL 3 ====================-->
+                <!--==================== Databases ====================-->
                 <div class="skills__content">
                     <div class="skills__header">
-                        <i class="synth-icon synth-icon-video skills__icon"></i>
-                        <h1 class="skills__title">Media Editor</h1>
-                        <span class="skills__subtitle">More than 4 years</span>
+                        <i class="fas fa-database skills__icon" style="color: #fff;"></i>
+                        <h1 class="skills__title">Databases</h1>
                     </div>
 
-                    <ul class="skills__list">
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/filmora.png" class="skills__logo" width="20px" alt=""> Wondershare Filmora
-                                </h3>
-                                <span class="skills__number">90%</span>
-                            </div>
-                        </li>
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/ps.png" class="skills__logo" width="20px" alt=""> Adobe Photoshop
-                                </h3>
-                                <span class="skills__number">70%</span>
-                            </div>
-                        </li>
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/illustrator.png" class="skills__logo" width="20px" alt=""> Adobe Illustrator
-                                </h3>
-                                <span class="skills__number">50%</span>
-                            </div>
-                        </li>
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/flstudio.png" class="skills__logo" width="20px" alt=""> FL Studio
-                                </h3>
-                                <span class="skills__number">40%</span>
-                            </div>
-                        </li>
-                        <li class="skills__data">
-                            <div class="skills__titles">
-                                <h3 class="skills__name">
-                                    <img src="/assets/img/blender.png" class="skills__logo" width="20px" alt=""> Blender
-                                </h3>
-                                <span class="skills__number">30%</span>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="skills__list grid">
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" class="skills__logo" alt="Azure">
+                            <span class="skills__name">Azure</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="skills__logo" alt="Postgres">
+                            <span class="skills__name">Postgres</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="skills__logo" alt="Mongo">
+                            <span class="skills__name">Mongo</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" class="skills__logo" alt="Supabase">
+                            <span class="skills__name">Supabase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--==================== Mobile & Game Dev ====================-->
+                <div class="skills__content">
+                    <div class="skills__header">
+                        <i class="fas fa-gamepad skills__icon" style="color: #fff;"></i>
+                        <h1 class="skills__title">Mobile & Game Dev</h1>
+                    </div>
+
+                    <div class="skills__list grid">
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" class="skills__logo" alt="Flutter">
+                            <span class="skills__name">Flutter</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" class="skills__logo" alt="Dart">
+                            <span class="skills__name">Dart</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" class="skills__logo" alt="Android Studio">
+                            <span class="skills__name">Android Studio</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" class="skills__logo" alt="Unity">
+                            <span class="skills__name">Unity</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/godot/godot-original.svg" class="skills__logo" alt="Godot">
+                            <span class="skills__name">Godot</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--==================== Cloud & Tools ====================-->
+                <div class="skills__content">
+                    <div class="skills__header">
+                        <i class="fas fa-tools skills__icon" style="color: #fff;"></i>
+                        <h1 class="skills__title">Cloud & Tools</h1>
+                    </div>
+
+                    <div class="skills__list grid">
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="skills__logo" alt="Git">
+                            <span class="skills__name">Git</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="skills__logo" alt="Docker">
+                            <span class="skills__name">Docker</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" class="skills__logo" alt="AWS">
+                            <span class="skills__name">AWS</span>
+                        </div>
+
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" class="skills__logo" alt="Postman">
+                            <span class="skills__name">Postman</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" class="skills__logo" alt="VS Code">
+                            <span class="skills__name">VS Code</span>
+                        </div>
+                         <div class="skills__data">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/2023_Obsidian_logo.svg" class="skills__logo" alt="Obsidian" style="width: 40px;">
+                            <span class="skills__name">Obsidian</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--==================== Design, Electronics & Media ====================-->
+                <div class="skills__content">
+                    <div class="skills__header">
+                        <i class="fas fa-layer-group skills__icon" style="color: #fff;"></i>
+                        <h1 class="skills__title">Design & Create </h1>
+                    </div>
+
+                    <div class="skills__list grid">
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="skills__logo" alt="Figma">
+                            <span class="skills__name">Figma</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" class="skills__logo" alt="Photoshop">
+                            <span class="skills__name">Photoshop</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" class="skills__logo" alt="Illustrator">
+                            <span class="skills__name">Illustrator</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg" class="skills__logo" alt="Blender">
+                            <span class="skills__name">Blender</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" class="skills__logo" alt="Arduino">
+                            <span class="skills__name">Arduino</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" class="skills__logo" alt="Raspberry Pi">
+                            <span class="skills__name">Raspberry Pi</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1924,14 +1877,14 @@
                 <!--==================== SERVICES 1 ====================-->
                 <div class="services__content">
                     <div>
-                        <i class="synth-icon synth-icon-grid services__icon"></i>
+                        <i class="fas fa-pencil-ruler services__icon" style="color: #fff;"></i>
                         <h3 class="services__title">Ui/Ux <br> Designer</h3>
                     </div>
 
                     <div>
                         <button class="services__button" data-service="1">
                             <span>View More</span>
-                            <i class="synth-icon synth-icon-arrow-right"></i>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -1939,14 +1892,14 @@
                 <!--==================== SERVICES 2 ====================-->
                 <div class="services__content">
                     <div>
-                        <i class="synth-icon synth-icon-brackets-curly services__icon"></i>
+                        <i class="fas fa-code services__icon"></i>
                         <h3 class="services__title">Fullstack <br> Developer</h3>
                     </div>
 
                     <div>
                         <button class="services__button" data-service="2">
                             <span>View More</span>
-                            <i class="synth-icon synth-icon-arrow-right"></i>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -1954,56 +1907,56 @@
                 <!--==================== SERVICES 3 ====================-->
                 <div class="services__content">
                     <div>
-                        <i class="synth-icon synth-icon-film services__icon"></i>
+                        <i class="fas fa-photo-video services__icon"></i>
                         <h3 class="services__title">Media <br> Editor</h3>
                     </div>
 
                     <div>
                         <button class="services__button" data-service="3">
                             <span>View More</span>
-                            <i class="synth-icon synth-icon-arrow-right"></i>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
                 <!--==================== SERVICES 4 ====================-->
                 <div class="services__content">
                     <div>
-                        <i class="synth-icon synth-icon-server-network services__icon"></i>
+                        <i class="fas fa-desktop services__icon"></i>
                         <h3 class="services__title">PC Build & <br> Maintenance</h3>
                     </div>
 
                     <div>
-                        <button class="services__button" data-service="4"><
+                        <button class="services__button" data-service="4">
                             <span>View More</span>
-                            <i class="synth-icon synth-icon-arrow-right"></i>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
                 <!--==================== SERVICES 5 ====================-->
                 <div class="services__content">
                     <div>
-                        <i class="synth-icon synth-icon-shield services__icon"></i>
+                        <i class="fas fa-shield-alt services__icon"></i>
                         <h3 class="services__title">Cyber <br> Security</h3>
                     </div>
 
                     <div>
                         <button class="services__button" data-service="5">
                             <span>View More</span>
-                            <i class="synth-icon synth-icon-arrow-right"></i>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
                 <!--==================== SERVICES 6 ====================-->
                 <div class="services__content">
                     <div>
-                        <i class="synth-icon synth-icon-server-network services__icon"></i>
+                        <i class="fas fa-chart-line services__icon"></i>
                         <h3 class="services__title">Data <br> Analyst</h3>
                     </div>
 
                     <div>
                         <button class="services__button" data-service="6">
                             <span>View More</span>
-                            <i class="synth-icon synth-icon-arrow-right"></i>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -2024,10 +1977,6 @@
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Discord Bot</h3>
                         <p class="portfolio__description">A discord bot i solely made with a lot of fun commands.</p>
-                        <a href="https://discord.com/oauth2/authorize?client_id=1395891659333439518&permissions=8&integration_type=0&scope=bot" class="portfolio__button" onclick="event.stopPropagation()">
-                            Invite
-                            <i class="synth-icon synth-icon-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
                 <!--==================== PORTFOLIO 2 ====================-->
@@ -2037,10 +1986,6 @@
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Coding Projects</h3>
                         <p class="portfolio__description">Multiple projects I made during my academic career, and some side projects I started for fun.</p>
-                        <a href="#" class="portfolio__button" onclick="event.stopPropagation()">
-                            Projects
-                            <i class="synth-icon synth-icon-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
                 <!--==================== PORTFOLIO 3 ====================-->
@@ -2050,10 +1995,6 @@
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Music Album</h3>
                         <p class="portfolio__description">Playlist with different genres of music, made by me using FL Studio.</p>
-                        <a href="https://youtube.com/playlist?list=PLX8r__0dlA2WN4sBAf8xgFX8odjtBBynk&si=9gE8ZHkWmfCgs5xM" class="portfolio__button" onclick="event.stopPropagation()">
-                            Playlist
-                            <i class="synth-icon synth-icon-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
                 <!--==================== PORTFOLIO 4 ====================-->
@@ -2063,10 +2004,6 @@
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Flutter App</h3>
                         <p class="portfolio__description">A Flutter-based mobile app for managing educational courses, featuring enrollment, assignments, quizzes, notifications, forums, and certificates in a user-friendly interface.</p>
-                        <a href="https://estgv-my.sharepoint.com/personal/pv25178_alunos_estgv_ipv_pt/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fpv25178%5Falunos%5Festgv%5Fipv%5Fpt%2FDocuments%2FFiller%2FSoftSkills%2Eapk&parent=%2Fpersonal%2Fpv25178%5Falunos%5Festgv%5Fipv%5Fpt%2FDocuments%2FFiller&ga=1" class="portfolio__button" onclick="event.stopPropagation()">
-                            View
-                            <i class="synth-icon synth-icon-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
                 <!--==================== PORTFOLIO 5 ====================-->
@@ -2076,10 +2013,6 @@
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Steam Family</h3>
                         <p class="portfolio__description">A tool fully written in python to fetch the games from all user's in a family using Steam's API.</p>
-                        <a href="https://github.com/Skalin151/Steam-Games-Aggregator" class="portfolio__button" onclick="event.stopPropagation()">
-                            Fetch
-                            <i class="synth-icon synth-icon-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
                 <!--==================== PORTFOLIO 6 ====================-->
@@ -2089,10 +2022,6 @@
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Home Lab</h3>
                         <p class="portfolio__description">I personally built, using old computer parts, a home server that hosts the services I use, for exemple, a self hosted Media Player, a Web Monitor, a Smart Home Interface and a Automation Site.</p>
-                        <a href="#" class="portfolio__button" onclick="event.stopPropagation()">
-                            Check
-                            <i class="synth-icon synth-icon-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -2166,24 +2095,24 @@
         <div class="services__modal-content">
             <h4 class="services__modal-title">Ui/Ux <br> Designer</h4>
             <button class="services__modal-close">
-                <i class="synth-icon synth-icon-close"></i>
+                <i class="fas fa-times"></i>
             </button>
 
             <ul class="services__modal-services">
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I create the User Interface usign figma.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>Web page development.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I create ux element interactions.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I position your company brand.</p>
                 </li>
             </ul>
@@ -2194,24 +2123,24 @@
         <div class="services__modal-content">
             <h4 class="services__modal-title">Fullstack <br> Developer</h4>
             <button class="services__modal-close">
-                <i class="synth-icon synth-icon-close"></i>
+                <i class="fas fa-times"></i>
             </button>
 
             <ul class="services__modal-services">
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I develop the user interface.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>Web page development.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I create ux element interactions.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I position your company brand.</p>
                 </li>
             </ul>
@@ -2222,24 +2151,24 @@
         <div class="services__modal-content">
             <h4 class="services__modal-title">Media <br> Editor</h4>
             <button class="services__modal-close">
-                <i class="synth-icon synth-icon-close"></i>
+                <i class="fas fa-times"></i>
             </button>
 
             <ul class="services__modal-services">
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I edit videos for promotional use.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I edit images, and color correct them.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I can create music or sound effects.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I create logos for your brand.</p>
                 </li>
             </ul>
@@ -2250,24 +2179,24 @@
         <div class="services__modal-content">
             <h4 class="services__modal-title">PC Build & <br> Maintenance</h4>
             <button class="services__modal-close">
-                <i class="synth-icon synth-icon-close"></i>
+                <i class="fas fa-times"></i>
             </button>
 
             <ul class="services__modal-services">
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I build custom PCs for gaming and workstations.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I provide hardware troubleshooting and repair.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I offer system optimization and performance tuning.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I provide regular maintenance and upgrades.</p>
                 </li>
             </ul>
@@ -2278,24 +2207,24 @@
         <div class="services__modal-content">
             <h4 class="services__modal-title">Cyber <br> Security</h4>
             <button class="services__modal-close">
-                <i class="synth-icon synth-icon-close"></i>
+                <i class="fas fa-times"></i>
             </button>
 
             <ul class="services__modal-services">
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I perform security audits and vulnerability assessments.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I implement security protocols and best practices.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I provide penetration testing services.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I offer security training and consultation.</p>
                 </li>
             </ul>
@@ -2306,24 +2235,24 @@
         <div class="services__modal-content">
             <h4 class="services__modal-title">Data <br> Analyst</h4>
             <button class="services__modal-close">
-                <i class="synth-icon synth-icon-close"></i>
+                <i class="fas fa-times"></i>
             </button>
 
             <ul class="services__modal-services">
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I perform data collection and cleaning for analysis.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I create visualizations and dashboards for insights.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I provide statistical analysis and reporting.</p>
                 </li>
                 <li class="services__modal-service">
-                    <i class="synth-icon synth-icon-check-circle services__modal-icon"></i>
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>I offer data-driven recommendations and consultation.</p>
                 </li>
             </ul>
@@ -2333,72 +2262,57 @@
     <!--==================== FOOTER ====================-->
     <footer class="footer">
         <div class="footer__container">
-            <div>
-                <h1 class="footer__title">Skalin151</h1>
-                <span class="footer__subtitle">21 y/o Synthwave Developer</span>
+            <div class="footer__content">
+                <h1 class="footer__title">Skalin</h1>
+                <span class="footer__subtitle">Fullstack Developer</span>
+                <p class="footer__description">
+                    .
+                </p>
             </div>
 
-            <div>
-                <h3 class="footer__title">Explore</h3>
+            <div class="footer__content">
+                <h3 class="footer__title">Links</h3>
                 <ul class="footer__links">
                     <li>
-                        <a href="#home" class="footer__link">
-                            <i class="synth-icon synth-icon-home"></i> Home
-                        </a>
-                    </li>
-                    <li>
                         <a href="#about" class="footer__link">
-                            <i class="synth-icon synth-icon-user"></i> About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#skills" class="footer__link">
-                            <i class="synth-icon synth-icon-file"></i> Skills
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#services" class="footer__link">
-                            <i class="synth-icon synth-icon-briefcase"></i> Services
+                            <i class="fas fa-chevron-right footer__icon"></i> About
                         </a>
                     </li>
                     <li>
                         <a href="#portfolio" class="footer__link">
-                            <i class="synth-icon synth-icon-grid"></i> Portfolio
+                            <i class="fas fa-chevron-right footer__icon"></i> Portfolio
                         </a>
                     </li>
                     <li>
                         <a href="#contact" class="footer__link">
-                            <i class="synth-icon synth-icon-message"></i> Contact
+                            <i class="fas fa-chevron-right footer__icon"></i> Contact
                         </a>
                     </li>
                 </ul>
             </div>
 
-            <div>
-                <h3 class="footer__title">Connect</h3>
+            <div class="footer__content">
+                <h3 class="footer__title">Socials</h3>
                 <div class="footer__socials">
-                    <a href="https://discord.gg/vtPE9BvUS95Qxcrhqb"
-                        target="_blank" class="footer__social">
-                        <i class="synth-icon synth-icon-discord"></i>
+                    <a href="https://discord.gg/vtPE9BvUS95Qxcrhqb" target="_blank" class="footer__social">
+                        <i class="fab fa-discord"></i>
                     </a>
-
                     <a href="https://github.com/Skalin151" target="_blank" class="footer__social">
-                        <i class="synth-icon synth-icon-github"></i>
+                        <i class="fab fa-github"></i>
                     </a>
-
                     <a href="https://allmylinks.com/skalin151yt" target="_blank" class="footer__social">
-                        <i class="synth-icon synth-icon-link"></i>
+                        <i class="fas fa-link"></i>
                     </a>
                 </div>
             </div>
         </div>
-        <p class="footer__copy">© 2025 Skalin151 | All Rights Reserved</p>
-    </footer>
 
+        <p class="footer__copy">&#169; Skalin. All rights reserved</p>
+    </footer>
 
     <!--==================== SCROLL TOP ====================-->
     <a href="#" class="scrollup" id="scroll-up">
-        <i class="synth-icon synth-icon-arrow-up"></i>
+        <i class="fas fa-arrow-up"></i>
     </a>
 
     <!--==================== SWIPER JS ====================-->
@@ -2639,12 +2553,6 @@
                 <br>• Daily rewards and gambling mechanics
                 <br>• Promotional code redemption system
                 <br><br>
-                <strong>Music & Media:</strong>
-                <br>• Full music playback with queue management
-                <br>• Steam integration for game queries and family sharing
-                <br>• YouTube notification system
-                <br>• Advanced playback controls (skip, pause, shuffle)
-                <br><br>
                 <strong>Moderation & Utility:</strong>
                 <br>• Advanced ticket system for support
                 <br>• Message purging and moderation tools
@@ -2672,7 +2580,7 @@
                 demonstrating algorithm implementation and data structure usage. Each project showcases different 
                 aspects of software development from UI/UX design to backend architecture.
             </p>
-            <a href="#" class="portfolio__modal-link">
+            <a href="https://github.com/Skalin151?tab=repositories&type=source" class="portfolio__modal-link">
                 <i class="fab fa-github" style="color: white;"></i> View Projects
             </a>
         </div>
