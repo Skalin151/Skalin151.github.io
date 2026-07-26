@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!--==================== SWIPER CSS ====================-->
-    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
 
     <title>THK Skalin | Synthwave Portfolio</title>
 
     <!--==================== Favicon ====================-->
-    <link rel="shortcut icon" href="/assets/img/LogoS.png" type="image/png">
+    <link rel="shortcut icon" href="assets/img/LogoS.png" type="image/png">
 
     <!--==================== Animate on scroll CDN ====================-->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -987,6 +987,158 @@
             border-radius: 10px;
             margin-bottom: 1.5rem;
             border: 1px solid rgba(139, 44, 245, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        .portfolio__modal-img:hover {
+            transform: scale(1.01);
+            filter: brightness(1.05);
+        }
+
+        /* Image Lightbox Preview */
+        .image-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .image-lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .image-lightbox__img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .image-lightbox.active .image-lightbox__img {
+            transform: scale(1);
+        }
+
+        .image-lightbox__close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            color: #fff;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 20001;
+        }
+
+        .image-lightbox__close:hover {
+            color: var(--synth-pink);
+        }
+
+        /* Gallery Grid inside Modals */
+        .portfolio__gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            width: 100%;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media screen and (max-width: 576px) {
+            .portfolio__gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .portfolio__gallery-img {
+            height: 200px !important;
+            object-fit: cover !important;
+            margin-bottom: 0 !important;
+            border-radius: 8px;
+            border: 1px solid rgba(139, 44, 245, 0.4);
+            transition: transform 0.2s ease, filter 0.2s ease, border-color 0.2s ease;
+        }
+
+        .portfolio__gallery-img:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+            border-color: var(--synth-pink);
+        }
+
+        /* Lightbox Navigation Controls */
+        .image-lightbox__btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(15, 15, 30, 0.75);
+            border: 1px solid var(--synth-pink);
+            color: #fff;
+            font-size: 1.5rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+            z-index: 20002;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(255, 42, 109, 0.3);
+        }
+
+        .image-lightbox__btn:hover {
+            background: var(--synth-pink);
+            color: #fff;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 42, 109, 0.6);
+        }
+
+        .image-lightbox__prev {
+            left: 2rem;
+        }
+
+        .image-lightbox__next {
+            right: 2rem;
+        }
+
+        @media screen and (max-width: 576px) {
+            .image-lightbox__prev {
+                left: 0.5rem;
+            }
+            .image-lightbox__next {
+                right: 0.5rem;
+            }
+        }
+
+        .image-lightbox__counter {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-color);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            background: rgba(15, 15, 30, 0.8);
+            padding: 6px 16px;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 44, 245, 0.5);
+            backdrop-filter: blur(5px);
         }
 
         .portfolio__modal-title {
@@ -1633,7 +1785,7 @@
 
                 <div class="about__data">
                     <p class="about__description">
-                        Hi I'm João Cruz. I'm 21 years old. I program applications as a hobby and I'm actively expanding my expertise into areas like 3D modeling, sound design, and music production. <br>
+                        Hi I'm João Cruz. I'm 22 years old. I program applications as a hobby and I'm actively expanding my expertise into areas like 3D modeling, sound design, and music production. <br>
 
                         I'm a full-stack developer with predominant focus on Node.js, experienced with databases like PostgreSQL and MongoDB. I'm also proficient in Markdown due to my extensive use of Obsidian for documentation and note-taking. I'm passionate about working on open-source projects and exploring new technologies.
                     </p>
@@ -1972,7 +2124,7 @@
             <div class="portfolio__container container">
                 <!--==================== PORTFOLIO 1 ====================-->
                 <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal1')">
-                    <img src="/assets/img/v1.png" alt="" class="portfolio__img">
+                    <img src="assets/img/v1.png" alt="" class="portfolio__img">
 
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Discord Bot</h3>
@@ -1981,7 +2133,7 @@
                 </div>
                 <!--==================== PORTFOLIO 2 ====================-->
                 <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal2')">
-                    <img src="/assets/img/coding.gif" alt="" class="portfolio__img">
+                    <img src="assets/img/coding.gif" alt="" class="portfolio__img">
 
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Coding Projects</h3>
@@ -1990,7 +2142,7 @@
                 </div>
                 <!--==================== PORTFOLIO 3 ====================-->
                 <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal3')">
-                    <img src="/assets/img/synth.gif" alt="" class="portfolio__img">
+                    <img src="assets/img/synth.gif" alt="" class="portfolio__img">
 
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Music Album</h3>
@@ -1999,7 +2151,7 @@
                 </div>
                 <!--==================== PORTFOLIO 4 ====================-->
                 <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal4')">
-                    <img src="/assets/img/flutter.png" alt="" class="portfolio__img">
+                    <img src="assets/img/flutter.png" alt="" class="portfolio__img">
 
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Flutter App</h3>
@@ -2008,16 +2160,16 @@
                 </div>
                 <!--==================== PORTFOLIO 5 ====================-->
                 <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal5')">
-                    <img src="/assets/img/steam.jpg" alt="" class="portfolio__img">
+                    <img src="assets/img/steam.jpg" alt="" class="portfolio__img">
 
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Steam Family</h3>
-                        <p class="portfolio__description">A tool fully written in python to fetch the games from all user's in a family using Steam's API.</p>
+                        <p class="portfolio__description">A tool fully written in javascript to fetch the games from all user's in a family using Steam's API.</p>
                     </div>
                 </div>
                 <!--==================== PORTFOLIO 6 ====================-->
                 <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal6')">
-                    <img src="/assets/img/homelab.png" alt="" class="portfolio__img">
+                    <img src="assets/img/homelab.png" alt="" class="portfolio__img">
 
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Home Lab</h3>
@@ -2315,227 +2467,18 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
-    <!--==================== SWIPER JS ====================-->
-    <script src="/assets/js/swiper-bundle.min.js"></script>
-
-    <!--==================== MAIN JS ====================-->
-    <script src="assets/js/main.js"></script>
-
-    <!--=================== Animated text ===============-->
+    <!--==================== SCRIPTS ====================-->
+    <script src="assets/js/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script>
-        var typed = new Typed(".auto-input", {
-            strings: [
-                "a Web Developer",
-                "a Student",
-                "a Creator",
-            ],
-            typeSpeed: 100,
-            backSpeed: 100,
-            loop: true,
-        });
-    </script>
-
-    <!--=================== Animate scroll js ===============-->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            offset: 300,
-            duration: 2000
-        });
-    </script>
-
-    <!--=================== Custom Cursor Script ===============-->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cursor = document.querySelector('.cursor');
-            const trails = document.querySelectorAll('.cursor-trail');
-            
-            let mouseX = 0;
-            let mouseY = 0;
-            let positions = [];
-            
-            // Initialize position history
-            for (let i = 0; i < 30; i++) {
-                positions.push({ x: 0, y: 0 });
-            }
-            
-            // Update mouse position
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                
-                // Move main cursor immediately (no delay)
-                cursor.style.left = mouseX + 'px';
-                cursor.style.top = mouseY + 'px';
-                
-                // Add current position to history
-                positions.unshift({ x: mouseX, y: mouseY });
-                positions.pop();
-            });
-            
-            // Animate trails using position history
-            function animateTrails() {
-                trails.forEach((trail, index) => {
-                    const delay = (index + 1) * 4; // Spacing between trail elements
-                    const pos = positions[delay] || positions[positions.length - 1];
-                    
-                    trail.style.left = pos.x + 'px';
-                    trail.style.top = pos.y + 'px';
-                    
-                    // Calculate opacity based on position in trail
-                    const opacity = Math.max(0.1, 0.8 - (index * 0.12));
-                    trail.style.opacity = opacity;
-                });
-                
-                requestAnimationFrame(animateTrails);
-            }
-            
-            animateTrails();
-            
-            // Add hover effect to clickable elements
-            const clickableElements = document.querySelectorAll('a, button, .button, .nav__toggle, .services__button, .portfolio__button');
-            
-            clickableElements.forEach(element => {
-                element.addEventListener('mouseenter', () => {
-                    cursor.classList.add('hover');
-                });
-                
-                element.addEventListener('mouseleave', () => {
-                    cursor.classList.remove('hover');
-                });
-            });
-            
-            // Hide cursor when leaving window
-            document.addEventListener('mouseleave', () => {
-                cursor.style.opacity = '0';
-                trails.forEach(trail => trail.style.opacity = '0');
-            });
-            
-            document.addEventListener('mouseenter', () => {
-                cursor.style.opacity = '1';
-            });
-        });
-    </script>
-
-    <!--=================== Services Modal Script ===============-->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const serviceButtons = document.querySelectorAll('.services__button');
-            const modals = document.querySelectorAll('.services__modal');
-            const closeButtons = document.querySelectorAll('.services__modal-close');
-            
-            serviceButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const serviceId = button.getAttribute('data-service');
-                    const modal = document.getElementById(`service-modal-${serviceId}`);
-                    modal.classList.add('active');
-                });
-            });
-            
-            closeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    button.closest('.services__modal').classList.remove('active');
-                });
-            });
-            
-            modals.forEach(modal => {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.classList.remove('active');
-                    }
-                });
-            });
-        });
-    </script>
-
-    <!--=================== Portfolio Modal Script ===============-->
-    <script>
-        // Portfolio Modal Functions
-        function openPortfolioModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.add('active');
-        }
-
-        function closePortfolioModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.remove('active');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const portfolioModals = document.querySelectorAll('.portfolio__modal');
-            const portfolioCloseButtons = document.querySelectorAll('.portfolio__modal-close');
-            
-            // Close button functionality
-            portfolioCloseButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    button.closest('.portfolio__modal').classList.remove('active');
-                });
-            });
-            
-            // Click outside modal to close
-            portfolioModals.forEach(modal => {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.classList.remove('active');
-                    }
-                });
-            });
-
-            // Escape key to close modals
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    portfolioModals.forEach(modal => {
-                        modal.classList.remove('active');
-                    });
-                }
-            });
-        });
-    </script>
-
-    <!--=================== Skills Animation Script ===============-->
-    <!-- Skills animation removed - now using static 3-column layout -->
-
-    <!--=================== Mobile Menu Script ===============-->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navToggle = document.getElementById('nav-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            const navLinks = document.querySelectorAll('.nav__link');
-            
-            navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('active');
-                });
-            });
-        });
-    </script>
-
-    <!--=================== Scroll Up Script ===============-->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const scrollUp = document.getElementById('scroll-up');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY >= 350) {
-                    scrollUp.classList.add('show');
-                } else {
-                    scrollUp.classList.remove('show');
-                }
-            });
-        });
-    </script>
+    <script src="assets/js/main.js"></script>
 
     <!--==================== PORTFOLIO MODALS ====================-->
     <!-- Portfolio Modal 1 -->
     <div id="portfolioModal1" class="portfolio__modal">
         <div class="portfolio__modal-content">
             <span class="portfolio__modal-close">&times;</span>
-            <img src="/assets/img/v1.png" alt="Discord Bot" class="portfolio__modal-img">
+            <img src="assets/img/v1.png" alt="Discord Bot" class="portfolio__modal-img">
             <h3 class="portfolio__modal-title">Discord Bot - Full Project Details</h3>
             <p class="portfolio__modal-description">
                 A complete all-in-one Discord bot developed from scratch with a comprehensive set of features and functionalities.
@@ -2554,13 +2497,21 @@
                 <br>• Promotional code redemption system
                 <br><br>
                 <strong>Moderation & Utility:</strong>
+                <br>• Dedicated web interface / dashboard for full bot control and management
                 <br>• Advanced ticket system for support
                 <br>• Message purging and moderation tools
                 <br>• Server information and statistics
                 <br>• Role management system
                 <br><br>
-                Built with Discord.js and MongoDB for persistent data storage, featuring automatic scheduled events and comprehensive database management.
+                Built with Discord.js, MongoDB for persistent data storage, and an intuitive web interface to manage and control the bot, featuring automatic scheduled events and comprehensive database management.
             </p>
+            <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">Bot & Control Interface Screenshots</h4>
+            <div class="portfolio__gallery">
+                <img src="assets/img/discord1.png" alt="Discord Bot Screenshot 1" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/discord2.png" alt="Discord Bot Screenshot 2" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/discord3.png" alt="Discord Bot Screenshot 3" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/discord4.png" alt="Discord Bot Screenshot 4" class="portfolio__modal-img portfolio__gallery-img">
+            </div>
             <a href="https://github.com/Skalin151/Discord_Bot" class="portfolio__modal-link">
                 <i class="fab fa-discord" style="color: white;"></i> Repo
             </a>
@@ -2571,7 +2522,7 @@
     <div id="portfolioModal2" class="portfolio__modal">
         <div class="portfolio__modal-content">
             <span class="portfolio__modal-close">&times;</span>
-            <img src="/assets/img/coding.gif" alt="Coding Projects" class="portfolio__modal-img">
+            <img src="assets/img/coding.gif" alt="Coding Projects" class="portfolio__modal-img">
             <h3 class="portfolio__modal-title">Coding Projects - Development Portfolio</h3>
             <p class="portfolio__modal-description">
                 A collection of diverse programming projects spanning web development, mobile applications, and 
@@ -2590,7 +2541,7 @@
     <div id="portfolioModal3" class="portfolio__modal">
         <div class="portfolio__modal-content">
             <span class="portfolio__modal-close">&times;</span>
-            <img src="/assets/img/synth.gif" alt="Music Album" class="portfolio__modal-img">
+            <img src="assets/img/synth.gif" alt="Music Album" class="portfolio__modal-img">
             <h3 class="portfolio__modal-title">Music Album - Synthwave Collection</h3>
             <p class="portfolio__modal-description">
                 A curated collection of original electronic music tracks spanning multiple genres including synthwave, 
@@ -2610,44 +2561,50 @@
     <div id="portfolioModal4" class="portfolio__modal">
         <div class="portfolio__modal-content">
             <span class="portfolio__modal-close">&times;</span>
-            <img src="/assets/img/flutter.png" alt="Flutter app" class="portfolio__modal-img">
+            <img src="assets/img/flutter.png" alt="Flutter app" class="portfolio__modal-img">
             <h3 class="portfolio__modal-title">Mobile App - Softskills</h3>
             <p class="portfolio__modal-description">
                 A comprehensive mobile application for managing educational courses and learning paths, built with Flutter. Features include account management with email verification, password reset, and customizable settings page. Users can enroll in and track courses with restricted access, receive push notifications for updates, submit assignments, and view educational content (videos, links, files). Progress tracking, grade viewing, and automatic certificate generation are integrated.
-
-The app offers built-in quizzes, a forum for sharing and posting content, attachments in comments, and topic-based discussions. It also includes notification systems (push/email) and gamification elements like rankings and badges to boost engagement. All functionalities are wrapped in a user-friendly interface focused on learner experience and intuitive navigation.
-<p class="portfolio__modal-description">
-    <br><br>
-    <strong>Core Features:</strong>
-    <br>• Account management with email verification and password reset
-    <br>• Customizable settings and user profiles
-    <br>• Course enrollment and progress tracking with restricted access
-    <br>• Push notifications for updates and important announcements
-    <br><br>
-    <strong>Learning Tools:</strong>
-    <br>• Assignment submission and grade viewing system
-    <br>• Educational content viewing (videos, links, files)
-    <br>• Built-in quizzes and assessments
-    <br>• Automatic certificate generation upon completion
-    <br><br>
-    <strong>Social Features:</strong>
-    <br>• Forum for sharing and posting content
-    <br>• Topic-based discussions with attachment support
-    <br>• Community interaction and knowledge sharing
-    <br><br>
-    <strong>Gamification:</strong>
-    <br>• Rankings and leaderboards
-    <br>• Achievement badges and rewards
-    <br>• Progress tracking and milestone celebrations
-    <br><br>
-    All functionalities are wrapped in a user-friendly interface focused on learner experience and intuitive navigation.
-    <br><br>
-    <strong>Test Credentials:</strong>
-    <br>Login: anacosta@email.com 
-    <br>Pass: pa55w.rd
-</p>
-
+                <br><br>
+                The app offers built-in quizzes, a forum for sharing and posting content, attachments in comments, and topic-based discussions. It also includes notification systems (push/email) and gamification elements like rankings and badges to boost engagement. All functionalities are wrapped in a user-friendly interface focused on learner experience and intuitive navigation.
+                <br><br>
+                <strong>Core Features:</strong>
+                <br>• Account management with email verification and password reset
+                <br>• Customizable settings and user profiles
+                <br>• Course enrollment and progress tracking with restricted access
+                <br>• Push notifications for updates and important announcements
+                <br><br>
+                <strong>Learning Tools:</strong>
+                <br>• Assignment submission and grade viewing system
+                <br>• Educational content viewing (videos, links, files)
+                <br>• Built-in quizzes and assessments
+                <br>• Automatic certificate generation upon completion
+                <br><br>
+                <strong>Social Features:</strong>
+                <br>• Forum for sharing and posting content
+                <br>• Topic-based discussions with attachment support
+                <br>• Community interaction and knowledge sharing
+                <br><br>
+                <strong>Gamification:</strong>
+                <br>• Rankings and leaderboards
+                <br>• Achievement badges and rewards
+                <br>• Progress tracking and milestone celebrations
+                <br><br>
+                All functionalities are wrapped in a user-friendly interface focused on learner experience and intuitive navigation.
+                <br><br>
+                <strong>Test Credentials:</strong>
+                <br>Login: anacosta@email.com 
+                <br>Pass: pa55w.rd
             </p>
+            <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">App Screenshots</h4>
+            <div class="portfolio__gallery">
+                <img src="assets/img/mobile1.png" alt="Mobile App Screenshot 1" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/mobile2.png" alt="Mobile App Screenshot 2" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/mobile3.png" alt="Mobile App Screenshot 3" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/mobile4.png" alt="Mobile App Screenshot 4" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/mobile5.png" alt="Mobile App Screenshot 5" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/mobile6.png" alt="Mobile App Screenshot 6" class="portfolio__modal-img portfolio__gallery-img">
+            </div>
             <a href="https://github.com/Skalin151/Pint_PDM" class="portfolio__modal-link">
                 <i class="fas fa-mobile-alt" style="color: white;"></i> View App
             </a>
@@ -2658,21 +2615,22 @@ The app offers built-in quizzes, a forum for sharing and posting content, attach
     <div id="portfolioModal5" class="portfolio__modal">
         <div class="portfolio__modal-content">
             <span class="portfolio__modal-close">&times;</span>
-            <img src="/assets/img/steam.jpg" alt="Steam Games" class="portfolio__modal-img">
+            <img src="assets/img/steam.jpg" alt="Steam Games" class="portfolio__modal-img">
             <h3 class="portfolio__modal-title">Steam Family - Library Games</h3>
             <p class="portfolio__modal-description">
-                A Python application that uses the Steam API to retrieve and aggregate all games from a user's Steam library, either by Steam account (owner) or by specific app ID. It fetches detailed information for each game, including titles, metadata, and other relevant details, organizing and presenting the game library in a clear and accessible format. The tool is designed for efficient game collection management and easy exploration of Steam libraries.
+                A JS + Docker application that uses the Steam API to retrieve and aggregate all games from a user's Steam library, either by Steam account (owner) or by specific app ID. It fetches detailed information for each game, including titles, metadata, and other relevant details, organizing and presenting the game library in a clear and accessible format. The tool is designed for efficient game collection management and easy exploration of Steam libraries.
             </p>
-            <a href="https://github.com/Skalin151/Steam-Games-Aggregator" class="portfolio__modal-link">
+            <img src="assets/img/Steam_share_js.png" alt="Steam Share JS" class="portfolio__modal-img" style="margin-top: 1rem;">
+            <a href="https://github.com/Skalin151/Steam_Share_JS" class="portfolio__modal-link">
                 <i class="fab fa-steam" style="color: white;"></i> Fetch
             </a>
         </div>
     </div>
-    <!-- Portfolio Modal 6 -->
+            <!-- Portfolio Modal 6 -->
     <div id="portfolioModal6" class="portfolio__modal">
         <div class="portfolio__modal-content">
             <span class="portfolio__modal-close">&times;</span>
-            <img src="/assets/img/homelab.png" alt="Home Lab" class="portfolio__modal-img">
+            <img src="assets/img/homelab.png" alt="Home Lab" class="portfolio__modal-img">
             <h3 class="portfolio__modal-title">Home Lab - Self-Hosted Infrastructure</h3>
             <p class="portfolio__modal-description">
                 A custom-built home server infrastructure using recycled computer parts to create a powerful self-hosted environment. This project demonstrates system administration, network configuration, and service deployment skills.
@@ -2702,10 +2660,29 @@ The app offers built-in quizzes, a forum for sharing and posting content, attach
                 <br>• Custom scripts for maintenance and updates
                 <br><br>
             </p>
+            <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">Infrastructure Screenshots</h4>
+            <div class="portfolio__gallery">
+                <img src="assets/img/homelab1.png" alt="Home Lab Screenshot 1" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/homelab2.png" alt="Home Lab Screenshot 2" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/homelab3.png" alt="Home Lab Screenshot 3" class="portfolio__modal-img portfolio__gallery-img">
+            </div>
             <a href="#" class="portfolio__modal-link">
                 <i class="fas fa-server" style="color: white;"></i> Explore Infrastructure
             </a>
         </div>
+    </div>
+
+    <!-- Image Lightbox Modal -->
+    <div id="image-lightbox" class="image-lightbox">
+        <span class="image-lightbox__close">&times;</span>
+        <button class="image-lightbox__btn image-lightbox__prev" aria-label="Previous image">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img src="" alt="Enlarged Image" class="image-lightbox__img">
+        <button class="image-lightbox__btn image-lightbox__next" aria-label="Next image">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="image-lightbox__counter"></div>
     </div>
 </body>
 

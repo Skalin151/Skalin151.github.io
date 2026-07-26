@@ -1,174 +1,262 @@
-/*==================== MENU SHOW Y HIDDEN ====================*/
-const navMenu = document.getElementById('nav-menu'),
-    navToggle = document.getElementById('nav-toggle'),
-    navClose = document.getElementById('nav-close')
-/*===== MENU SHOW =====*/
-/* Validate if constant exists */
-if (navToggle) {
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.add('show-menu')
-    })
+/*==================== PORTFOLIO GLOBAL FUNCTIONS ====================*/
+function openPortfolioModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) modal.classList.add('active');
 }
 
-/*===== MENU HIDDEN =====*/
-/* Validate if constant exists */
-if (navClose) {
-    navClose.addEventListener('click', () => {
-        navMenu.classList.remove('show-menu')
-    })
+function closePortfolioModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) modal.classList.remove('active');
 }
 
-/*==================== REMOVE MENU MOBILE ====================*/
-const navLink = document.querySelectorAll('.nav__link')
-
-function linkAction() {
-    const navMenu = document.getElementById('nav-menu')
-    // When we click on each nav__link, we remove the show-menu class
-    navMenu.classList.remove('show-menu')
-}
-navLink.forEach(n => n.addEventListener('click', linkAction))
-/*==================== ACCORDION SKILLS ====================*/
-const skillsContent = document.getElementsByClassName('skills__content'),
-    skillsHeader = document.querySelectorAll('.skills__header')
-
-function toggleSkills() {
-    let itemClass = this.parentNode.className
-
-    for (i = 0; i < skillsContent.length; i++) {
-        skillsContent[i].className = 'skills__content skills__close'
+/*==================== INITIALIZATION ON DOM LOAD ====================*/
+document.addEventListener('DOMContentLoaded', () => {
+    /*==================== TYPED JS ANIMATION ====================*/
+    if (document.querySelector(".auto-input") && typeof Typed !== 'undefined') {
+        new Typed(".auto-input", {
+            strings: [
+                "a Web Developer",
+                "a Student",
+                "a Creator",
+            ],
+            typeSpeed: 100,
+            backSpeed: 100,
+            loop: true,
+        });
     }
-    if (itemClass === 'skills__content skills__close') {
-        this.parentNode.className = 'skills__content skills__open'
+
+    /*==================== AOS ANIMATION ====================*/
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            offset: 300,
+            duration: 2000
+        });
     }
-}
 
-skillsHeader.forEach((el) => {
-    el.addEventListener('click', toggleSkills)
-})
+    /*==================== CUSTOM CURSOR ====================*/
+    const cursor = document.querySelector('.cursor');
+    const trails = document.querySelectorAll('.cursor-trail');
 
-/*==================== QUALIFICATION TABS ====================*/
+    if (cursor) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let positions = [];
 
+        for (let i = 0; i < 30; i++) {
+            positions.push({ x: 0, y: 0 });
+        }
 
-/*==================== SERVICES MODAL ====================*/
-const modalViews = document.querySelectorAll('.services__modal'),
-    modalBtns = document.querySelectorAll('.services__button'),
-    modalCloses = document.querySelectorAll('.services__modal-close')
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
 
-let modal = function (modalClick) {
-    modalViews[modalClick].classList.add('active-modal')
-}
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
 
-modalBtns.forEach((modalBtn, i) => {
-    modalBtn.addEventListener('click', () => {
-        modal(i)
-    })
-})
+            positions.unshift({ x: mouseX, y: mouseY });
+            positions.pop();
+        });
 
-modalCloses.forEach((modalClose) => {
-    modalClose.addEventListener('click', () => {
-        modalViews.forEach((modalView) => {
-            modalView.classList.remove('active-modal')
-        })
-    })
-})
-/*==================== PORTFOLIO SWIPER  ====================*/
-let swiperPortfolio = new Swiper('.portfolio__container', {
-    cssMode: true,
-    loop: true,
+        function animateTrails() {
+            trails.forEach((trail, index) => {
+                const delay = (index + 1) * 4;
+                const pos = positions[delay] || positions[positions.length - 1];
 
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-});
+                trail.style.left = pos.x + 'px';
+                trail.style.top = pos.y + 'px';
 
-/*==================== TESTIMONIAL ====================*/
-let swiperTestimonial = new Swiper('.testimonial__container', {
-    loop: true,
-    grabCursor: true,
-    spaceBetween: 48,
+                const opacity = Math.max(0.1, 0.8 - (index * 0.12));
+                trail.style.opacity = opacity;
+            });
 
+            requestAnimationFrame(animateTrails);
+        }
 
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
-    },
-    breakpoints:{
-        568:{
-            slidesPerview: 2,
+        animateTrails();
+
+        const clickableElements = document.querySelectorAll('a, button, .button, .nav__toggle, .services__button, .portfolio__button');
+
+        clickableElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+
+            element.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+            trails.forEach(trail => trail.style.opacity = '0');
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+        });
+    }
+
+    /*==================== SERVICES MODALS ====================*/
+    const serviceButtons = document.querySelectorAll('.services__button');
+    const serviceModals = document.querySelectorAll('.services__modal');
+    const serviceCloseButtons = document.querySelectorAll('.services__modal-close');
+
+    serviceButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const serviceId = button.getAttribute('data-service');
+            const modal = document.getElementById(`service-modal-${serviceId}`);
+            if (modal) modal.classList.add('active');
+        });
+    });
+
+    serviceCloseButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.services__modal');
+            if (modal) modal.classList.remove('active');
+        });
+    });
+
+    serviceModals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('active');
+        });
+    });
+
+    /*==================== PORTFOLIO MODALS & LIGHTBOX ====================*/
+    const portfolioModals = document.querySelectorAll('.portfolio__modal');
+    const portfolioCloseButtons = document.querySelectorAll('.portfolio__modal-close');
+
+    portfolioCloseButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.portfolio__modal');
+            if (modal) modal.classList.remove('active');
+        });
+    });
+
+    portfolioModals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('active');
+        });
+    });
+
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = lightbox ? lightbox.querySelector('.image-lightbox__img') : null;
+    const lightboxClose = lightbox ? lightbox.querySelector('.image-lightbox__close') : null;
+    const lightboxPrev = lightbox ? lightbox.querySelector('.image-lightbox__prev') : null;
+    const lightboxNext = lightbox ? lightbox.querySelector('.image-lightbox__next') : null;
+    const lightboxCounter = lightbox ? lightbox.querySelector('.image-lightbox__counter') : null;
+
+    let currentGalleryImages = [];
+    let currentImageIndex = 0;
+
+    function updateLightboxImage(index) {
+        if (!currentGalleryImages || currentGalleryImages.length === 0) return;
+        currentImageIndex = (index + currentGalleryImages.length) % currentGalleryImages.length;
+        const img = currentGalleryImages[currentImageIndex];
+        if (lightboxImg) {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt || 'Enlarged Image';
+        }
+
+        if (lightboxCounter) {
+            if (currentGalleryImages.length > 1) {
+                lightboxCounter.textContent = `${currentImageIndex + 1} / ${currentGalleryImages.length}`;
+                lightboxCounter.style.display = 'block';
+            } else {
+                lightboxCounter.style.display = 'none';
+            }
+        }
+
+        if (lightboxPrev && lightboxNext) {
+            if (currentGalleryImages.length > 1) {
+                lightboxPrev.style.display = 'flex';
+                lightboxNext.style.display = 'flex';
+            } else {
+                lightboxPrev.style.display = 'none';
+                lightboxNext.style.display = 'none';
+            }
         }
     }
-});
 
-/*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
-const sections = document.querySelectorAll('section[id]')
+    if (lightbox && lightboxImg && lightboxClose) {
+        document.querySelectorAll('.portfolio__modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target.classList.contains('portfolio__modal-img')) {
+                    e.stopPropagation();
+                    currentGalleryImages = Array.from(modal.querySelectorAll('.portfolio__modal-img'));
+                    const idx = currentGalleryImages.indexOf(e.target);
+                    updateLightboxImage(idx >= 0 ? idx : 0);
+                    lightbox.classList.add('active');
+                }
+            });
+        });
 
-function scrollActive(){
-    const scrollY = window.pageYOffset
-
-    sections.forEach(current =>{
-        const sectionHeight = current.offsetHeight
-        const sectionTop = current.offsetTop - 50;
-        sectionId = current.getAttribute('id')
-
-        if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
-        }else{
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+        if (lightboxPrev) {
+            lightboxPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updateLightboxImage(currentImageIndex - 1);
+            });
         }
-    })
-}
-window.addEventListener('scroll', scrollActive)
 
-/*==================== CHANGE BACKGROUND HEADER ====================*/
-function scrollHeader(){
-    const nav = document.getElementById('header')
-    // When the scroll is greater than 200 viewport height, add the scroll-header class to the header tag
-    if(this.scrollY >= 80) nav.classList.add('scroll-header'); else nav.classList.remove('scroll-header')
-}
-window.addEventListener('scroll', scrollHeader)
+        if (lightboxNext) {
+            lightboxNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updateLightboxImage(currentImageIndex + 1);
+            });
+        }
 
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
 
-/*==================== SHOW SCROLL UP ====================*/
-function scrollUp(){
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    e.stopPropagation();
+                } else if (e.key === 'ArrowLeft') {
+                    updateLightboxImage(currentImageIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    updateLightboxImage(currentImageIndex + 1);
+                }
+            } else if (e.key === 'Escape') {
+                portfolioModals.forEach(modal => modal.classList.remove('active'));
+            }
+        });
+    }
+
+    /*==================== MOBILE NAVIGATION MENU ====================*/
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = document.querySelectorAll('.nav__link');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu) navMenu.classList.remove('active');
+        });
+    });
+
+    /*==================== SCROLL UP BUTTON ====================*/
     const scrollUp = document.getElementById('scroll-up');
-    // When the scroll is higher than 560 viewport height, add the show-scroll class to the a tag with the scroll-top class
-    if(this.scrollY >= 560) scrollUp.classList.add('show-scroll'); else scrollUp.classList.remove('show-scroll')
-}
-window.addEventListener('scroll', scrollUp)
-
-
-/*==================== DARK LIGHT THEME ====================*/ 
-const themeButton = document.getElementById('theme-button')
-const darkTheme = 'dark-theme'
-const iconTheme = 'uil-sun'
-
-// Previously selected topic (if user selected)
-const selectedTheme = localStorage.getItem('selected-theme')
-const selectedIcon = localStorage.getItem('selected-icon')
-
-// We obtain the current theme that the interface has by validating the dark-theme class
-const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
-const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'uil-moon' : 'uil-sun'
-
-// We validate if the user previously chose a topic
-if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
-  document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
-  themeButton.classList[selectedIcon === 'uil-moon' ? 'add' : 'remove'](iconTheme)
-}
-
-// Activate / deactivate the theme manually with the button
-themeButton.addEventListener('click', () => {
-    // Add or remove the dark / icon theme
-    document.body.classList.toggle(darkTheme)
-    themeButton.classList.toggle(iconTheme)
-    // We save the theme and the current icon that the user chose
-    localStorage.setItem('selected-theme', getCurrentTheme())
-    localStorage.setItem('selected-icon', getCurrentIcon())
-})
+    if (scrollUp) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY >= 350) {
+                scrollUp.classList.add('show');
+            } else {
+                scrollUp.classList.remove('show');
+            }
+        });
+    }
+});
