@@ -2140,15 +2140,6 @@
                         <p class="portfolio__description">Multiple projects I made during my academic career, and some side projects I started for fun.</p>
                     </div>
                 </div>
-                <!--==================== PORTFOLIO 3 ====================-->
-                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal3')">
-                    <img src="assets/img/synth.gif" alt="" class="portfolio__img">
-
-                    <div class="portfolio__data">
-                        <h3 class="portfolio__title">Music Album</h3>
-                        <p class="portfolio__description">Playlist with different genres of music, made by me using FL Studio.</p>
-                    </div>
-                </div>
                 <!--==================== PORTFOLIO 4 ====================-->
                 <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal4')">
                     <img src="assets/img/flutter.png" alt="" class="portfolio__img">
@@ -2174,6 +2165,15 @@
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Home Lab</h3>
                         <p class="portfolio__description">I personally built, using old computer parts, a home server that hosts the services I use, for exemple, a self hosted Media Player, a Web Monitor, a Smart Home Interface and a Automation Site.</p>
+                    </div>
+                </div>
+                <!--==================== PORTFOLIO 7 ====================-->
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal7')">
+                    <img src="assets/img/hospital_banner.jpg" alt="Internship Project - Viseu Hospital" class="portfolio__img">
+
+                    <div class="portfolio__data">
+                        <h3 class="portfolio__title">Internship Project</h3>
+                        <p class="portfolio__description">Real-time Bed & Patient Discharge Monitoring System for Viseu Hospital.</p>
                     </div>
                 </div>
             </div>
@@ -2537,25 +2537,6 @@
         </div>
     </div>
 
-    <!-- Portfolio Modal 3 -->
-    <div id="portfolioModal3" class="portfolio__modal">
-        <div class="portfolio__modal-content">
-            <span class="portfolio__modal-close">&times;</span>
-            <img src="assets/img/synth.gif" alt="Music Album" class="portfolio__modal-img">
-            <h3 class="portfolio__modal-title">Music Album - Synthwave Collection</h3>
-            <p class="portfolio__modal-description">
-                A curated collection of original electronic music tracks spanning multiple genres including synthwave, 
-                retrowave, and ambient soundscapes. Created using FL Studio with custom synthesizers and sound design, 
-                this playlist showcases a journey through nostalgic 80s-inspired melodies, atmospheric pads, and 
-                driving electronic beats. Each composition demonstrates different aspects of electronic music production, 
-                from vintage analog warmth to modern digital precision, creating an immersive audio experience that 
-                complements the synthwave aesthetic.
-            </p>
-            <a href="https://youtube.com/playlist?list=PLX8r__0dlA2WN4sBAf8xgFX8odjtBBynk&si=9gE8ZHkWmfCgs5xM" class="portfolio__modal-link">
-                <i class="fas fa-play" style="color: white;"></i> Listen to Playlist
-            </a>
-        </div>
-    </div>
 
     <!-- Portfolio Modal 4 -->
     <div id="portfolioModal4" class="portfolio__modal">
@@ -2668,6 +2649,42 @@
             </div>
             <a href="#" class="portfolio__modal-link">
                 <i class="fas fa-server" style="color: white;"></i> Explore Infrastructure
+            </a>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 7 -->
+    <div id="portfolioModal7" class="portfolio__modal">
+        <div class="portfolio__modal-content">
+            <span class="portfolio__modal-close">&times;</span>
+            <img src="assets/img/hospital_banner.jpg" alt="Internship Project - Viseu Hospital" class="portfolio__modal-img">
+            <h3 class="portfolio__modal-title">Internship Project - Viseu Hospital</h3>
+            <p class="portfolio__modal-description">
+                A comprehensive real-time bed and patient discharge monitoring system developed for Viseu Hospital. The project directly addresses critical hospital bottlenecks such as emergency room delays and surgery cancellations through a reactive, visual interactive dashboard integrated across multiple hospital departments.
+                <br><br>
+                Development was conducted with a strong focus on large-scale software engineering standards, featuring weekly status and review meetings to closely monitor progress, validate operational requirements, and maintain seamless alignment with hospital teams.
+                <br><br>
+                <strong>Architecture, Tech Stack & Scalability:</strong>
+                <br>• <strong>Containerization & Orchestration:</strong> Built with Docker containers and managed via Kubernetes to guarantee high scalability, fault tolerance, and 24/7 continuous operation
+                <br>• <strong>Backend System:</strong> Modular RESTful API documented with Swagger and deployed on Railway infrastructure, backed by a relational SQL database
+                <br>• <strong>Frontend & Real-Time Sync:</strong> Responsive web application using WebSockets for instantaneous bed status updates and real-time interactive mapping
+                <br>• <strong>Mobile App Integration:</strong> Dedicated mobile app for sanitation staff featuring QR Code scanning, priority queuing, and automated cleaning timers
+                <br><br>
+                <strong>Core Features & Advanced Modules:</strong>
+                <br>• <strong>Interactive Hospital Map:</strong> Real-time floor/wing layout with color-coded bed statuses (Available, Occupied, Dirty, Cleaning in Progress, Reserved, Out of Service)
+                <br>• <strong>End-to-End Discharge Workflow:</strong> Automated notifications to cleaning teams, real-time execution timers, and supervisor validation
+                <br>• <strong>Advanced Capability:</strong> 24/48/72h discharge availability timeline forecasting, intelligent patient-to-bed matchmaking, automatic post-surgery bed reservation, critical equipment tracking (ventilators, monitors), and epidemiological isolation management
+            </p>
+            <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">System Interface & Screenshots</h4>
+            <div class="portfolio__gallery">
+                <img src="assets/img/hospital1.png" alt="Hospital Screenshot 1" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/hospital2.png" alt="Hospital Screenshot 2" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/hospital3.png" alt="Hospital Screenshot 3" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/hospital4.png" alt="Hospital Screenshot 4" class="portfolio__modal-img portfolio__gallery-img">
+                <img src="assets/img/hospital5.png" alt="Hospital Screenshot 5" class="portfolio__modal-img portfolio__gallery-img">
+            </div>
+            <a href="https://docs.google.com/document/d/12I83MIc6heTeKuG1WhemRwqZqCIe0bSXLsodUHVxyhM/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="portfolio__modal-link">
+                <i class="fas fa-hospital-alt" style="color: white;"></i> View Details
             </a>
         </div>
     </div>
