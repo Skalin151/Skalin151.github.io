@@ -36,7 +36,7 @@
             --synth-grid: rgba(5, 217, 232, 0.2); /* Cyan grid */
             --text-color: #ffffff;
             --text-secondary: #d1d1e9;
-            
+
             /* Fonts */
             --font-logo: 'VT323', monospace;
             --font-display: 'Orbitron', sans-serif;
@@ -88,7 +88,7 @@
             pointer-events: none;
             z-index: 10001;
             transition: none;
-            box-shadow: 
+            box-shadow:
                 0 0 15px var(--synth-pink),
                 0 0 30px rgba(255, 0, 110, 0.5),
                 inset 0 0 10px rgba(255, 255, 255, 0.3);
@@ -109,7 +109,7 @@
 
         .cursor.hover {
             transform: translate(-50%, -50%) scale(1.3);
-            box-shadow: 
+            box-shadow:
                 0 0 25px var(--synth-pink),
                 0 0 50px rgba(255, 0, 110, 0.7),
                 inset 0 0 15px rgba(255, 255, 255, 0.4);
@@ -164,7 +164,7 @@
             width: 100%;
             height: 100%;
             z-index: -3;
-            background-image: 
+            background-image:
                 radial-gradient(#ffffff 1px, transparent 1px),
                 radial-gradient(#ffffff 1px, transparent 1px);
             background-size: 50px 50px;
@@ -187,7 +187,7 @@
             height: 55vh;
             border-radius: 50%;
             background: linear-gradient(135deg, #1f1c39, #050505);
-            box-shadow: 
+            box-shadow:
                 inset -20px -20px 50px rgba(0,0,0,0.8),
                 0 0 20px rgba(139, 44, 245, 0.3); /* Slight outer glow */
             z-index: -2;
@@ -215,7 +215,7 @@
             left: 0;
             width: 100%;
             height: 50vh;
-            background: 
+            background:
                 linear-gradient(transparent 0%, var(--synth-bg) 100%),
                 linear-gradient(0deg, rgba(5, 217, 232, 0.4) 1px, transparent 1px), /* Brighter grid lines */
                 linear-gradient(90deg, rgba(5, 217, 232, 0.4) 1px, transparent 1px);
@@ -231,7 +231,7 @@
             color: white;
             font-family: var(--font-display);
             text-transform: uppercase;
-            text-shadow: 
+            text-shadow:
                 0 0 5px var(--synth-pink),
                 0 0 10px var(--synth-pink),
                 0 0 20px var(--synth-pink);
@@ -239,7 +239,7 @@
 
         .neon-purple {
             color: var(--synth-purple);
-            text-shadow: 
+            text-shadow:
                 0 0 10px var(--synth-purple),
                 0 0 20px var(--synth-purple),
                 0 0 30px var(--synth-purple);
@@ -247,7 +247,7 @@
 
         .neon-cyan {
             color: var(--synth-cyan);
-            text-shadow: 
+            text-shadow:
                 0 0 10px var(--synth-cyan),
                 0 0 20px var(--synth-cyan),
                 0 0 30px var(--synth-cyan);
@@ -255,13 +255,13 @@
 
         @keyframes neon-pulse {
             from {
-                text-shadow: 
+                text-shadow:
                     0 0 10px var(--synth-pink),
                     0 0 20px var(--synth-pink),
                     0 0 30px var(--synth-pink);
             }
             to {
-                text-shadow: 
+                text-shadow:
                     0 0 15px var(--synth-pink),
                     0 0 25px var(--synth-pink),
                     0 0 35px var(--synth-pink);
@@ -350,7 +350,7 @@
         .main {
             margin-top: 0;
         }
-        
+
         .social-sidebar {
             position: fixed;
             right: 40px;
@@ -479,7 +479,7 @@
             margin-bottom: 0.5rem;
             line-height: 1.1;
         }
-        
+
         .home__subtitle {
             font-family: var(--font-display);
             font-size: 3rem;
@@ -949,12 +949,12 @@
         .portfolio__modal-content::-webkit-scrollbar {
             width: 8px;
         }
-        
+
         .portfolio__modal-content::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 4px;
         }
-        
+
         .portfolio__modal-content::-webkit-scrollbar-thumb {
             background-color: var(--synth-pink);
             border-radius: 4px;
@@ -1570,7 +1570,7 @@
             .header {
                 display: none !important;
             }
-            
+
             .social-sidebar {
                 display: none;
             }
@@ -1700,24 +1700,24 @@
     <div class="cursor-trail" id="trail-4"></div>
     <div class="cursor-trail" id="trail-5"></div>
     <div class="cursor-trail" id="trail-6"></div>
-    
+
     <!-- Synthwave Background Elements -->
     <div class="starfield"></div>
     <div class="planet"></div>
     <div class="perspective-grid"></div>
-    
+
     <!-- Sidebar -->
     <div class="social-sidebar">
         <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://github.com/Skalin151" target="_blank"><i class="fab fa-github"></i></a>
         <a href="https://allmylinks.com/skalin151yt" target="_blank"><i class="fas fa-link"></i></a>
     </div>
-    
+
     <!--==================== HEADER ====================-->
     <header class="header" id="header">
         <nav class="nav">
             <a href="#" class="nav__logo">THK</a>
-            
+
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__items">
@@ -1758,53 +1758,54 @@
             <div class="home__container">
                 <div class="home__data">
                     <h1 class="home_title">Hi! I'm Skalin</h1>
-                    <h3 class="home__subtitle">Fullstack Developer</h3>
+                    <h3 class="home__subtitle">Fullstack & Systems Engineer</h3>
                     <p class="home__description">
-                        High level experience in web design and development.
+                        Building real-time web systems, high-concurrency applications, and self-hosted infrastructure.
                     </p>
                     <div class="home__buttons-container">
-                        <a href="assets/CV Resume.pdf" download="" class="button">
-                            <i class="fas fa-download"></i> Download CV
+                        <a href="assets/CV Resume.pdf" target="_blank" rel="noopener noreferrer" class="button">
+                            <i class="fas fa-file-alt"></i> View Resume / CV
+                        </a>
+                        <a href="assets/CV Resume.pdf" download="" class="button button--ghost" style="margin-left: 0.5rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);">
+                            <i class="fas fa-download"></i> Download PDF
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
-
-            </div>
-        </section>
-
         <!--==================== ABOUT ====================-->
         <section class="about section" id="about">
             <h2 class="section__title">About Me</h2>
-            <span class="section__subtitle"> My Introduction</span>
+            <span class="section__subtitle">My Background & Engineering Focus</span>
 
             <div class="about__container container">
-                <img src="assets/img/comp.png" alt="" class="about__img" />
+                <img src="assets/img/comp.png" alt="Skalin Developer Workspace" class="about__img" />
 
                 <div class="about__data">
                     <p class="about__description">
-                        Hi I'm João Cruz. I'm 22 years old. I program applications as a hobby and I'm actively expanding my expertise into areas like 3D modeling, sound design, and music production. <br>
+                        Hi, I'm <strong>João Cruz (Skalin)</strong>, a Fullstack & Systems Software Engineer. I specialize in backend architecture, Node.js, TypeScript, real-time WebSocket communication, relational & NoSQL databases (PostgreSQL, MongoDB), and containerized deployments (Docker, Kubernetes).<br><br>
 
-                        I'm a full-stack developer with predominant focus on Node.js, experienced with databases like PostgreSQL and MongoDB. I'm also proficient in Markdown due to my extensive use of Obsidian for documentation and note-taking. I'm passionate about working on open-source projects and exploring new technologies.
+                        I am passionate about building resilient end-to-end systems from real-time hospital bed tracking solutions to high-concurrency Discord bots and self-hosted infrastructure. I maintain detailed engineering logs in Obsidian and actively contribute to open-source software.<br><br>
+
+                        <em style="opacity: 0.85; font-size: 0.9em;"><i class="fas fa-palette"></i> <strong>Creative Hobbies:</strong> Outside of core software engineering, I explore 3D modeling (Blender), sound design, and music production.</em>
                     </p>
 
                     <div class="about_info">
                         <div>
-                            <span class="about__info-title">03+</span>
-                            <span class="about__info-name">Years <br />
-                                experience</span>
+                            <span class="about__info-title">6+</span>
+                            <span class="about__info-name">Production <br />
+                                Techs</span>
                         </div>
                         <div>
-                            <span class="about__info-title">10+</span>
-                            <span class="about__info-name">Completed <br />
-                                project</span>
+                            <span class="about__info-title">6</span>
+                            <span class="about__info-name">Hospital Wards <br />
+                                Automated</span>
                         </div>
                         <div>
-                            <span class="about__info-title">24/7</span>
-                            <span class="about__info-name">Online<br />
-                                support</span>
+                            <span class="about__info-title">2.5k+</span>
+                            <span class="about__info-name">Active Bot <br />
+                                End-Users</span>
                         </div>
                     </div>
                 </div>
@@ -1836,6 +1837,10 @@
                         <div class="skills__data">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="skills__logo" alt="JavaScript">
                             <span class="skills__name">JavaScript</span>
+                        </div>
+                        <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="skills__logo" alt="TypeScript">
+                            <span class="skills__name">TypeScript</span>
                         </div>
                         <div class="skills__data">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="skills__logo" alt="React">
@@ -1962,6 +1967,10 @@
                             <span class="skills__name">Docker</span>
                         </div>
                         <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="skills__logo" alt="Kubernetes">
+                            <span class="skills__name">Kubernetes</span>
+                        </div>
+                        <div class="skills__data">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" class="skills__logo" alt="AWS">
                             <span class="skills__name">AWS</span>
                         </div>
@@ -2017,25 +2026,25 @@
                 </div>
             </div>
         </section>
-            
-        
+
+
 
         <!--==================== SERVICES ====================-->
         <section class="services section" id="services">
             <h2 class="section__title">Services</h2>
-            <span class="section__subtitle">What I offer</span>
+            <span class="section__subtitle">Core Technical Expertise</span>
 
-            <div class="services__container container">
+            <div class="services__container container" style="grid-template-columns: repeat(2, max-content); justify-content: center; gap: 2rem;">
                 <!--==================== SERVICES 1 ====================-->
                 <div class="services__content">
                     <div>
-                        <i class="fas fa-pencil-ruler services__icon" style="color: #fff;"></i>
-                        <h3 class="services__title">Ui/Ux <br> Designer</h3>
+                        <i class="fas fa-code services__icon" style="color: #fff;"></i>
+                        <h3 class="services__title">Fullstack <br> Development</h3>
                     </div>
 
                     <div>
                         <button class="services__button" data-service="1">
-                            <span>View More</span>
+                            <span>View Details</span>
                             <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
@@ -2044,142 +2053,127 @@
                 <!--==================== SERVICES 2 ====================-->
                 <div class="services__content">
                     <div>
-                        <i class="fas fa-code services__icon"></i>
-                        <h3 class="services__title">Fullstack <br> Developer</h3>
+                        <i class="fas fa-server services__icon" style="color: #fff;"></i>
+                        <h3 class="services__title">Systems & <br> Infrastructure</h3>
                     </div>
 
                     <div>
                         <button class="services__button" data-service="2">
-                            <span>View More</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!--==================== SERVICES 3 ====================-->
-                <div class="services__content">
-                    <div>
-                        <i class="fas fa-photo-video services__icon"></i>
-                        <h3 class="services__title">Media <br> Editor</h3>
-                    </div>
-
-                    <div>
-                        <button class="services__button" data-service="3">
-                            <span>View More</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <!--==================== SERVICES 4 ====================-->
-                <div class="services__content">
-                    <div>
-                        <i class="fas fa-desktop services__icon"></i>
-                        <h3 class="services__title">PC Build & <br> Maintenance</h3>
-                    </div>
-
-                    <div>
-                        <button class="services__button" data-service="4">
-                            <span>View More</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <!--==================== SERVICES 5 ====================-->
-                <div class="services__content">
-                    <div>
-                        <i class="fas fa-shield-alt services__icon"></i>
-                        <h3 class="services__title">Cyber <br> Security</h3>
-                    </div>
-
-                    <div>
-                        <button class="services__button" data-service="5">
-                            <span>View More</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <!--==================== SERVICES 6 ====================-->
-                <div class="services__content">
-                    <div>
-                        <i class="fas fa-chart-line services__icon"></i>
-                        <h3 class="services__title">Data <br> Analyst</h3>
-                    </div>
-
-                    <div>
-                        <button class="services__button" data-service="6">
-                            <span>View More</span>
+                            <span>View Details</span>
                             <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
             </div>
+        </section>
 
         </section>
 
         <!--==================== PORTFOLIO ====================-->
         <section class="portfolio section" id="portfolio">
-            <h2 class="section__title">Portfolio</h2>
-            <span class="section__subtitle">Most recent work</span>
+            <h2 class="section__title">Engineering Portfolio</h2>
+            <span class="section__subtitle">Featured Systems & Case Studies</span>
 
             <div class="portfolio__container container">
-                <!--==================== PORTFOLIO 1 ====================-->
-                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal1')">
-                    <img src="assets/img/v1.png" alt="" class="portfolio__img">
-
-                    <div class="portfolio__data">
-                        <h3 class="portfolio__title">Discord Bot</h3>
-                        <p class="portfolio__description">A discord bot i solely made with a lot of fun commands.</p>
-                    </div>
-                </div>
-                <!--==================== PORTFOLIO 2 ====================-->
-                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal2')">
-                    <img src="assets/img/coding.gif" alt="" class="portfolio__img">
-
-                    <div class="portfolio__data">
-                        <h3 class="portfolio__title">Coding Projects</h3>
-                        <p class="portfolio__description">Multiple projects I made during my academic career, and some side projects I started for fun.</p>
-                    </div>
-                </div>
-                <!--==================== PORTFOLIO 4 ====================-->
-                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal4')">
-                    <img src="assets/img/flutter.png" alt="" class="portfolio__img">
-
-                    <div class="portfolio__data">
-                        <h3 class="portfolio__title">Flutter App</h3>
-                        <p class="portfolio__description">A Flutter-based mobile app for managing educational courses, featuring enrollment, assignments, quizzes, notifications, forums, and certificates in a user-friendly interface.</p>
-                    </div>
-                </div>
-                <!--==================== PORTFOLIO 5 ====================-->
-                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal5')">
-                    <img src="assets/img/steam.jpg" alt="" class="portfolio__img">
-
-                    <div class="portfolio__data">
-                        <h3 class="portfolio__title">Steam Family</h3>
-                        <p class="portfolio__description">A tool fully written in javascript to fetch the games from all user's in a family using Steam's API.</p>
-                    </div>
-                </div>
-                <!--==================== PORTFOLIO 6 ====================-->
-                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal6')">
-                    <img src="assets/img/homelab.png" alt="" class="portfolio__img">
-
-                    <div class="portfolio__data">
-                        <h3 class="portfolio__title">Home Lab</h3>
-                        <p class="portfolio__description">I personally built, using old computer parts, a home server that hosts the services I use, for exemple, a self hosted Media Player, a Web Monitor, a Smart Home Interface and a Automation Site.</p>
-                    </div>
-                </div>
-                <!--==================== PORTFOLIO 7 ====================-->
-                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal7')">
+                <!--==================== PORTFOLIO 7 (HOSPITAL CASE STUDY - CENTERPIECE) ====================-->
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal7')" style="cursor: pointer; position: relative;">
                     <img src="assets/img/hospital_banner.jpg" alt="Internship Project - Viseu Hospital" class="portfolio__img">
 
                     <div class="portfolio__data">
-                        <h3 class="portfolio__title">Internship Project</h3>
-                        <p class="portfolio__description">Real-time Bed & Patient Discharge Monitoring System for Viseu Hospital.</p>
+                        <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
+                            <i class="fas fa-hospital-alt"></i> Internship Case Study &bull; Feb 2024 – Jul 2024
+                        </div>
+                        <h3 class="portfolio__title">Viseu Hospital Bed Management</h3>
+                        <p class="portfolio__description">
+                            <strong>Role: Fullstack Engineer (Team of 4)</strong><br>
+                            Real-time hospital bed & patient discharge monitoring system built with WebSockets, Node.js, Supabase, and Kubernetes across 6 departments.
+                        </p>
+                    </div>
+                </div>
+
+                <!--==================== PORTFOLIO 1 (DISCORD BOT CASE STUDY) ====================-->
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal1')" style="cursor: pointer;">
+                    <img src="assets/img/v1.png" alt="Discord Bot" class="portfolio__img">
+
+                    <div class="portfolio__data">
+                        <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
+                            <i class="fab fa-discord"></i> Production System &bull; 2023 – Present
+                        </div>
+                        <h3 class="portfolio__title">Discord Bot & Dashboard</h3>
+                        <p class="portfolio__description">
+                            <strong>Role: Solo Developer</strong><br>
+                            Production community bot serving 2,500+ users across 15+ servers with MongoDB atomic concurrency handling and Express management dashboard.
+                        </p>
+                    </div>
+                </div>
+
+                <!--==================== PORTFOLIO 4 (FLUTTER APP) ====================-->
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal4')" style="cursor: pointer;">
+                    <img src="assets/img/flutter.png" alt="Flutter Mobile App" class="portfolio__img">
+
+                    <div class="portfolio__data">
+                        <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
+                            <i class="fas fa-mobile-alt"></i> Academic Project &bull; Sep 2023 – Dec 2023
+                        </div>
+                        <h3 class="portfolio__title">Softskills Mobile App</h3>
+                        <p class="portfolio__description">
+                            <strong>Role: Mobile & API Developer (Team of 4)</strong><br>
+                            Flutter educational course platform featuring assignment submissions, interactive quizzes, and community forums backed by Node.js & Firebase.
+                        </p>
+                    </div>
+                </div>
+
+                <!--==================== PORTFOLIO 5 (STEAM TOOL) ====================-->
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal5')" style="cursor: pointer;">
+                    <img src="assets/img/steam.jpg" alt="Steam Family Tool" class="portfolio__img">
+
+                    <div class="portfolio__data">
+                        <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
+                            <i class="fab fa-steam"></i> Open Source Tool &bull; 2024
+                        </div>
+                        <h3 class="portfolio__title">Steam Family Library Tool</h3>
+                        <p class="portfolio__description">
+                            <strong>Role: Solo Developer</strong><br>
+                            JavaScript + Docker tool fetching and aggregating Steam family game libraries with API rate limiting, response caching, and error resilience.
+                        </p>
+                    </div>
+                </div>
+
+                <!--==================== PORTFOLIO 6 (HOMELAB) ====================-->
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal6')" style="cursor: pointer;">
+                    <img src="assets/img/homelab.png" alt="Home Lab Infrastructure" class="portfolio__img">
+
+                    <div class="portfolio__data">
+                        <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
+                            <i class="fas fa-server"></i> Infrastructure &bull; Ongoing
+                        </div>
+                        <h3 class="portfolio__title">Self-Hosted Homelab</h3>
+                        <p class="portfolio__description">
+                            <strong>Role: Systems Administrator</strong><br>
+                            Self-hosted server infrastructure utilizing Docker containers, Nginx reverse proxy, automated encrypted offsite backups, and network segmentation.
+                        </p>
+                    </div>
+                </div>
+
+                <!--==================== PORTFOLIO 2 (GITHUB REPOS) ====================-->
+                <div class="portfolio__content" onclick="openPortfolioModal('portfolioModal2')" style="cursor: pointer;">
+                    <img src="assets/img/coding.gif" alt="Coding Projects" class="portfolio__img">
+
+                    <div class="portfolio__data">
+                        <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
+                            <i class="fab fa-github"></i> Open Source &bull; Ongoing
+                        </div>
+                        <h3 class="portfolio__title">GitHub & Pinned Repos</h3>
+                        <p class="portfolio__description">
+                            <strong>Role: Developer & Maintainer</strong><br>
+                            Curated codebase repositories featuring algorithm implementations, automation scripts, and documented open-source side projects.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        
+
         <!--==================== CONTACT ME ====================-->
         <section class="contact section" id="contact">
             <h2 class="section__title">Contact Me</h2>
@@ -2245,7 +2239,7 @@
     <!--==================== SERVICES MODALS ====================-->
     <div class="services__modal" id="service-modal-1">
         <div class="services__modal-content">
-            <h4 class="services__modal-title">Ui/Ux <br> Designer</h4>
+            <h4 class="services__modal-title">Fullstack <br> Development</h4>
             <button class="services__modal-close">
                 <i class="fas fa-times"></i>
             </button>
@@ -2253,19 +2247,19 @@
             <ul class="services__modal-services">
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I create the User Interface usign figma.</p>
+                    <p>Web application architecture & responsive frontend development.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Web page development.</p>
+                    <p>RESTful & GraphQL API design using Node.js & TypeScript.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I create ux element interactions.</p>
+                    <p>Real-time data synchronization via WebSockets.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I position your company brand.</p>
+                    <p>Database schema design & query optimization (PostgreSQL, MongoDB).</p>
                 </li>
             </ul>
         </div>
@@ -2273,7 +2267,7 @@
 
     <div class="services__modal" id="service-modal-2">
         <div class="services__modal-content">
-            <h4 class="services__modal-title">Fullstack <br> Developer</h4>
+            <h4 class="services__modal-title">Systems & <br> Infrastructure</h4>
             <button class="services__modal-close">
                 <i class="fas fa-times"></i>
             </button>
@@ -2281,136 +2275,24 @@
             <ul class="services__modal-services">
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I develop the user interface.</p>
+                    <p>Containerization & orchestration (Docker & Kubernetes).</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Web page development.</p>
+                    <p>Self-hosted homelab server configuration & Linux sysadmin.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I create ux element interactions.</p>
+                    <p>Reverse proxy setup (Nginx/Traefik) & SSL/TLS certificate management.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I position your company brand.</p>
+                    <p>Automated encrypted backup solutions & monitoring dashboards.</p>
                 </li>
             </ul>
         </div>
     </div>
 
-    <div class="services__modal" id="service-modal-3">
-        <div class="services__modal-content">
-            <h4 class="services__modal-title">Media <br> Editor</h4>
-            <button class="services__modal-close">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <ul class="services__modal-services">
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I edit videos for promotional use.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I edit images, and color correct them.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I can create music or sound effects.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I create logos for your brand.</p>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="services__modal" id="service-modal-4">
-        <div class="services__modal-content">
-            <h4 class="services__modal-title">PC Build & <br> Maintenance</h4>
-            <button class="services__modal-close">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <ul class="services__modal-services">
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I build custom PCs for gaming and workstations.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I provide hardware troubleshooting and repair.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I offer system optimization and performance tuning.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I provide regular maintenance and upgrades.</p>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="services__modal" id="service-modal-5">
-        <div class="services__modal-content">
-            <h4 class="services__modal-title">Cyber <br> Security</h4>
-            <button class="services__modal-close">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <ul class="services__modal-services">
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I perform security audits and vulnerability assessments.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I implement security protocols and best practices.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I provide penetration testing services.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I offer security training and consultation.</p>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="services__modal" id="service-modal-6">
-        <div class="services__modal-content">
-            <h4 class="services__modal-title">Data <br> Analyst</h4>
-            <button class="services__modal-close">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <ul class="services__modal-services">
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I perform data collection and cleaning for analysis.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I create visualizations and dashboards for insights.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I provide statistical analysis and reporting.</p>
-                </li>
-                <li class="services__modal-service">
-                    <i class="fas fa-circle services__modal-icon"></i>
-                    <p>I offer data-driven recommendations and consultation.</p>
-                </li>
-            </ul>
-        </div>
-    </div>
-    
     <!--==================== FOOTER ====================-->
     <footer class="footer">
         <div class="footer__container">
@@ -2474,109 +2356,323 @@
     <script src="assets/js/main.js"></script>
 
     <!--==================== PORTFOLIO MODALS ====================-->
-    <!-- Portfolio Modal 1 -->
-    <div id="portfolioModal1" class="portfolio__modal">
-        <div class="portfolio__modal-content">
+    <!-- Portfolio Modal 7: HOSPITAL BED MANAGEMENT (CENTERPIECE CASE STUDY) -->
+    <div id="portfolioModal7" class="portfolio__modal">
+        <div class="portfolio__modal-content" style="max-width: 850px;">
             <span class="portfolio__modal-close">&times;</span>
-            <img src="assets/img/v1.png" alt="Discord Bot" class="portfolio__modal-img">
-            <h3 class="portfolio__modal-title">Discord Bot - Full Project Details</h3>
-            <p class="portfolio__modal-description">
-                A complete all-in-one Discord bot developed from scratch with a comprehensive set of features and functionalities.
-                <br><br>
-                <strong>Gaming & Entertainment:</strong>
-                <br>• Character system with rolling, claiming, and collection mechanics
-                <br>• Automatic horse races with dynamic weather and betting system
-                <br>• Pet system with walking mechanics and rewards
-                <br>• Turn-based combat system supporting up to 4 players
-                <br>• Various minigames (tic-tac-toe, rock-paper-scissors, blackjack)
-                <br><br>
-                <strong>Economy & Shop:</strong>
-                <br>• Complete item shop with equipment system
-                <br>• Profile management with inventory and statistics
-                <br>• Daily rewards and gambling mechanics
-                <br>• Promotional code redemption system
-                <br><br>
-                <strong>Moderation & Utility:</strong>
-                <br>• Dedicated web interface / dashboard for full bot control and management
-                <br>• Advanced ticket system for support
-                <br>• Message purging and moderation tools
-                <br>• Server information and statistics
-                <br>• Role management system
-                <br><br>
-                Built with Discord.js, MongoDB for persistent data storage, and an intuitive web interface to manage and control the bot, featuring automatic scheduled events and comprehensive database management.
-            </p>
-            <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">Bot & Control Interface Screenshots</h4>
-            <div class="portfolio__gallery">
-                <img src="assets/img/discord1.png" alt="Discord Bot Screenshot 1" class="portfolio__modal-img portfolio__gallery-img">
-                <img src="assets/img/discord2.png" alt="Discord Bot Screenshot 2" class="portfolio__modal-img portfolio__gallery-img">
-                <img src="assets/img/discord3.png" alt="Discord Bot Screenshot 3" class="portfolio__modal-img portfolio__gallery-img">
-                <img src="assets/img/discord4.png" alt="Discord Bot Screenshot 4" class="portfolio__modal-img portfolio__gallery-img">
+            <img src="assets/img/hospital_banner.jpg" alt="Viseu Hospital Case Study" class="portfolio__modal-img">
+
+            <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
+                <span style="background: rgba(255, 0, 127, 0.2); color: var(--synth-pink); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">
+                    INTERNSHIP CASE STUDY &bull; Feb 2024 – Jul 2024
+                </span>
+                <h3 class="portfolio__modal-title" style="margin-top: 0.8rem; margin-bottom: 0.5rem; text-align: left;">
+                    Case Study: Real-Time Bed & Patient Discharge System — Viseu Hospital
+                </h3>
+                <p style="color: var(--text-color-light); font-size: 0.95rem; margin-bottom: 1rem;">
+                    <strong>Role:</strong> Fullstack Engineer (Team of 4) &nbsp;|&nbsp;
+                    <strong>Stack:</strong> Node.js, TypeScript, WebSockets, React, Supabase (PostgreSQL), Docker, Kubernetes, Jest, Swagger
+                </p>
             </div>
-            <a href="https://github.com/Skalin151/Discord_Bot" class="portfolio__modal-link">
-                <i class="fab fa-discord" style="color: white;"></i> Repo
+
+            <div class="portfolio__modal-description" style="text-align: left; line-height: 1.6;">
+                <!-- PROBLEM & CONSTRAINTS -->
+                <div style="background: rgba(255,255,255,0.03); padding: 1.2rem; border-left: 3px solid var(--synth-pink); margin-bottom: 1.5rem; border-radius: 0 6px 6px 0;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.05rem;"><i class="fas fa-exclamation-triangle" style="color: var(--synth-pink);"></i> Problem & Operational Constraints</h4>
+                    <p style="margin-bottom: 0.5rem;">
+                        Viseu Hospital faced severe bottlenecks in emergency department throughput and elective surgery scheduling due to manual, paper/phone-based bed status updates following patient discharge. Sanitation teams were frequently delayed in receiving cleaning requests, leaving discharged beds in an unverified state for hours.
+                    </p>
+                    <p style="margin: 0;">
+                        <strong>Constraints:</strong> 24/7 continuous operation requirement, multi-department concurrency across 6 hospital wards, zero tolerable downtime, and strict role-based authorization for 3 distinct user profiles (Nurses, Housekeeping/Sanitation, Supervisors).
+                    </p>
+                </div>
+
+                <!-- ARCHITECTURE & ENGINEERING DECISIONS -->
+                <div style="background: rgba(255,255,255,0.03); padding: 1.2rem; border-left: 3px solid var(--synth-cyan, #00f0ff); margin-bottom: 1.5rem; border-radius: 0 6px 6px 0;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.05rem;"><i class="fas fa-sitemap" style="color: var(--synth-cyan, #00f0ff);"></i> Engineering Architecture & Rationale ("Why")</h4>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>&bull; WebSockets over HTTP Polling:</strong> Selected persistent WebSocket event channels over polling to achieve sub-second bed state dispatch (Available, Occupied, Dirty, Cleaning, Reserved) without client polling overhead on low-power mobile sanitation tablets.
+                        </li>
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>&bull; Docker & Kubernetes Orchestration:</strong> Microservice separation into API Gateway, WebSocket Dispatcher, and Sanitation Backend. Kubernetes guarantees automatic pod restarts, zero-downtime rolling deployments, and container health checks.
+                        </li>
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>&bull; Supabase / Relational SQL Storage:</strong> Enforced strict foreign-key integrity between patient admissions, bed availability matrices, 24/48/72h forecasting timelines, and immutable audit logs.
+                        </li>
+                        <li style="margin: 0;">
+                            <strong>&bull; Automated Test Suite:</strong> Developed end-to-end integration and unit tests using Jest/Supertest to validate bed state transition logic prior to deployment.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- PERSONAL CONTRIBUTION -->
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.05rem;"><i class="fas fa-user-check"></i> Personal Ownership & Contributions</h4>
+                    <ul style="padding-left: 1.2rem; margin: 0;">
+                        <li>Architected and implemented the real-time WebSocket state synchronization module.</li>
+                        <li>Designed and documented the RESTful API endpoints using Swagger / OpenAPI specs.</li>
+                        <li>Built the Flutter mobile sanitation workflow featuring QR code bed scanning and live cleaning execution timers.</li>
+                        <li>Participated in weekly hospital stakeholder reviews to iteratively refine UI/UX workflows for nursing staff.</li>
+                    </ul>
+                </div>
+
+                <!-- MONOCHROME EXCALIDRAW-STYLE ARCHITECTURE DIAGRAM -->
+                <div style="background: #141416; padding: 1.5rem 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); margin-bottom: 1.5rem; text-align: center;">
+                    <h4 style="color: #e0e0e0; margin-bottom: 1.2rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 600;">
+                        <i class="fas fa-sitemap" style="color: #888; margin-right: 8px;"></i> System Architecture Overview
+                    </h4>
+
+                    <svg viewBox="0 0 740 440" width="100%" height="100%" style="max-width: 740px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow: visible;">
+                        <defs>
+                            <!-- Simple Gray Arrowhead -->
+                            <marker id="arrow-gray" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#aaaaaa" />
+                            </marker>
+                        </defs>
+
+                        <!-- CLIENT LAYER (TOP) -->
+                        <!-- Nurse Web App -->
+                        <g transform="translate(30, 20)">
+                            <rect width="300" height="55" rx="6" fill="rgba(255, 255, 255, 0.03)" stroke="#cccccc" stroke-width="1.5" />
+                            <text x="150" y="25" font-size="13" font-weight="600" text-anchor="middle" fill="#ffffff">Nursing Staff Web UI</text>
+                            <text x="150" y="42" font-size="11" text-anchor="middle" fill="#888888">React.js &bull; Interactive Bed Matrix</text>
+                        </g>
+
+                        <!-- Sanitation Mobile App -->
+                        <g transform="translate(410, 20)">
+                            <rect width="300" height="55" rx="6" fill="rgba(255, 255, 255, 0.03)" stroke="#cccccc" stroke-width="1.5" />
+                            <text x="150" y="25" font-size="13" font-weight="600" text-anchor="middle" fill="#ffffff">Sanitation Staff Mobile App</text>
+                            <text x="150" y="42" font-size="11" text-anchor="middle" fill="#888888">Flutter &bull; Mobile QR Bed Scanner</text>
+                        </g>
+
+                        <!-- CONNECTORS: CLIENTS TO GATEWAY -->
+                        <!-- Left Client to Gateway -->
+                        <path d="M 180 75 L 180 95 Q 180 105 195 105 L 320 105 L 320 115" fill="none" stroke="#aaaaaa" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-gray)" />
+                        <text x="210" y="98" font-size="10" fill="#aaaaaa">WebSocket (WSS)</text>
+
+                        <!-- Right Client to Gateway -->
+                        <path d="M 560 75 L 560 95 Q 560 105 545 105 L 420 105 L 420 115" fill="none" stroke="#aaaaaa" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-gray)" />
+                        <text x="475" y="98" font-size="10" fill="#aaaaaa">REST / JSON API</text>
+
+                        <!-- INGRESS & GATEWAY LAYER -->
+                        <g transform="translate(220, 120)">
+                            <rect width="300" height="50" rx="6" fill="rgba(255, 255, 255, 0.05)" stroke="#dddddd" stroke-width="1.5" />
+                            <text x="150" y="22" font-size="12" font-weight="600" text-anchor="middle" fill="#ffffff">API & WebSocket Ingress Gateway</text>
+                            <text x="150" y="38" font-size="10" text-anchor="middle" fill="#aaaaaa">HTTPS / WSS &bull; SSL & Auth Guard</text>
+                        </g>
+
+                        <!-- CONNECTOR: GATEWAY TO KUBERNETES CLUSTER -->
+                        <path d="M 370 170 L 370 200" fill="none" stroke="#aaaaaa" stroke-width="1.5" marker-end="url(#arrow-gray)" />
+
+                        <!-- KUBERNETES CLUSTER CONTAINER -->
+                        <g transform="translate(60, 205)">
+                            <!-- Cluster Outline -->
+                            <rect width="620" height="135" rx="8" fill="rgba(255, 255, 255, 0.015)" stroke="#666666" stroke-width="1.5" stroke-dasharray="5,5" />
+                            <rect x="15" y="-11" width="210" height="22" rx="4" fill="#2a2a2e" stroke="#555555" stroke-width="1" />
+                            <text x="120" y="4" font-size="10" font-weight="600" text-anchor="middle" fill="#cccccc">KUBERNETES CLUSTER</text>
+
+                            <!-- Pod 1: WebSocket Engine -->
+                            <g transform="translate(30, 32)">
+                                <rect width="260" height="70" rx="6" fill="#1c1c20" stroke="#888888" stroke-width="1.2" />
+                                <text x="130" y="28" font-size="12" font-weight="600" text-anchor="middle" fill="#ffffff">WebSocket Event Engine</text>
+                                <text x="130" y="46" font-size="10" text-anchor="middle" fill="#aaaaaa">Real-time Bed Status Dispatcher Pod</text>
+                            </g>
+
+                            <!-- Pod 2: REST API Pods -->
+                            <g transform="translate(330, 32)">
+                                <rect width="260" height="70" rx="6" fill="#1c1c20" stroke="#888888" stroke-width="1.2" />
+                                <text x="130" y="28" font-size="12" font-weight="600" text-anchor="middle" fill="#ffffff">Node.js API Microservices</text>
+                                <text x="130" y="46" font-size="10" text-anchor="middle" fill="#aaaaaa">Discharge Workflow & Business Logic Pods</text>
+                            </g>
+                        </g>
+
+                        <!-- CONNECTORS: PODS TO DATABASE -->
+                        <path d="M 220 340 L 220 360 Q 220 370 235 370 L 320 370 L 320 380" fill="none" stroke="#aaaaaa" stroke-width="1.5" marker-end="url(#arrow-gray)" />
+                        <path d="M 520 340 L 520 360 Q 520 370 505 370 L 420 370 L 420 380" fill="none" stroke="#aaaaaa" stroke-width="1.5" marker-end="url(#arrow-gray)" />
+
+                        <!-- DATABASE LAYER (BOTTOM) -->
+                        <g transform="translate(220, 385)">
+                            <rect width="300" height="50" rx="6" fill="rgba(255, 255, 255, 0.04)" stroke="#cccccc" stroke-width="1.5" />
+                            <text x="150" y="22" font-size="12" font-weight="600" text-anchor="middle" fill="#ffffff">Supabase Database (PostgreSQL)</text>
+                            <text x="150" y="38" font-size="10" text-anchor="middle" fill="#888888">Relational Bed State & Immutable Audit Log Trail</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- QUANTIFIED IMPACT -->
+                <div style="background: rgba(0, 240, 255, 0.05); padding: 1.2rem; border-radius: 6px; margin-bottom: 1.5rem;">
+                    <h4 style="color: #00f0ff; margin-bottom: 0.5rem; font-size: 1.05rem;"><i class="fas fa-chart-line"></i> Quantified System Metrics & Scope</h4>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center; margin-top: 0.8rem;">
+                        <div>
+                            <span style="font-size: 1.4rem; font-weight: bold; color: #fff;">6</span><br>
+                            <span style="font-size: 0.8rem; color: #aaa;">Hospital Wards</span>
+                        </div>
+                        <div>
+                            <span style="font-size: 1.4rem; font-weight: bold; color: #fff;">100+</span><br>
+                            <span style="font-size: 0.8rem; color: #aaa;">Beds Monitored</span>
+                        </div>
+                        <div>
+                            <span style="font-size: 1.4rem; font-weight: bold; color: #fff;">~30%</span><br>
+                            <span style="font-size: 0.8rem; color: #aaa;">Latency Reduction</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.85rem; opacity: 0.7; font-style: italic;">
+                    <i class="fas fa-lock"></i> <strong>NDA Notice:</strong> Production codebase is confidential under Viseu Hospital NDA. System architecture diagrams, API schemas, and sanitized functional specs are available on request.
+                </p>
+            </div>
+
+            <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">Captioned Interface & Screenshots</h4>
+            <div class="portfolio__gallery">
+                <div style="text-align: center;">
+                    <img src="assets/img/hospital1.png" alt="Hospital Dashboard Floor Map" class="portfolio__modal-img portfolio__gallery-img">
+                    <span style="font-size: 0.8rem; color: #aaa; display: block; margin-top: 0.3rem;">Fig 1: Real-time floor plan matrix with color-coded bed states</span>
+                </div>
+                <div style="text-align: center;">
+                    <img src="assets/img/hospital2.png" alt="Hospital Bed State Workflow" class="portfolio__modal-img portfolio__gallery-img">
+                    <span style="font-size: 0.8rem; color: #aaa; display: block; margin-top: 0.3rem;">Fig 2: Patient discharge workflow & bed cleaning task queue</span>
+                </div>
+                <div style="text-align: center;">
+                    <img src="assets/img/hospital3.png" alt="Hospital Timeline Forecasting" class="portfolio__modal-img portfolio__gallery-img">
+                    <span style="font-size: 0.8rem; color: #aaa; display: block; margin-top: 0.3rem;">Fig 3: 24h / 48h / 72h bed availability timeline forecasting</span>
+                </div>
+                <div style="text-align: center;">
+                    <img src="assets/img/hospital4.png" alt="Hospital Equipment Tracking" class="portfolio__modal-img portfolio__gallery-img">
+                    <span style="font-size: 0.8rem; color: #aaa; display: block; margin-top: 0.3rem;">Fig 4: Medical equipment tracking & isolation room indicators</span>
+                </div>
+                <div style="text-align: center;">
+                    <img src="assets/img/hospital5.png" alt="Hospital Mobile Sanitation QR App" class="portfolio__modal-img portfolio__gallery-img">
+                    <span style="font-size: 0.8rem; color: #aaa; display: block; margin-top: 0.3rem;">Fig 5: Mobile sanitation app with QR bed scanner and cleaning timer</span>
+                </div>
+            </div>
+            <a href="https://docs.google.com/document/d/12I83MIc6heTeKuG1WhemRwqZqCIe0bSXLsodUHVxyhM/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="portfolio__modal-link" style="margin-top: 1.5rem;">
+                <i class="fas fa-file-alt" style="color: white;"></i> View Functional Spec Doc
             </a>
         </div>
     </div>
 
-    <!-- Portfolio Modal 2 -->
-    <div id="portfolioModal2" class="portfolio__modal">
-        <div class="portfolio__modal-content">
+    <!-- Portfolio Modal 1: DISCORD BOT & DASHBOARD -->
+    <div id="portfolioModal1" class="portfolio__modal">
+        <div class="portfolio__modal-content" style="max-width: 800px;">
             <span class="portfolio__modal-close">&times;</span>
-            <img src="assets/img/coding.gif" alt="Coding Projects" class="portfolio__modal-img">
-            <h3 class="portfolio__modal-title">Coding Projects - Development Portfolio</h3>
-            <p class="portfolio__modal-description">
-                A collection of diverse programming projects spanning web development, mobile applications, and 
-                desktop software. Includes full-stack web applications built with modern frameworks like React 
-                and Node.js, Python automation scripts, Java desktop applications, and various academic projects 
-                demonstrating algorithm implementation and data structure usage. Each project showcases different 
-                aspects of software development from UI/UX design to backend architecture.
-            </p>
-            <a href="https://github.com/Skalin151?tab=repositories&type=source" class="portfolio__modal-link">
-                <i class="fab fa-github" style="color: white;"></i> View Projects
+            <img src="assets/img/v1.png" alt="Discord Bot & Dashboard" class="portfolio__modal-img">
+
+            <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
+                <span style="background: rgba(255, 0, 127, 0.2); color: var(--synth-pink); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">
+                    PRODUCTION SYSTEM &bull; 2023 – Present
+                </span>
+                <h3 class="portfolio__modal-title" style="margin-top: 0.8rem; margin-bottom: 0.5rem; text-align: left;">
+                    Discord Bot & Web Control Interface
+                </h3>
+                <p style="color: var(--text-color-light); font-size: 0.95rem; margin-bottom: 1rem;">
+                    <strong>Role:</strong> Solo Developer &nbsp;|&nbsp;
+                    <strong>Stack:</strong> Discord.js, Node.js, Express, MongoDB, Docker, PM2
+                </p>
+            </div>
+
+            <div class="portfolio__modal-description" style="text-align: left; line-height: 1.6;">
+                <!-- PRODUCTION METRICS -->
+                <div style="background: rgba(0, 240, 255, 0.05); padding: 1.2rem; border-radius: 6px; margin-bottom: 1.5rem;">
+                    <h4 style="color: #00f0ff; margin-bottom: 0.5rem; font-size: 1.05rem;"><i class="fas fa-tachometer-alt"></i> Production Metrics</h4>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center; margin-top: 0.8rem;">
+                        <div>
+                            <span style="font-size: 1.3rem; font-weight: bold; color: #fff;">15+</span><br>
+                            <span style="font-size: 0.75rem; color: #aaa;">Active Guilds</span>
+                        </div>
+                        <div>
+                            <span style="font-size: 1.3rem; font-weight: bold; color: #fff;">2,500+</span><br>
+                            <span style="font-size: 0.75rem; color: #aaa;">End Users</span>
+                        </div>
+                        <div>
+                            <span style="font-size: 1.3rem; font-weight: bold; color: #fff;">50k+</span><br>
+                            <span style="font-size: 0.75rem; color: #aaa;">Commands Executed</span>
+                        </div>
+                        <div>
+                            <span style="font-size: 1.3rem; font-weight: bold; color: #fff;">99.8%</span><br>
+                            <span style="font-size: 0.75rem; color: #aaa;">Uptime SLA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ENGINEERING HIGHLIGHTS & CONCURRENCY -->
+                <div style="background: rgba(255,255,255,0.03); padding: 1.2rem; border-left: 3px solid var(--synth-pink); margin-bottom: 1.5rem; border-radius: 0 6px 6px 0;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.05rem;"><i class="fas fa-cogs"></i> Database Schema & Concurrency Handling</h4>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>&bull; Atomic Transaction Protection:</strong> Solved concurrent economy/gambling transaction race conditions by implementing MongoDB atomic `$inc` operators and session locks to prevent currency duplication vulnerabilities.
+                        </li>
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>&bull; Web Dashboard Control:</strong> Built a dedicated Express web dashboard providing guild admins with real-time bot management, support ticket administration, and command analytics.
+                        </li>
+                        <li style="margin: 0;">
+                            <strong>&bull; Deployment & Ops:</strong> Containerized via Docker and deployed with PM2 process supervisor for automatic crash recovery and daily automated database backups.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">Bot & Dashboard Interface Screenshots</h4>
+            <div class="portfolio__gallery">
+                <div style="text-align: center;">
+                    <img src="assets/img/discord1.png" alt="Discord Bot Screenshot 1" class="portfolio__modal-img portfolio__gallery-img">
+                    <span style="font-size: 0.8rem; color: #aaa; display: block; margin-top: 0.3rem;">Fig 1: Web dashboard guild overview & analytics</span>
+                </div>
+                <div style="text-align: center;">
+                    <img src="assets/img/discord2.png" alt="Discord Bot Screenshot 2" class="portfolio__modal-img portfolio__gallery-img">
+                    <span style="font-size: 0.8rem; color: #aaa; display: block; margin-top: 0.3rem;">Fig 2: Interactive character roll & inventory UI</span>
+                </div>
+                <div style="text-align: center;">
+                    <img src="assets/img/discord3.png" alt="Discord Bot Screenshot 3" class="portfolio__modal-img portfolio__gallery-img">
+                    <span style="font-size: 0.8rem; color: #aaa; display: block; margin-top: 0.3rem;">Fig 3: Support ticket system & moderation tools</span>
+                </div>
+                <div style="text-align: center;">
+                    <img src="assets/img/discord4.png" alt="Discord Bot Screenshot 4" class="portfolio__modal-img portfolio__gallery-img">
+                    <span style="font-size: 0.8rem; color: #aaa; display: block; margin-top: 0.3rem;">Fig 4: Turn-based combat & economy minigame</span>
+                </div>
+            </div>
+            <a href="https://github.com/Skalin151/Discord_Bot" target="_blank" rel="noopener noreferrer" class="portfolio__modal-link" style="margin-top: 1.5rem;">
+                <i class="fab fa-github" style="color: white;"></i> View Source Code
             </a>
         </div>
     </div>
 
-
-    <!-- Portfolio Modal 4 -->
+    <!-- Portfolio Modal 4: FLUTTER APP -->
     <div id="portfolioModal4" class="portfolio__modal">
-        <div class="portfolio__modal-content">
+        <div class="portfolio__modal-content" style="max-width: 800px;">
             <span class="portfolio__modal-close">&times;</span>
-            <img src="assets/img/flutter.png" alt="Flutter app" class="portfolio__modal-img">
-            <h3 class="portfolio__modal-title">Mobile App - Softskills</h3>
-            <p class="portfolio__modal-description">
-                A comprehensive mobile application for managing educational courses and learning paths, built with Flutter. Features include account management with email verification, password reset, and customizable settings page. Users can enroll in and track courses with restricted access, receive push notifications for updates, submit assignments, and view educational content (videos, links, files). Progress tracking, grade viewing, and automatic certificate generation are integrated.
-                <br><br>
-                The app offers built-in quizzes, a forum for sharing and posting content, attachments in comments, and topic-based discussions. It also includes notification systems (push/email) and gamification elements like rankings and badges to boost engagement. All functionalities are wrapped in a user-friendly interface focused on learner experience and intuitive navigation.
-                <br><br>
-                <strong>Core Features:</strong>
-                <br>• Account management with email verification and password reset
-                <br>• Customizable settings and user profiles
-                <br>• Course enrollment and progress tracking with restricted access
-                <br>• Push notifications for updates and important announcements
-                <br><br>
-                <strong>Learning Tools:</strong>
-                <br>• Assignment submission and grade viewing system
-                <br>• Educational content viewing (videos, links, files)
-                <br>• Built-in quizzes and assessments
-                <br>• Automatic certificate generation upon completion
-                <br><br>
-                <strong>Social Features:</strong>
-                <br>• Forum for sharing and posting content
-                <br>• Topic-based discussions with attachment support
-                <br>• Community interaction and knowledge sharing
-                <br><br>
-                <strong>Gamification:</strong>
-                <br>• Rankings and leaderboards
-                <br>• Achievement badges and rewards
-                <br>• Progress tracking and milestone celebrations
-                <br><br>
-                All functionalities are wrapped in a user-friendly interface focused on learner experience and intuitive navigation.
-                <br><br>
-                <strong>Test Credentials:</strong>
-                <br>Login: anacosta@email.com 
-                <br>Pass: pa55w.rd
-            </p>
+            <img src="assets/img/flutter.png" alt="Flutter App" class="portfolio__modal-img">
+
+            <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
+                <span style="background: rgba(255, 0, 127, 0.2); color: var(--synth-pink); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">
+                    ACADEMIC PROJECT &bull; Sep 2023 – Dec 2023
+                </span>
+                <h3 class="portfolio__modal-title" style="margin-top: 0.8rem; margin-bottom: 0.5rem; text-align: left;">
+                    Softskills — Educational Mobile Application
+                </h3>
+                <p style="color: var(--text-color-light); font-size: 0.95rem; margin-bottom: 1rem;">
+                    <strong>Role:</strong> Mobile & API Developer (Team of 4) &nbsp;|&nbsp;
+                    <strong>Stack:</strong> Flutter, Dart, Node.js, Express REST API, Firebase Auth
+                </p>
+            </div>
+
+            <div class="portfolio__modal-description" style="text-align: left; line-height: 1.6;">
+                <div style="background: rgba(255,255,255,0.03); padding: 1.2rem; border-left: 3px solid var(--synth-cyan, #00f0ff); margin-bottom: 1.5rem; border-radius: 0 6px 6px 0;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.05rem;"><i class="fas fa-layer-group"></i> Architecture & Scope</h4>
+                    <p style="margin-bottom: 0.5rem;">
+                        A full-stack mobile learning management system built with Flutter. Integrates course enrollment tracking, assignment submission, interactive quizzes, automatic PDF certificate generation, and topic-based community forums.
+                    </p>
+                    <p style="margin: 0;">
+                        <strong>Backend Services:</strong> RESTful API developed with Node.js and Express; Firebase Authentication for user sessions, push notifications, and Firebase Cloud Storage for assignment attachments.
+                    </p>
+                </div>
+
+                <p style="font-size: 0.85rem; opacity: 0.8;">
+                    <i class="fas fa-shield-alt" style="color: #00f0ff;"></i> <strong>Demo Access:</strong> Sandboxed demo account access available upon request.
+                </p>
+            </div>
+
             <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">App Screenshots</h4>
             <div class="portfolio__gallery">
                 <img src="assets/img/mobile1.png" alt="Mobile App Screenshot 1" class="portfolio__modal-img portfolio__gallery-img">
@@ -2586,105 +2682,137 @@
                 <img src="assets/img/mobile5.png" alt="Mobile App Screenshot 5" class="portfolio__modal-img portfolio__gallery-img">
                 <img src="assets/img/mobile6.png" alt="Mobile App Screenshot 6" class="portfolio__modal-img portfolio__gallery-img">
             </div>
-            <a href="https://github.com/Skalin151/Pint_PDM" class="portfolio__modal-link">
-                <i class="fas fa-mobile-alt" style="color: white;"></i> View App
+            <a href="https://github.com/Skalin151/Pint_PDM" target="_blank" rel="noopener noreferrer" class="portfolio__modal-link" style="margin-top: 1.5rem;">
+                <i class="fab fa-github" style="color: white;"></i> View Mobile Repository
             </a>
         </div>
     </div>
 
-    <!-- Portfolio Modal 5 -->
+    <!-- Portfolio Modal 5: STEAM TOOL -->
     <div id="portfolioModal5" class="portfolio__modal">
-        <div class="portfolio__modal-content">
+        <div class="portfolio__modal-content" style="max-width: 800px;">
             <span class="portfolio__modal-close">&times;</span>
             <img src="assets/img/steam.jpg" alt="Steam Games" class="portfolio__modal-img">
-            <h3 class="portfolio__modal-title">Steam Family - Library Games</h3>
-            <p class="portfolio__modal-description">
-                A JS + Docker application that uses the Steam API to retrieve and aggregate all games from a user's Steam library, either by Steam account (owner) or by specific app ID. It fetches detailed information for each game, including titles, metadata, and other relevant details, organizing and presenting the game library in a clear and accessible format. The tool is designed for efficient game collection management and easy exploration of Steam libraries.
-            </p>
-            <img src="assets/img/Steam_share_js.png" alt="Steam Share JS" class="portfolio__modal-img" style="margin-top: 1rem;">
-            <a href="https://github.com/Skalin151/Steam_Share_JS" class="portfolio__modal-link">
-                <i class="fab fa-steam" style="color: white;"></i> Fetch
+
+            <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
+                <span style="background: rgba(255, 0, 127, 0.2); color: var(--synth-pink); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">
+                    OPEN SOURCE TOOL &bull; 2024
+                </span>
+                <h3 class="portfolio__modal-title" style="margin-top: 0.8rem; margin-bottom: 0.5rem; text-align: left;">
+                    Steam Family Library Aggregator
+                </h3>
+                <p style="color: var(--text-color-light); font-size: 0.95rem; margin-bottom: 1rem;">
+                    <strong>Role:</strong> Solo Developer &nbsp;|&nbsp;
+                    <strong>Stack:</strong> JavaScript (Node.js), Steam Web API, Docker, HTML/CSS
+                </p>
+            </div>
+
+            <div class="portfolio__modal-description" style="text-align: left; line-height: 1.6;">
+                <div style="background: rgba(255,255,255,0.03); padding: 1.2rem; border-left: 3px solid var(--synth-pink); margin-bottom: 1.5rem; border-radius: 0 6px 6px 0;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.05rem;"><i class="fas fa-code-branch"></i> API Consumption & Resilience</h4>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li style="margin-bottom: 0.6rem;">
+                            <strong>&bull; Rate Limiting & Backoff:</strong> Handled strict Steam Web API rate limits by building exponential backoff retries and token bucket throttling.
+                        </li>
+                        <li style="margin-bottom: 0.6rem;">
+                            <strong>&bull; Caching Layer:</strong> In-memory response caching for user library game metadata to reduce redundant API queries.
+                        </li>
+                        <li style="margin: 0;">
+                            <strong>&bull; Dockerized Packaging:</strong> Packaged as a lightweight Docker container for one-command execution.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <img src="assets/img/Steam_share_js.png" alt="Steam Share JS Interface" class="portfolio__modal-img" style="margin-top: 1rem; border-radius: 6px;">
+            <a href="https://github.com/Skalin151/Steam_Share_JS" target="_blank" rel="noopener noreferrer" class="portfolio__modal-link" style="margin-top: 1.5rem;">
+                <i class="fab fa-github" style="color: white;"></i> View Repository
             </a>
         </div>
     </div>
-            <!-- Portfolio Modal 6 -->
+
+    <!-- Portfolio Modal 6: HOMELAB -->
     <div id="portfolioModal6" class="portfolio__modal">
-        <div class="portfolio__modal-content">
+        <div class="portfolio__modal-content" style="max-width: 800px;">
             <span class="portfolio__modal-close">&times;</span>
             <img src="assets/img/homelab.png" alt="Home Lab" class="portfolio__modal-img">
-            <h3 class="portfolio__modal-title">Home Lab - Self-Hosted Infrastructure</h3>
-            <p class="portfolio__modal-description">
-                A custom-built home server infrastructure using recycled computer parts to create a powerful self-hosted environment. This project demonstrates system administration, network configuration, and service deployment skills.
-                <br><br>
-                <strong>Hardware Setup:</strong>
-                <br>• Assembled from repurposed computer components
-                <br>• Custom cooling and power management solutions
-                <br>• Multiple storage drives in RAID configuration
-                <br>• Network-attached storage (NAS) capabilities
-                <br><br>
-                <strong>Self-Hosted Services:</strong>
-                <br>• Swing Music for personal mp3 player
-                <br>• Jellyfin as an alternative media solution
-                <br>• N8N for developing task automation
-                <br>• Home Assistant for smart home automation
-                <br><br>
-                <strong>Monitoring & Management:</strong>
-                <br>• Netdata dashboards for system monitoring
-                <br>• Prometheus for metrics collection
-                <br>• Uptime Kuma for service availability monitoring
-                <br>• Custom web interface for service management
-                <br><br>
-                <strong>Automation & Integration:</strong>
-                <br>• Docker containerization for all services
-                <br>• Automated backup solutions
-                <br>• VPN access for remote management
-                <br>• Custom scripts for maintenance and updates
-                <br><br>
-            </p>
-            <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">Infrastructure Screenshots</h4>
+
+            <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
+                <span style="background: rgba(255, 0, 127, 0.2); color: var(--synth-pink); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">
+                    INFRASTRUCTURE &bull; Ongoing
+                </span>
+                <h3 class="portfolio__modal-title" style="margin-top: 0.8rem; margin-bottom: 0.5rem; text-align: left;">
+                    Self-Hosted Homelab Infrastructure
+                </h3>
+                <p style="color: var(--text-color-light); font-size: 0.95rem; margin-bottom: 1rem;">
+                    <strong>Role:</strong> Systems Administrator &nbsp;|&nbsp;
+                    <strong>Stack:</strong> Linux (Ubuntu/Debian), Docker, Nginx/Traefik, Home Assistant, Prometheus, Tailscale
+                </p>
+            </div>
+
+            <div class="portfolio__modal-description" style="text-align: left; line-height: 1.6;">
+                <div style="background: rgba(255,255,255,0.03); padding: 1.2rem; border-left: 3px solid var(--synth-cyan, #00f0ff); margin-bottom: 1.5rem; border-radius: 0 6px 6px 0;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.05rem;"><i class="fas fa-network-wired"></i> System Administration & Ops Highlights</h4>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li style="margin-bottom: 0.6rem;">
+                            <strong>&bull; Reverse Proxy & TLS:</strong> Nginx/Traefik reverse proxy with automated Let's Encrypt SSL/TLS certificates for internal & external subdomains.
+                        </li>
+                        <li style="margin-bottom: 0.6rem;">
+                            <strong>&bull; Disaster Recovery & Backups:</strong> Automated encrypted offsite backups (Restic/Borg) with daily backup schedules and restore testing.
+                        </li>
+                        <li style="margin: 0;">
+                            <strong>&bull; Security & Network Isolation:</strong> VLAN segmentation isolating smart home IoT hardware from internal subnets, secured via Tailscale mesh VPN without exposing public router ports.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">Infrastructure Dashboards</h4>
             <div class="portfolio__gallery">
                 <img src="assets/img/homelab1.png" alt="Home Lab Screenshot 1" class="portfolio__modal-img portfolio__gallery-img">
                 <img src="assets/img/homelab2.png" alt="Home Lab Screenshot 2" class="portfolio__modal-img portfolio__gallery-img">
                 <img src="assets/img/homelab3.png" alt="Home Lab Screenshot 3" class="portfolio__modal-img portfolio__gallery-img">
             </div>
-            <a href="#" class="portfolio__modal-link">
-                <i class="fas fa-server" style="color: white;"></i> Explore Infrastructure
+            <a href="https://github.com/Skalin151" target="_blank" rel="noopener noreferrer" class="portfolio__modal-link" style="margin-top: 1.5rem;">
+                <i class="fas fa-server" style="color: white;"></i> Explore Infrastructure Code
             </a>
         </div>
     </div>
 
-    <!-- Portfolio Modal 7 -->
-    <div id="portfolioModal7" class="portfolio__modal">
-        <div class="portfolio__modal-content">
+    <!-- Portfolio Modal 2: GITHUB REPOS -->
+    <div id="portfolioModal2" class="portfolio__modal">
+        <div class="portfolio__modal-content" style="max-width: 800px;">
             <span class="portfolio__modal-close">&times;</span>
-            <img src="assets/img/hospital_banner.jpg" alt="Internship Project - Viseu Hospital" class="portfolio__modal-img">
-            <h3 class="portfolio__modal-title">Internship Project - Viseu Hospital</h3>
-            <p class="portfolio__modal-description">
-                A comprehensive real-time bed and patient discharge monitoring system developed for Viseu Hospital. The project directly addresses critical hospital bottlenecks such as emergency room delays and surgery cancellations through a reactive, visual interactive dashboard integrated across multiple hospital departments.
-                <br><br>
-                Development was conducted with a strong focus on large-scale software engineering standards, featuring weekly status and review meetings to closely monitor progress, validate operational requirements, and maintain seamless alignment with hospital teams.
-                <br><br>
-                <strong>Architecture, Tech Stack & Scalability:</strong>
-                <br>• <strong>Containerization & Orchestration:</strong> Built with Docker containers and managed via Kubernetes to guarantee high scalability, fault tolerance, and 24/7 continuous operation
-                <br>• <strong>Backend System:</strong> Modular RESTful API documented with Swagger and deployed on Railway infrastructure, backed by a relational SQL database
-                <br>• <strong>Frontend & Real-Time Sync:</strong> Responsive web application using WebSockets for instantaneous bed status updates and real-time interactive mapping
-                <br>• <strong>Mobile App Integration:</strong> Dedicated mobile app for sanitation staff featuring QR Code scanning, priority queuing, and automated cleaning timers
-                <br><br>
-                <strong>Core Features & Advanced Modules:</strong>
-                <br>• <strong>Interactive Hospital Map:</strong> Real-time floor/wing layout with color-coded bed statuses (Available, Occupied, Dirty, Cleaning in Progress, Reserved, Out of Service)
-                <br>• <strong>End-to-End Discharge Workflow:</strong> Automated notifications to cleaning teams, real-time execution timers, and supervisor validation
-                <br>• <strong>Advanced Capability:</strong> 24/48/72h discharge availability timeline forecasting, intelligent patient-to-bed matchmaking, automatic post-surgery bed reservation, critical equipment tracking (ventilators, monitors), and epidemiological isolation management
-            </p>
-            <h4 style="color: var(--synth-pink); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 1.5rem 0 1rem; width: 100%; text-align: center;">System Interface & Screenshots</h4>
-            <div class="portfolio__gallery">
-                <img src="assets/img/hospital1.png" alt="Hospital Screenshot 1" class="portfolio__modal-img portfolio__gallery-img">
-                <img src="assets/img/hospital2.png" alt="Hospital Screenshot 2" class="portfolio__modal-img portfolio__gallery-img">
-                <img src="assets/img/hospital3.png" alt="Hospital Screenshot 3" class="portfolio__modal-img portfolio__gallery-img">
-                <img src="assets/img/hospital4.png" alt="Hospital Screenshot 4" class="portfolio__modal-img portfolio__gallery-img">
-                <img src="assets/img/hospital5.png" alt="Hospital Screenshot 5" class="portfolio__modal-img portfolio__gallery-img">
+            <img src="assets/img/coding.gif" alt="Coding Projects" class="portfolio__modal-img">
+
+            <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
+                <span style="background: rgba(255, 0, 127, 0.2); color: var(--synth-pink); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">
+                    OPEN SOURCE &bull; Ongoing
+                </span>
+                <h3 class="portfolio__modal-title" style="margin-top: 0.8rem; margin-bottom: 0.5rem; text-align: left;">
+                    GitHub Pinned Repositories & Open Source
+                </h3>
             </div>
-            <a href="https://docs.google.com/document/d/12I83MIc6heTeKuG1WhemRwqZqCIe0bSXLsodUHVxyhM/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="portfolio__modal-link">
-                <i class="fas fa-hospital-alt" style="color: white;"></i> View Details
+
+            <div class="portfolio__modal-description" style="text-align: left; line-height: 1.6;">
+                <p style="margin-bottom: 1rem;">
+                    Curated list of public repositories demonstrating fullstack development, backend APIs, algorithm implementations, and CLI utilities:
+                </p>
+                <ul style="padding-left: 1.2rem;">
+                    <li style="margin-bottom: 0.5rem;">
+                        <a href="https://github.com/Skalin151/Discord_Bot" target="_blank" rel="noopener noreferrer" style="color: var(--synth-pink); font-weight: bold;">Discord_Bot</a> — Production Node.js & MongoDB bot with Express web dashboard.
+                    </li>
+                    <li style="margin-bottom: 0.5rem;">
+                        <a href="https://github.com/Skalin151/Steam_Share_JS" target="_blank" rel="noopener noreferrer" style="color: var(--synth-pink); font-weight: bold;">Steam_Share_JS</a> — Steam API library aggregator with rate limiting and Docker setup.
+                    </li>
+                    <li style="margin-bottom: 0.5rem;">
+                        <a href="https://github.com/Skalin151/Pint_PDM" target="_blank" rel="noopener noreferrer" style="color: var(--synth-pink); font-weight: bold;">Pint_PDM</a> — Flutter mobile app integrated with RESTful API.
+                    </li>
+                </ul>
+            </div>
+
+            <a href="https://github.com/Skalin151?tab=repositories&type=source" target="_blank" rel="noopener noreferrer" class="portfolio__modal-link" style="margin-top: 1.5rem;">
+                <i class="fab fa-github" style="color: white;"></i> View All Repositories on GitHub
             </a>
         </div>
     </div>
