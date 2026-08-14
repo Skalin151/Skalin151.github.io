@@ -554,29 +554,44 @@
 
         .about__container {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+
+        .about__card {
             background: rgba(15, 15, 30, 0.6);
             backdrop-filter: blur(10px);
             border-radius: 15px;
             border: 1px solid rgba(139, 44, 245, 0.3);
             box-shadow: 0 8px 32px rgba(139, 44, 245, 0.2);
-            padding: 2rem;
+            padding: 1.8rem;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
-        .about__container::before {
+        .about__card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(139, 44, 245, 0.35);
+            border-color: rgba(5, 217, 232, 0.5);
+        }
+
+        .about__card::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(139, 44, 245, 0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(139, 44, 245, 0.08), transparent);
             transform: rotate(45deg);
-            z-index: -1;
+            z-index: 0;
             animation: shimmer 8s infinite linear;
+            pointer-events: none;
         }
 
         @keyframes shimmer {
@@ -589,16 +604,16 @@
         }
 
         .about__img {
-            border-radius: 15px;
+            border-radius: 12px;
             border: 2px solid var(--synth-purple);
-            box-shadow: 0 0 20px rgba(139, 44, 245, 0.5);
+            box-shadow: 0 0 15px rgba(139, 44, 245, 0.4);
             width: 100%;
             height: auto;
             object-fit: cover;
         }
 
         .about__description {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.6;
             color: var(--text-color);
             margin-bottom: 0;
@@ -1657,6 +1672,10 @@
         }
 
         @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .about__container {
+                grid-template-columns: 1fr;
+            }
+
             .skills__container {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1777,19 +1796,67 @@
         <!--==================== ABOUT ====================-->
         <section class="about section" id="about">
             <h2 class="section__title">About Me</h2>
-            <span class="section__subtitle">My Background & Engineering Focus</span>
+            <span class="section__subtitle">My Background, Education & Engineering Focus</span>
 
             <div class="about__container container">
-                <img src="assets/img/comp.png" alt="Skalin Developer Workspace" class="about__img" />
+                <!-- CARD 1: BIO & BACKGROUND -->
+                <div class="about__card">
+                    <div style="display: flex; gap: 1.2rem; align-items: center; margin-bottom: 1.2rem; position: relative; z-index: 1;">
+                        <img src="assets/img/comp.png" alt="Skalin Developer Workspace" class="about__img" style="width: 75px; height: 75px; border-radius: 10px; object-fit: cover; flex-shrink: 0;">
+                        <div>
+                            <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: #fff; margin: 0 0 0.2rem;">João Cruz (Skalin)</h3>
+                            <span style="color: var(--synth-cyan); font-size: 0.95rem; font-weight: 600;">Fullstack & Systems Software Engineer</span>
+                        </div>
+                    </div>
 
-                <div class="about__data">
-                    <p class="about__description">
-                        Hi, I'm <strong>João Cruz (Skalin)</strong>, a Fullstack & Systems Software Engineer. I specialize in backend architecture, Node.js, TypeScript, real-time WebSocket communication, relational & NoSQL databases (PostgreSQL, MongoDB), containerized orchestration (Docker, Portainer, Kubernetes), CI/CD pipelines (GitHub Actions), and Linux sysadmin.<br><br>
+                    <div class="about__data" style="position: relative; z-index: 1;">
+                        <p class="about__description">
+                            Hi, I'm <strong>João Cruz (Skalin)</strong>, a Fullstack & Systems Software Engineer. I specialize in backend architecture, Node.js, TypeScript, real-time WebSocket communication, relational & NoSQL databases (PostgreSQL, MongoDB), containerized orchestration (Docker, Portainer, Kubernetes), CI/CD pipelines (GitHub Actions), and Linux sysadmin.<br><br>
 
-                        I am passionate about building resilient end-to-end systems—from real-time hospital bed tracking solutions and high-concurrency Discord bots to custom Linux desktop workflows (CachyOS + Hyprland) and 24/7 self-hosted infrastructure (ZimaOS). I maintain detailed engineering logs in Obsidian and actively contribute to open-source software.<br><br>
+                            I am passionate about building resilient end-to-end systems—from real-time hospital bed tracking solutions and high-concurrency Discord bots to custom Linux desktop workflows (CachyOS + Hyprland) and 24/7 self-hosted infrastructure (ZimaOS). I maintain detailed engineering logs in Obsidian and actively contribute to open-source software.<br><br>
 
-                        <em style="opacity: 0.85; font-size: 0.9em;"><i class="fas fa-palette"></i> <strong>Creative Workstation & Hobbies:</strong> On my Windows workstation, I explore 3D modeling (Blender), CAD design, sound design (FL Studio), and video editing.</em>
-                    </p>
+                            <em style="opacity: 0.9; font-size: 0.92rem;"><strong>Creative Workstation & Hobbies:</strong> On my Windows workstation, I explore 3D modeling (Blender), CAD design, sound design (FL Studio), and video editing.</em>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 2: EDUCATION & CREDENTIALS -->
+                <div class="about__card">
+                    <div style="position: relative; z-index: 1;">
+                        <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: #fff; margin: 0 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.6rem;">
+                            Education & Qualifications
+                        </h3>
+
+                        <div style="margin-bottom: 1.2rem;">
+                            <h4 style="color: #fff; font-size: 1.1rem; margin: 0 0 0.25rem; font-weight: 700;">
+                                B.Sc. in Computer Engineering
+                            </h4>
+                            <p style="color: var(--synth-cyan); font-size: 0.95rem; margin: 0 0 0.5rem; font-weight: 500;">
+                                Licenciatura em Engenharia Informática &bull; 2022 – 2026
+                            </p>
+                            <p style="color: var(--text-color); font-size: 0.95rem; margin: 0 0 0.4rem; line-height: 1.5;">
+                                <strong>Instituto Politécnico of Viseu (IPV)</strong> — Escola Superior de Gestão e Tecnologia de Viseu (ESTGV)
+                            </p>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0 0 0.6rem;">
+                                <strong>Academic Standing:</strong> 13.8 / 20 GPA
+                            </p>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+                                <strong>Key Coursework:</strong> Software Engineering, Distributed Systems, Relational & NoSQL Databases, Computer Networks, Operating Systems, and Algorithms.
+                            </p>
+                        </div>
+
+                        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
+                            <h4 style="color: #fff; font-size: 1rem; margin: 0 0 0.3rem; font-weight: 700;">
+                                Driving License
+                            </h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.3rem; line-height: 1.5;">
+                                Categories <strong>B</strong> (Passenger Cars) and <strong>B1</strong> (Quadricycles), with full vehicle mobility.
+                            </p>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0; line-height: 1.5;">
+                                Available to work in <strong>Viseu</strong> and <strong>Aveiro</strong>.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
