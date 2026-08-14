@@ -1784,7 +1784,7 @@
 
                 <div class="about__data">
                     <p class="about__description">
-                        Hi, I'm <strong>João Cruz (Skalin)</strong>, a Fullstack & Systems Software Engineer. I specialize in backend architecture, Node.js, TypeScript, real-time WebSocket communication, relational & NoSQL databases (PostgreSQL, MongoDB), containerized orchestration (Docker, Portainer, Kubernetes), and Linux sysadmin.<br><br>
+                        Hi, I'm <strong>João Cruz (Skalin)</strong>, a Fullstack & Systems Software Engineer. I specialize in backend architecture, Node.js, TypeScript, real-time WebSocket communication, relational & NoSQL databases (PostgreSQL, MongoDB), containerized orchestration (Docker, Portainer, Kubernetes), CI/CD pipelines (GitHub Actions), and Linux sysadmin.<br><br>
 
                         I am passionate about building resilient end-to-end systems—from real-time hospital bed tracking solutions and high-concurrency Discord bots to custom Linux desktop workflows (CachyOS + Hyprland) and 24/7 self-hosted infrastructure (ZimaOS). I maintain detailed engineering logs in Obsidian and actively contribute to open-source software.<br><br>
 
@@ -1949,6 +1949,10 @@
                             <span class="skills__name">Kubernetes</span>
                         </div>
                         <div class="skills__data">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" class="skills__logo" alt="CI/CD & GitHub Actions">
+                            <span class="skills__name">CI/CD (Actions)</span>
+                        </div>
+                        <div class="skills__data">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" class="skills__logo" alt="Nginx">
                             <span class="skills__name">Nginx & TLS</span>
                         </div>
@@ -2070,7 +2074,7 @@
                         </div>
                         <h3 class="portfolio__title">Viseu Hospital Bed Management</h3>
                         <p class="portfolio__description">
-                            <strong>Role: Fullstack Engineer (Team of 4)</strong><br>
+                            <strong>Role: Fullstack Engineer (Team of 3)</strong><br>
                             Real-time hospital bed & patient discharge monitoring system built with WebSockets, Node.js, Supabase, and Kubernetes across 6 departments.
                         </p>
                     </div>
@@ -2087,7 +2091,7 @@
                         <h3 class="portfolio__title">Discord Bot & Dashboard</h3>
                         <p class="portfolio__description">
                             <strong>Role: Solo Developer</strong><br>
-                            Production community bot serving 2,500+ users across 15+ servers with MongoDB atomic concurrency handling and Express management dashboard.
+                            Production community bot serving 2,500+ users across 15+ servers with MongoDB atomic concurrency handling, Express dashboard, and comprehensive Jest unit test suites for economy & item systems.
                         </p>
                     </div>
                 </div>
@@ -2280,6 +2284,10 @@
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
+                    <p>Automated CI/CD pipelines (GitHub Actions) for container builds, automated testing & rolling deployments.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
                     <p>Linux sysadmin & custom workflows (CachyOS + Hyprland, ZimaOS 24/7 homelab).</p>
                 </li>
                 <li class="services__modal-service">
@@ -2380,7 +2388,7 @@
                 </h3>
                 <p style="color: var(--text-color-light); font-size: 0.95rem; margin-bottom: 1rem;">
                     <strong>Role:</strong> Fullstack Engineer (Team of 4) &nbsp;|&nbsp;
-                    <strong>Stack:</strong> Node.js, TypeScript, WebSockets, React, Supabase (PostgreSQL), Docker, Kubernetes, Jest, Swagger
+                    <strong>Stack:</strong> Node.js, TypeScript, WebSockets, React, Supabase (PostgreSQL), Docker, Kubernetes, CI/CD (GitHub Actions), Jest, Swagger
                 </p>
             </div>
 
@@ -2404,7 +2412,10 @@
                             <strong>&bull; WebSockets over HTTP Polling:</strong> Selected persistent WebSocket event channels over polling to achieve sub-second bed state dispatch (Available, Occupied, Dirty, Cleaning, Reserved) without client polling overhead on low-power mobile sanitation tablets.
                         </li>
                         <li style="margin-bottom: 0.8rem;">
-                            <strong>&bull; Docker & Kubernetes Orchestration:</strong> Microservice separation into API Gateway, WebSocket Dispatcher, and Sanitation Backend. Kubernetes guarantees automatic pod restarts, zero-downtime rolling deployments, and container health checks.
+                            <strong>&bull; Docker & Kubernetes Orchestration:</strong> Microservice separation into API Gateway, WebSocket Dispatcher, and Sanitation Backend. Kubernetes guarantees automatic pod restarts, zero-downtime rolling deployments, and container health checks. Rigorously stress-tested through automated load simulation suites executed against a multi-node homelab cluster to benchmark concurrency and latency under hospital ward surge conditions.
+                        </li>
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>&bull; Automated CI/CD Pipeline (GitHub Actions):</strong> Implemented automated CI/CD workflows triggering on every push and pull request to run unit/integration test suites, build container images, and execute automated zero-downtime redeployments to the container environment upon merge.
                         </li>
                         <li style="margin-bottom: 0.8rem;">
                             <strong>&bull; Supabase / Relational SQL Storage:</strong> Enforced strict foreign-key integrity between patient admissions, bed availability matrices, 24/48/72h forecasting timelines, and immutable audit logs.
@@ -2420,6 +2431,8 @@
                     <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.05rem;"><i class="fas fa-user-check"></i> Personal Ownership & Contributions</h4>
                     <ul style="padding-left: 1.2rem; margin: 0;">
                         <li>Architected and implemented the real-time WebSocket state synchronization module.</li>
+                        <li>Built automated GitHub Actions CI/CD workflows to execute test suites and automate container redeployments on push/pull requests.</li>
+                        <li>Conducted load and stress tests against a dedicated homelab Kubernetes cluster to evaluate container resilience and WebSocket throughput under heavy concurrent client loads.</li>
                         <li>Designed and documented the RESTful API endpoints using Swagger / OpenAPI specs.</li>
                         <li>Built the Flutter mobile sanitation workflow featuring QR code bed scanning and live cleaning execution timers.</li>
                         <li>Participated in weekly hospital stakeholder reviews to iteratively refine UI/UX workflows for nursing staff.</li>
@@ -2577,7 +2590,7 @@
                 </h3>
                 <p style="color: var(--text-color-light); font-size: 0.95rem; margin-bottom: 1rem;">
                     <strong>Role:</strong> Solo Developer &nbsp;|&nbsp;
-                    <strong>Stack:</strong> Discord.js, Node.js, Express, MongoDB, Docker, PM2
+                    <strong>Stack:</strong> Discord.js, Node.js, Express, MongoDB, Jest (Unit Testing), Docker, PM2
                 </p>
             </div>
 
@@ -2611,6 +2624,9 @@
                     <ul style="list-style-type: none; padding-left: 0; margin: 0;">
                         <li style="margin-bottom: 0.8rem;">
                             <strong>&bull; Atomic Transaction Protection:</strong> Solved concurrent economy/gambling transaction race conditions by implementing MongoDB atomic `$inc` operators and session locks to prevent currency duplication vulnerabilities.
+                        </li>
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>&bull; Comprehensive Unit Testing (Jest):</strong> Built an extensive unit testing suite to safeguard user economy balances, currency transfer integrity, and deterministic RPG mechanics. Tests validate complex item logic including stat multiplier stacking, interaction behaviors with equipped vs. unequipped items, prerequisite checks, and inventory edge cases.
                         </li>
                         <li style="margin-bottom: 0.8rem;">
                             <strong>&bull; Web Dashboard Control:</strong> Built a dedicated Express web dashboard providing guild admins with real-time bot management, support ticket administration, and command analytics.
