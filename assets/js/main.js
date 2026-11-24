@@ -12,18 +12,47 @@ function closePortfolioModal(modalId) {
 /*==================== INITIALIZATION ON DOM LOAD ====================*/
 document.addEventListener('DOMContentLoaded', () => {
     /*==================== TYPED JS ANIMATION ====================*/
-    if (document.querySelector(".auto-input") && typeof Typed !== 'undefined') {
-        new Typed(".auto-input", {
-            strings: [
-                "a Web Developer",
-                "a Student",
-                "a Creator",
-            ],
-            typeSpeed: 100,
-            backSpeed: 100,
+    let typedInstance = null;
+    const typedPhrases = {
+        en: [
+            "a Fullstack Engineer",
+            "a Systems Enthusiast",
+            "a Creator",
+            "a Problem Solver"
+        ],
+        pt: [
+            "um Engenheiro Fullstack",
+            "um Entusiasta de Sistemas",
+            "um Criador",
+            "um Resolvedor de Problemas"
+        ]
+    };
+
+    function startTyped(lang) {
+        if (!document.querySelector(".auto-input") || typeof Typed === 'undefined') return;
+        if (typedInstance) typedInstance.destroy();
+        typedInstance = new Typed(".auto-input", {
+            strings: typedPhrases[lang] || typedPhrases.en,
+            typeSpeed: 90,
+            backSpeed: 70,
             loop: true,
         });
     }
+
+    function getInitialLang() {
+        if (window.i18n && window.i18n.currentLang) return window.i18n.currentLang;
+        const htmlLang = document.documentElement.lang;
+        if (htmlLang && htmlLang.startsWith('pt')) return 'pt';
+        const saved = localStorage.getItem('portfolio_lang');
+        if (saved && (saved === 'pt' || saved === 'en')) return saved;
+        return 'en';
+    }
+
+    startTyped(getInitialLang());
+
+    window.addEventListener('languageChanged', (e) => {
+        startTyped(e.detail.lang);
+    });
 
     /*==================== AOS ANIMATION ====================*/
     if (typeof AOS !== 'undefined') {

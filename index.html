@@ -24,1690 +24,7 @@
     <!--==================== Animate on scroll CDN ====================-->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <style>
-        /* ===== SYNTHWAVE THEME ===== */
-        :root {
-            /* Palette matching the reference image */
-            --synth-bg: #120c29;
-            --synth-bg-gradient: linear-gradient(to bottom, #120c29, #1f1c39);
-            --synth-pink: #ff2a6d; /* Neon Pink */
-            --synth-cyan: #05d9e8; /* Neon Cyan */
-            --synth-purple: #8b2cf5; /* Deep Purple accent */
-            --synth-grid: rgba(5, 217, 232, 0.2); /* Cyan grid */
-            --text-color: #ffffff;
-            --text-secondary: #d1d1e9;
-
-            /* Fonts */
-            --font-logo: 'VT323', monospace;
-            --font-display: 'Orbitron', sans-serif;
-            --font-body: 'Rajdhani', sans-serif;
-        }
-
-        /* Custom Cursor */
-        * {
-            cursor: none;
-        }
-
-        html {
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--synth-bg-gradient);
-            color: var(--text-color);
-            font-family: var(--font-body);
-            overflow-x: hidden; /* Ensure it's hidden here too */
-            position: relative;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Custom Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 10px;
-            background-color: var(--synth-bg);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: var(--synth-purple);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: var(--synth-pink);
-        }
-
-        .cursor {
-            width: 32px;
-            height: 32px;
-            background: radial-gradient(circle, var(--synth-pink) 30%, rgba(255, 0, 110, 0.8) 60%, transparent 100%);
-            border-radius: 50%;
-            position: fixed;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 10001;
-            transition: none;
-            box-shadow:
-                0 0 15px var(--synth-pink),
-                0 0 30px rgba(255, 0, 110, 0.5),
-                inset 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-
-        .cursor::after {
-            content: '';
-            width: 12px;
-            height: 12px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, #ffffff 40%, var(--synth-pink) 100%);
-            border-radius: 50%;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-        }
-
-        .cursor.hover {
-            transform: translate(-50%, -50%) scale(1.3);
-            box-shadow:
-                0 0 25px var(--synth-pink),
-                0 0 50px rgba(255, 0, 110, 0.7),
-                inset 0 0 15px rgba(255, 255, 255, 0.4);
-        }
-
-        .cursor-trail {
-            border-radius: 50%;
-            position: fixed;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 10000;
-            transition: none;
-            background: radial-gradient(circle, rgba(255, 0, 110, 0.6) 30%, rgba(139, 44, 245, 0.4) 60%, transparent 100%);
-            box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
-        }
-
-        #trail-1 {
-            width: 28px;
-            height: 28px;
-        }
-
-        #trail-2 {
-            width: 24px;
-            height: 24px;
-        }
-
-        #trail-3 {
-            width: 20px;
-            height: 20px;
-        }
-
-        #trail-4 {
-            width: 16px;
-            height: 16px;
-        }
-
-        #trail-5 {
-            width: 12px;
-            height: 12px;
-        }
-
-        #trail-6 {
-            width: 8px;
-            height: 8px;
-        }
-
-        /* BACKGROUND ELEMENTS */
-        .starfield {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -3;
-            background-image:
-                radial-gradient(#ffffff 1px, transparent 1px),
-                radial-gradient(#ffffff 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-position: 0 0, 25px 25px;
-            opacity: 0.3;
-            animation: stars-move 100s linear infinite;
-        }
-
-        @keyframes stars-move {
-            from { background-position: 0 0, 25px 25px; }
-            to { background-position: 1000px 1000px, 1025px 1025px; }
-        }
-
-        .planet {
-            position: fixed;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 55vh;
-            height: 55vh;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1f1c39, #050505);
-            box-shadow:
-                inset -20px -20px 50px rgba(0,0,0,0.8),
-                0 0 20px rgba(139, 44, 245, 0.3); /* Slight outer glow */
-            z-index: -2;
-            opacity: 1; /* Increased opacity for better visibility */
-        }
-
-        .planet::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 150%;
-            height: 150%;
-            border-radius: 50%;
-            border: 25px solid rgba(139, 44, 245, 0.25); /* More visible ring base */
-            border-top-color: rgba(139, 44, 245, 0.6); /* Highlights */
-            border-bottom-color: rgba(5, 217, 232, 0.6); /* Highlights */
-            transform: translate(-50%, -50%) rotateX(75deg) rotateY(10deg);
-            box-shadow: 0 0 30px rgba(139, 44, 245, 0.4);
-        }
-
-        .perspective-grid {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50vh;
-            background:
-                linear-gradient(transparent 0%, var(--synth-bg) 100%),
-                linear-gradient(0deg, rgba(5, 217, 232, 0.4) 1px, transparent 1px), /* Brighter grid lines */
-                linear-gradient(90deg, rgba(5, 217, 232, 0.4) 1px, transparent 1px);
-            background-size: 100% 100%, 80px 80px, 80px 80px;
-            transform: perspective(300px) rotateX(50deg) scale(2);
-            transform-origin: bottom;
-            z-index: -2;
-            opacity: 0.8; /* Significantly increased opacity */
-            box-shadow: 0 -50px 100px rgba(5, 217, 232, 0.1); /* Horizon glow */
-        }
-
-        .neon-text {
-            color: white;
-            font-family: var(--font-display);
-            text-transform: uppercase;
-            text-shadow:
-                0 0 5px var(--synth-pink),
-                0 0 10px var(--synth-pink),
-                0 0 20px var(--synth-pink);
-        }
-
-        .neon-purple {
-            color: var(--synth-purple);
-            text-shadow:
-                0 0 10px var(--synth-purple),
-                0 0 20px var(--synth-purple),
-                0 0 30px var(--synth-purple);
-        }
-
-        .neon-cyan {
-            color: var(--synth-cyan);
-            text-shadow:
-                0 0 10px var(--synth-cyan),
-                0 0 20px var(--synth-cyan),
-                0 0 30px var(--synth-cyan);
-        }
-
-        @keyframes neon-pulse {
-            from {
-                text-shadow:
-                    0 0 10px var(--synth-pink),
-                    0 0 20px var(--synth-pink),
-                    0 0 30px var(--synth-pink);
-            }
-            to {
-                text-shadow:
-                    0 0 15px var(--synth-pink),
-                    0 0 25px var(--synth-pink),
-                    0 0 35px var(--synth-pink);
-            }
-        }
-
-        .header {
-            background: transparent;
-            backdrop-filter: none;
-            border-bottom: none;
-            box-shadow: none;
-            position: absolute; /* Top absolute per spec */
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 10000;
-            height: 100px;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav {
-            max-width: 1600px; /* Wider container for right align */
-            margin: 0 auto;
-            padding: 0 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-        }
-
-        .nav__logo {
-            font-family: var(--font-logo);
-            font-weight: 400;
-            font-size: 2.2rem;
-            color: var(--synth-pink);
-            text-shadow: 2px 2px 0px rgba(255, 42, 109, 0.3);
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
-
-        .nav__logo:hover {
-            text-shadow: 0 0 15px var(--synth-pink);
-        }
-
-        .nav__menu {
-            display: flex;
-            list-style: none;
-            margin-left: auto; /* Push to right */
-        }
-
-        .nav__list {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 3rem; /* Spaced out */
-        }
-
-        .nav__link {
-            font-family: var(--font-body);
-            color: var(--text-color);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
-
-        .nav__link:hover {
-            color: var(--synth-cyan);
-            text-shadow: 0 0 8px var(--synth-cyan);
-        }
-
-        .nav__toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            cursor: none;
-        }
-
-        .main {
-            margin-top: 0;
-        }
-
-        .social-sidebar {
-            position: fixed;
-            right: 40px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 50px;
-            z-index: 100;
-        }
-
-        .social-line {
-            width: 2px;
-            height: 100px;
-            background: var(--synth-pink);
-            box-shadow: 0 0 10px var(--synth-pink);
-            margin-bottom: 2rem;
-        }
-
-        .social-sidebar a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-            border: 1px solid transparent;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-
-        .social-sidebar a:hover {
-            color: var(--synth-cyan);
-            text-shadow: 0 0 10px var(--synth-cyan);
-            border-color: var(--synth-cyan);
-            box-shadow: 0 0 10px rgba(5, 217, 232, 0.3);
-        }
-
-        .section {
-            padding: 5rem 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .section__title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-color);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-        }
-
-        .section__title::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            bottom: -10px;
-            left: 25%;
-            background: linear-gradient(90deg, transparent, var(--synth-pink), transparent);
-        }
-
-        .section__subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            text-align: center;
-            display: block;
-        }
-
-        /* Hero Section Refined */
-        .home {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 0;
-        }
-
-        .home__container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            z-index: 10;
-        }
-
-        /* Styling existing content to look like the design */
-        .home__data {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .home_title {
-            font-family: var(--font-display);
-            font-size: 5rem;
-            font-weight: 800;
-            color: transparent;
-            -webkit-text-stroke: 2px var(--synth-pink);
-            text-shadow: 0 0 30px rgba(255, 42, 109, 0.4);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            line-height: 1.1;
-        }
-
-        .home__subtitle {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 700;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--synth-cyan);
-            text-shadow: 0 0 20px rgba(5, 217, 232, 0.4);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-        }
-
-        .home__description {
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            letter-spacing: 1px;
-        }
-
-        .home__buttons-container {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .button {
-            background: transparent;
-            color: var(--text-color);
-            border: 2px solid var(--synth-cyan);
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-family: var(--font-display);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(5, 217, 232, 0.1);
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-
-        .button:hover {
-            background: rgba(5, 217, 232, 0.1);
-            box-shadow: 0 0 30px rgba(5, 217, 232, 0.4);
-            transform: translateY(-2px);
-            text-shadow: 0 0 8px var(--text-color);
-        }
-
-        .home__img {
-            display: none; /* Hiding blob image to match clean text aesthetic of reference */
-        }
-
-        .home__scroll {
-            display: none;
-        }
-
-        .home__scroll-button {
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-
-        .about__container {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 1.5rem;
-            align-items: stretch;
-        }
-
-        .about__card {
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(139, 44, 245, 0.3);
-            box-shadow: 0 8px 32px rgba(139, 44, 245, 0.2);
-            padding: 1.8rem;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-
-        .about__card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(139, 44, 245, 0.35);
-            border-color: rgba(5, 217, 232, 0.5);
-        }
-
-        .about__card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(139, 44, 245, 0.08), transparent);
-            transform: rotate(45deg);
-            z-index: 0;
-            animation: shimmer 8s infinite linear;
-            pointer-events: none;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-            }
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-            }
-        }
-
-        .about__img {
-            border-radius: 12px;
-            border: 2px solid var(--synth-purple);
-            box-shadow: 0 0 15px rgba(139, 44, 245, 0.4);
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        .about__description {
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin-bottom: 0;
-        }
-
-        .about_info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-        }
-
-        .about__info-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--synth-pink);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .about__info-name {
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .about__buttons {
-            text-align: center;
-        }
-
-        .skills__container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skills__content {
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            border: 1px solid rgba(139, 44, 245, 0.3);
-            box-shadow: 0 8px 32px rgba(139, 44, 245, 0.2);
-            padding: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .skills__content:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(139, 44, 245, 0.4);
-        }
-
-        .skills__header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(139, 44, 245, 0.3);
-        }
-
-        .skills__icon {
-            font-size: 2rem;
-            color: var(--synth-pink);
-            margin-bottom: 0.3rem;
-        }
-
-        .skills__title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 0.2rem;
-        }
-
-        .skills__subtitle {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .skills__list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.5rem;
-            padding: 0;
-        }
-
-        .skills__data {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(139, 44, 245, 0.1);
-            border: 1px solid rgba(139, 44, 245, 0.2);
-            border-radius: 8px;
-            padding: 0.5rem;
-            transition: all 0.3s ease;
-            text-align: center;
-            height: 80px;
-        }
-
-        .skills__data:hover {
-            background: rgba(139, 44, 245, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(139, 44, 245, 0.3);
-            border-color: var(--synth-cyan);
-        }
-
-        .skills__titles {
-            display: none; /* Hide old structure if present */
-        }
-
-        .skills__name {
-            font-size: 0.8rem;
-            color: var(--text-color);
-            margin-top: 0.3rem;
-            font-weight: 500;
-        }
-
-        .skills__logo {
-            width: 30px;
-            height: 30px;
-            object-fit: contain;
-            margin-bottom: 0.3rem;
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
-        }
-
-        .skills__number {
-            display: none; /* Hide percentages */
-        }
-
-        .skills__number {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 600;
-            color: var(--synth-cyan);
-            font-size: 0.9rem;
-        }
-
-        .services__container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .services__content {
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(139, 44, 245, 0.3);
-            box-shadow: 0 8px 32px rgba(139, 44, 245, 0.2);
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .services__content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(139, 44, 245, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .services__content:hover::before {
-            transform: translateX(100%);
-        }
-
-        .services__content:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(139, 44, 245, 0.4);
-        }
-
-        .services__icon {
-            font-size: 2.5rem;
-            color: var(--synth-pink);
-            margin-bottom: 1rem;
-        }
-
-        .services__title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 1rem;
-        }
-
-        .services__button {
-            margin-top: 1rem;
-            background: none;
-            border: 1px solid var(--synth-pink);
-            color: var(--synth-pink);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-left: auto;
-            margin-right: auto;
-            width: fit-content;
-        }
-
-        .services__button:hover {
-            background: var(--synth-pink);
-            color: white;
-        }
-
-        .services__modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .services__modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .services__modal-content {
-            background: rgba(15, 15, 30, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(139, 44, 245, 0.5);
-            box-shadow: 0 8px 32px rgba(139, 44, 245, 0.4);
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-        }
-
-        .services__modal.active .services__modal-content {
-            transform: scale(1);
-        }
-
-        .services__modal-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--synth-pink);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .services__modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            cursor: none;
-            transition: color 0.3s ease;
-        }
-
-        .services__modal-close:hover {
-            color: var(--synth-pink);
-        }
-
-        .services__modal-services {
-            list-style: none;
-            padding: 0;
-        }
-
-        .services__modal-service {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            gap: 1rem;
-        }
-
-        .services__modal-icon {
-            color: var(--synth-pink);
-            font-size: 1.2rem;
-            margin-top: 0.2rem;
-        }
-
-        .services__modal-service p {
-            margin: 0;
-            color: var(--text-color);
-        }
-
-        /* Portfolio Modals */
-        .portfolio__modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .portfolio__modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .portfolio__modal-content {
-            background: rgba(15, 15, 30, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(139, 44, 245, 0.5);
-            box-shadow: 0 8px 32px rgba(139, 44, 245, 0.4);
-            padding: 2rem;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            overflow-x: hidden; /* Hide horizontal scrollbar specifically for modal */
-            position: relative;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Modal specific scrollbar styling */
-        .portfolio__modal-content::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .portfolio__modal-content::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
-        }
-
-        .portfolio__modal-content::-webkit-scrollbar-thumb {
-            background-color: var(--synth-pink);
-            border-radius: 4px;
-        }
-
-        .portfolio__modal.active .portfolio__modal-content {
-            transform: scale(1);
-        }
-
-        .portfolio__modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            cursor: none;
-            transition: color 0.3s ease;
-        }
-
-        .portfolio__modal-close:hover {
-            color: var(--synth-pink);
-        }
-
-        .portfolio__modal-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(139, 44, 245, 0.3);
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-        }
-
-        .portfolio__modal-img:hover {
-            transform: scale(1.01);
-            filter: brightness(1.05);
-        }
-
-        /* Image Lightbox Preview */
-        .image-lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 20000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .image-lightbox.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .image-lightbox__img {
-            max-width: 90vw;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-
-        .image-lightbox.active .image-lightbox__img {
-            transform: scale(1);
-        }
-
-        .image-lightbox__close {
-            position: absolute;
-            top: 1.5rem;
-            right: 2rem;
-            color: #fff;
-            font-size: 2.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            z-index: 20001;
-        }
-
-        .image-lightbox__close:hover {
-            color: var(--synth-pink);
-        }
-
-        /* Gallery Grid inside Modals */
-        .portfolio__gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            width: 100%;
-            margin-top: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        @media screen and (max-width: 576px) {
-            .portfolio__gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .portfolio__gallery-img {
-            height: 200px !important;
-            object-fit: cover !important;
-            margin-bottom: 0 !important;
-            border-radius: 8px;
-            border: 1px solid rgba(139, 44, 245, 0.4);
-            transition: transform 0.2s ease, filter 0.2s ease, border-color 0.2s ease;
-        }
-
-        .portfolio__gallery-img:hover {
-            transform: scale(1.03);
-            filter: brightness(1.1);
-            border-color: var(--synth-pink);
-        }
-
-        /* Lightbox Navigation Controls */
-        .image-lightbox__btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(15, 15, 30, 0.75);
-            border: 1px solid var(--synth-pink);
-            color: #fff;
-            font-size: 1.5rem;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
-            z-index: 20002;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px rgba(255, 42, 109, 0.3);
-        }
-
-        .image-lightbox__btn:hover {
-            background: var(--synth-pink);
-            color: #fff;
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 0 25px rgba(255, 42, 109, 0.6);
-        }
-
-        .image-lightbox__prev {
-            left: 2rem;
-        }
-
-        .image-lightbox__next {
-            right: 2rem;
-        }
-
-        @media screen and (max-width: 576px) {
-            .image-lightbox__prev {
-                left: 0.5rem;
-            }
-            .image-lightbox__next {
-                right: 0.5rem;
-            }
-        }
-
-        .image-lightbox__counter {
-            position: absolute;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--text-color);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            background: rgba(15, 15, 30, 0.8);
-            padding: 6px 16px;
-            border-radius: 15px;
-            border: 1px solid rgba(139, 44, 245, 0.5);
-            backdrop-filter: blur(5px);
-        }
-
-        .portfolio__modal-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--synth-pink);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .portfolio__modal-description {
-            color: var(--text-color);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .portfolio__modal-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(45deg, var(--synth-purple), var(--synth-pink));
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin: 0 auto;
-            display: block;
-            width: fit-content;
-        }
-
-        .portfolio__modal-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(139, 44, 245, 0.6);
-        }
-
-        .portfolio__container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio__content {
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(139, 44, 245, 0.3);
-            box-shadow: 0 8px 32px rgba(139, 44, 245, 0.2);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            cursor: none;
-        }
-
-        .portfolio__content:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(139, 44, 245, 0.4);
-        }
-
-        .portfolio__img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .portfolio__content:hover .portfolio__img {
-            transform: scale(1.05);
-        }
-
-        .portfolio__data {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .portfolio__title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio__modal-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            border: 2px solid var(--synth-cyan);
-            color: var(--text-color);
-            padding: 10px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
-            gap: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .portfolio__modal-link:hover {
-            background: rgba(5, 217, 232, 0.1);
-            box-shadow: 0 0 20px rgba(5, 217, 232, 0.4);
-            transform: translateY(-3px);
-            text-shadow: 0 0 8px var(--synth-cyan);
-        }
-
-        .contact__container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-        }
-
-        .contact__information {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: rgba(15, 15, 30, 0.4);
-            border-radius: 10px;
-            border-left: 3px solid var(--synth-pink);
-        }
-
-        .contact__icon {
-            font-size: 1.5rem;
-            color: var(--synth-pink);
-            margin-right: 1rem;
-        }
-
-        .contact__title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 0.3rem;
-        }
-
-        .contact__subtitle {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .contact__form {
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(139, 44, 245, 0.3);
-            box-shadow: 0 8px 32px rgba(139, 44, 245, 0.2);
-            padding: 2rem;
-        }
-
-        .contact__inputs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact__content {
-            margin-bottom: 1rem;
-        }
-
-        .contact__label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-            font-weight: 500;
-        }
-
-        .contact__input, .contact__textarea {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(139, 44, 245, 0.3);
-            border-radius: 8px;
-            padding: 12px;
-            color: var(--text-color);
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .contact__input:focus, .contact__textarea:focus {
-            outline: none;
-            border-color: var(--synth-pink);
-            box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
-        }
-
-        .footer {
-            background: rgba(15, 15, 30, 0.8);
-            border-top: 1px solid var(--synth-purple);
-            padding: 3rem 0 1rem;
-            margin-top: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--synth-purple), var(--synth-pink), var(--synth-cyan));
-        }
-
-        .footer__container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .footer__title {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--synth-pink);
-            text-shadow: 0 0 10px var(--synth-pink);
-            margin-bottom: 0.5rem;
-        }
-
-        .footer__subtitle {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .footer__links {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer__links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer__link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer__link:hover {
-            color: var(--synth-pink);
-        }
-
-        .footer__socials {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .footer__social {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(139, 44, 245, 0.2);
-            color: var(--text-color);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-size: 18px;
-            line-height: 1;
-        }
-
-        .footer__social:hover {
-            background: var(--synth-pink);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 0, 110, 0.4);
-        }
-
-        .footer__copy {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(139, 44, 245, 0.2);
-        }
-
-        .footer__icon {
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-            color: var(--synth-pink);
-            transition: transform 0.3s ease;
-        }
-
-        .footer__link:hover .footer__icon {
-            transform: translateX(5px);
-        }
-
-        .scrollup {
-            position: fixed;
-            right: 2rem;
-            bottom: -20%;
-            background: rgba(15, 15, 30, 0.8);
-            border: 2px solid var(--synth-cyan);
-            color: var(--synth-cyan);
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px; /* More techy, less round */
-            z-index: 10;
-            transition: all 0.3s ease;
-            opacity: 0;
-            text-decoration: none;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px rgba(5, 217, 232, 0.3);
-        }
-
-        .scrollup:hover {
-            transform: translateY(-5px);
-            background: var(--synth-cyan);
-            color: var(--synth-bg);
-            box-shadow: 0 0 25px rgba(5, 217, 232, 0.6);
-        }
-
-        .scrollup.show {
-            bottom: 3rem;
-            opacity: 1;
-        }
-
-        /* Synthwave Icons - REMOVED custom SVG masks in favor of standard Font Awesome */
-        /* Keeping basic sizing for any remaining usage */
-        .synth-icon {
-            display: inline-block;
-            font-size: 1.2rem;
-            margin-right: 0.5rem;
-            color: var(--synth-pink);
-        }
-
-        /* Nav container icons - all white */
-        .nav__link .synth-icon {
-            background: #ffffff !important;
-        }
-
-        /* Services Icons - White */
-        .services__icon {
-            color: #ffffff;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Modal Service List Bullets */
-        .services__modal-icon {
-            color: var(--synth-pink);
-            font-size: 0.6rem; /* Smaller, bullet-like */
-            margin-right: 0.5rem;
-            margin-top: 0.4rem; /* Align with text */
-        }
-        .synthwave-sun {
-            position: fixed;
-            bottom: -150px;
-            right: -150px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--synth-pink) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0.5;
-            animation: pulse 4s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(1.1);
-                opacity: 0.7;
-            }
-        }
-
-        .synthwave-grid {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to top, var(--synth-purple), transparent);
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .synthwave-mountains {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 150"><path d="M0,150 L200,50 L400,100 L600,20 L800,80 L1000,40 L1200,90 L1200,150 Z" fill="rgba(139, 44, 245, 0.2)"/></svg>');
-            background-size: cover;
-            z-index: -1;
-        }
-
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
-            /* Hide custom cursor on mobile devices */
-            .cursor,
-            .cursor-trail {
-                display: none !important;
-            }
-
-            /* Restore default cursor for mobile */
-            * {
-                cursor: auto !important;
-            }
-
-            /* Hide navbar on mobile devices - ADJUSTED for transparency logic */
-            .header {
-                display: none !important;
-            }
-
-            .social-sidebar {
-                display: none;
-            }
-
-            /* Adjust main content to account for hidden navbar */
-            .main {
-                margin-top: 0;
-            }
-
-            .home {
-                min-height: 100vh;
-                padding-top: 2rem;
-            }
-
-            .nav__menu {
-                position: fixed;
-                top: 80px;
-                right: -100%;
-                width: 70%;
-                height: calc(100% - 80px);
-                background: rgba(15, 15, 30, 0.95);
-                backdrop-filter: blur(10px);
-                border-left: 1px solid var(--synth-purple);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 2rem;
-                transition: right 0.3s ease;
-            }
-
-            .nav__menu.active {
-                right: 0;
-            }
-
-            .nav__toggle {
-                display: block;
-            }
-
-            .home__container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .home__social {
-                position: static;
-                flex-direction: row;
-                justify-content: center;
-                margin-bottom: 2rem;
-            }
-
-            .home_title {
-                font-size: 2.5rem;
-            }
-
-            .about__container {
-                grid-template-columns: 1fr;
-            }
-
-            .skills__container {
-                grid-template-columns: 1fr;
-            }
-
-            .contact__container {
-                grid-template-columns: 1fr;
-            }
-
-            .contact__inputs {
-                grid-template-columns: 1fr;
-            }
-
-            .section__title {
-                font-size: 2rem;
-            }
-
-            .footer__container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer__socials {
-                justify-content: center;
-            }
-        }
-
-        @media screen and (min-width: 769px) and (max-width: 1024px) {
-            .about__container {
-                grid-template-columns: 1fr;
-            }
-
-            .skills__container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Hide cursor on touch devices */
-        @media (hover: none) and (pointer: coarse) {
-            .cursor,
-            .cursor-trail {
-                display: none !important;
-            }
-
-            * {
-                cursor: auto !important;
-            }
-
-            /* Hide navbar on touch devices */
-            .header {
-                display: none !important;
-            }
-
-            /* Adjust main content for touch devices */
-            .main {
-                margin-top: 0;
-            }
-
-            .home {
-                min-height: 100vh;
-                padding-top: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
@@ -1741,28 +58,34 @@
                 <ul class="nav__list">
                     <li class="nav__items">
                         <a href="#home" class="nav__link active-link">
-                            <i class=""></i> Home
+                            <i class=""></i> <span data-i18n="nav.home">Home</span>
                         </a>
                     </li>
                     <li class="nav__items">
                         <a href="#about" class="nav__link">
-                            <i class=""></i> About
+                            <i class=""></i> <span data-i18n="nav.about">About</span>
                         </a>
                     </li>
                     <li class="nav__items">
                         <a href="#portfolio" class="nav__link">
-                            <i class=""></i> Portfolio
+                            <i class=""></i> <span data-i18n="nav.portfolio">Portfolio</span>
                         </a>
                     </li>
                     <li class="nav__items">
                         <a href="#contact" class="nav__link">
-                            <i class=""></i> Contact
+                            <i class=""></i> <span data-i18n="nav.contact">Contact</span>
                         </a>
                     </li>
                 </ul>
             </div>
 
 
+
+                        <div class="lang-switcher" id="lang-switcher">
+                <button type="button" class="lang-btn active" data-lang="en" aria-label="Switch to English">EN</button>
+                <span class="lang-divider">/</span>
+                <button type="button" class="lang-btn" data-lang="pt" aria-label="Mudar para Português">PT</button>
+            </div>
 
             <div class="nav__toggle" id="nav-toggle">
                 <i class="synth-icon synth-icon-apps"></i>
@@ -1776,17 +99,14 @@
         <section class="home section" id="home">
             <div class="home__container">
                 <div class="home__data">
-                    <h1 class="home_title">Hi! I'm Skalin</h1>
-                    <h3 class="home__subtitle">Fullstack & Systems Engineer</h3>
-                    <p class="home__description">
+                    <h1 class="home_title" data-i18n="home.greeting">Hi! I'm Skalin</h1>
+                    <h3 class="home__subtitle" data-i18n="home.subtitle">Fullstack & Systems Engineer</h3>
+                    <p class="home__description" data-i18n="home.description">
                         Building real-time web systems, high-concurrency applications, and self-hosted infrastructure.
                     </p>
                     <div class="home__buttons-container">
                         <a href="assets/CV Resume.pdf" target="_blank" rel="noopener noreferrer" class="button">
-                            <i class="fas fa-file-alt"></i> View Resume / CV
-                        </a>
-                        <a href="assets/CV Resume.pdf" download="" class="button button--ghost" style="margin-left: 0.5rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);">
-                            <i class="fas fa-download"></i> Download PDF
+                            <i class="fas fa-file-alt"></i> <span data-i18n="home.resumeBtn">View Resume / CV</span>
                         </a>
                     </div>
                 </div>
@@ -1795,8 +115,8 @@
 
         <!--==================== ABOUT ====================-->
         <section class="about section" id="about">
-            <h2 class="section__title">About Me</h2>
-            <span class="section__subtitle">My Background, Education & Engineering Focus</span>
+            <h2 class="section__title" data-i18n="about.title">About Me</h2>
+            <span class="section__subtitle" data-i18n="about.subtitle">My Background, Education & Engineering Focus</span>
 
             <div class="about__container container">
                 <!-- CARD 1: BIO & BACKGROUND -->
@@ -1805,12 +125,12 @@
                         <img src="assets/img/comp.png" alt="Skalin Developer Workspace" class="about__img" style="width: 75px; height: 75px; border-radius: 10px; object-fit: cover; flex-shrink: 0;">
                         <div>
                             <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: #fff; margin: 0 0 0.2rem;">João Cruz (Skalin)</h3>
-                            <span style="color: var(--synth-cyan); font-size: 0.95rem; font-weight: 600;">Fullstack & Systems Software Engineer</span>
+                            <span style="color: var(--synth-cyan); font-size: 0.95rem; font-weight: 600;" data-i18n="about.role">Fullstack & Systems Software Engineer</span>
                         </div>
                     </div>
 
                     <div class="about__data" style="position: relative; z-index: 1;">
-                        <p class="about__description">
+                        <p class="about__description" data-i18n="about.bio">
                             Hi, I'm <strong>João Cruz (Skalin)</strong>, a Fullstack & Systems Software Engineer. I specialize in backend architecture, Node.js, TypeScript, real-time WebSocket communication, relational & NoSQL databases (PostgreSQL, MongoDB), containerized orchestration (Docker, Portainer, Kubernetes), CI/CD pipelines (GitHub Actions), and Linux sysadmin.<br><br>
 
                             I am passionate about building resilient end-to-end systems—from real-time hospital bed tracking solutions and high-concurrency Discord bots to custom Linux desktop workflows (CachyOS + Hyprland) and 24/7 self-hosted infrastructure (ZimaOS). I maintain detailed engineering logs in Obsidian and actively contribute to open-source software.<br><br>
@@ -1824,35 +144,35 @@
                 <div class="about__card">
                     <div style="position: relative; z-index: 1;">
                         <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: #fff; margin: 0 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.6rem;">
-                            Education & Qualifications
+                            <span data-i18n="about.eduTitle">Education & Qualifications</span>
                         </h3>
 
                         <div style="margin-bottom: 1.2rem;">
                             <h4 style="color: #fff; font-size: 1.1rem; margin: 0 0 0.25rem; font-weight: 700;">
-                                B.Sc. in Computer Engineering
+                                <span data-i18n="about.degree">B.Sc. in Computer Engineering</span>
                             </h4>
-                            <p style="color: var(--synth-cyan); font-size: 0.95rem; margin: 0 0 0.5rem; font-weight: 500;">
-                                Licenciatura em Engenharia Informática &bull; 2022 – 2026
+                            <p style="color: var(--synth-cyan); font-size: 0.95rem; margin: 0 0 0.5rem; font-weight: 500;" data-i18n="about.period">
+                                Computer Engineering &bull; 2022 – 2026
                             </p>
-                            <p style="color: var(--text-color); font-size: 0.95rem; margin: 0 0 0.4rem; line-height: 1.5;">
-                                <strong>Instituto Politécnico of Viseu (IPV)</strong> — Escola Superior de Gestão e Tecnologia de Viseu (ESTGV)
+                            <p style="color: var(--text-color); font-size: 0.95rem; margin: 0 0 0.4rem; line-height: 1.5;" data-i18n="about.institution">
+                                <strong>Instituto Politécnico de Viseu (IPV)</strong> — Escola Superior de Gestão e Tecnologia de Viseu (ESTGV)
                             </p>
-                            <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0 0 0.6rem;">
+                            <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0 0 0.6rem;" data-i18n="about.gpa">
                                 <strong>Academic Standing:</strong> 13.8 / 20 GPA
                             </p>
-                            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+                            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin: 0;" data-i18n="about.coursework">
                                 <strong>Key Coursework:</strong> Software Engineering, Distributed Systems, Relational & NoSQL Databases, Computer Networks, Operating Systems, and Algorithms.
                             </p>
                         </div>
 
                         <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
                             <h4 style="color: #fff; font-size: 1rem; margin: 0 0 0.3rem; font-weight: 700;">
-                                Driving License
+                                <span data-i18n="about.licenseTitle">Driving License</span>
                             </h4>
-                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.3rem; line-height: 1.5;">
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.3rem; line-height: 1.5;" data-i18n="about.licenseDesc">
                                 Categories <strong>B</strong> (Passenger Cars) and <strong>B1</strong> (Quadricycles), with full vehicle mobility.
                             </p>
-                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0; line-height: 1.5;">
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0; line-height: 1.5;" data-i18n="about.availability">
                                 Available to work in <strong>Viseu</strong> and <strong>Aveiro</strong>.
                             </p>
                         </div>
@@ -1863,220 +183,198 @@
 
         <!--==================== SKILLS ====================-->
         <section class="skills section" id="skills">
-            <h2 class="section__title">Skills</h2>
-            <span class="section__subtitle">My Technical Arsenal</span>
+            <h2 class="section__title" data-i18n="skills.title">Skills</h2>
+            <span class="section__subtitle" data-i18n="skills.subtitle">Interactive Technical Arsenal &bull; Click any tech to inspect</span>
 
             <div class="skills__container container">
-                <!--==================== Web Development ====================-->
-                <div class="skills__content">
-                    <div class="skills__header">
-                        <i class="fas fa-globe skills__icon" style="color: #fff;"></i>
-                        <h1 class="skills__title">Web Development</h1>
-                    </div>
-
-                    <div class="skills__list grid">
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="skills__logo" alt="HTML5">
-                            <span class="skills__name">HTML5</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="skills__logo" alt="CSS3">
-                            <span class="skills__name">CSS3</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="skills__logo" alt="JavaScript">
-                            <span class="skills__name">JavaScript</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="skills__logo" alt="TypeScript">
-                            <span class="skills__name">TypeScript</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="skills__logo" alt="React">
-                            <span class="skills__name">React</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="skills__logo" alt="Bootstrap">
-                            <span class="skills__name">Bootstrap</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="skills__logo" alt="Node.js">
-                            <span class="skills__name">Node.js</span>
-                        </div>
-                    </div>
+                <!-- Interactive Filter Tabs -->
+                <div class="skills__filters">
+                    <button type="button" class="skills__filter active" data-filter="all" data-i18n="skills.filterAll">All Tech</button>
+                    <button type="button" class="skills__filter" data-filter="web" data-i18n="skills.filterWeb">Fullstack & Web</button>
+                    <button type="button" class="skills__filter" data-filter="systems" data-i18n="skills.filterSystems">Systems & Linux</button>
+                    <button type="button" class="skills__filter" data-filter="cloud" data-i18n="skills.filterCloud">Cloud & DevOps</button>
+                    <button type="button" class="skills__filter" data-filter="data" data-i18n="skills.filterData">Databases</button>
+                    <button type="button" class="skills__filter" data-filter="mobile-game" data-i18n="skills.filterMobile">Mobile & Games</button>
+                    <button type="button" class="skills__filter" data-filter="creative" data-i18n="skills.filterCreative">Creative & Hardware</button>
                 </div>
 
-                <!--==================== Software & Systems ====================-->
-                <div class="skills__content">
-                    <div class="skills__header">
-                        <i class="fas fa-terminal skills__icon" style="color: #fff;"></i>
-                        <h1 class="skills__title">Software & Systems</h1>
+                <div class="skills__layout">
+                    <!-- Left: Interactive Icon Deck -->
+                    <div class="skills__deck">
+                        <div class="skills__grid" id="skills-grid">
+                            <!-- Web -->
+                            <button type="button" class="skills__chip active" data-skill="nodejs" data-category="web" aria-label="Node.js">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="skills__chip-icon" alt="Node.js">
+                                <span class="skills__chip-name">Node.js</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="javascript" data-category="web" aria-label="JavaScript">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="skills__chip-icon" alt="JavaScript">
+                                <span class="skills__chip-name">JavaScript</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="typescript" data-category="web" aria-label="TypeScript">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="skills__chip-icon" alt="TypeScript">
+                                <span class="skills__chip-name">TypeScript</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="react" data-category="web" aria-label="React">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="skills__chip-icon" alt="React">
+                                <span class="skills__chip-name">React</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="html5" data-category="web" aria-label="HTML5">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="skills__chip-icon" alt="HTML5">
+                                <span class="skills__chip-name">HTML5</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="css3" data-category="web" aria-label="CSS3">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="skills__chip-icon" alt="CSS3">
+                                <span class="skills__chip-name">CSS3</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="bootstrap" data-category="web" aria-label="Bootstrap">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="skills__chip-icon" alt="Bootstrap">
+                                <span class="skills__chip-name">Bootstrap</span>
+                            </button>
+
+                            <!-- Systems & Linux -->
+                            <button type="button" class="skills__chip" data-skill="linux" data-category="systems" aria-label="Linux">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="skills__chip-icon" alt="Linux">
+                                <span class="skills__chip-name">Linux</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="bash" data-category="systems" aria-label="Bash Scripting">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" class="skills__chip-icon" alt="Bash">
+                                <span class="skills__chip-name">Bash</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="c" data-category="systems" aria-label="C">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="skills__chip-icon" alt="C">
+                                <span class="skills__chip-name">C</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="cpp" data-category="systems" aria-label="C++">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="skills__chip-icon" alt="C++">
+                                <span class="skills__chip-name">C++</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="python" data-category="systems" aria-label="Python">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skills__chip-icon" alt="Python">
+                                <span class="skills__chip-name">Python</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="systemd" data-category="systems" aria-label="Systemd">
+                                <i class="fas fa-microchip skills__chip-icon" style="font-size: 1.8rem; color: var(--synth-pink); display: flex; align-items: center; justify-content: center; height: 32px;"></i>
+                                <span class="skills__chip-name">Systemd</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="git" data-category="systems" aria-label="Git">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="skills__chip-icon" alt="Git">
+                                <span class="skills__chip-name">Git</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="windows" data-category="systems" aria-label="Windows 11">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" class="skills__chip-icon" alt="Windows 11">
+                                <span class="skills__chip-name">Windows 11</span>
+                            </button>
+
+                            <!-- Cloud & DevOps -->
+                            <button type="button" class="skills__chip" data-skill="docker" data-category="cloud" aria-label="Docker">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="skills__chip-icon" alt="Docker">
+                                <span class="skills__chip-name">Docker</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="kubernetes" data-category="cloud" aria-label="Kubernetes">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="skills__chip-icon" alt="Kubernetes">
+                                <span class="skills__chip-name">Kubernetes</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="cicd" data-category="cloud" aria-label="CI/CD Actions">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" class="skills__chip-icon" alt="GitHub Actions">
+                                <span class="skills__chip-name">CI/CD</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="nginx" data-category="cloud" aria-label="Nginx">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" class="skills__chip-icon" alt="Nginx">
+                                <span class="skills__chip-name">Nginx</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="tailscale" data-category="cloud" aria-label="Tailscale Mesh">
+                                <i class="fas fa-network-wired skills__chip-icon" style="font-size: 1.8rem; color: var(--synth-cyan); display: flex; align-items: center; justify-content: center; height: 32px;"></i>
+                                <span class="skills__chip-name">Tailscale</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="azure" data-category="cloud" aria-label="Azure">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" class="skills__chip-icon" alt="Azure">
+                                <span class="skills__chip-name">Azure</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="aws" data-category="cloud" aria-label="AWS">
+                                <i class="fab fa-aws skills__chip-icon" style="font-size: 2rem; color: #ff9900; display: flex; align-items: center; justify-content: center; height: 32px;"></i>
+                                <span class="skills__chip-name">AWS</span>
+                            </button>
+
+                            <!-- Databases -->
+                            <button type="button" class="skills__chip" data-skill="postgresql" data-category="data" aria-label="PostgreSQL">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="skills__chip-icon" alt="PostgreSQL">
+                                <span class="skills__chip-name">Postgres</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="mongodb" data-category="data" aria-label="MongoDB">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="skills__chip-icon" alt="MongoDB">
+                                <span class="skills__chip-name">MongoDB</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="supabase" data-category="data" aria-label="Supabase">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" class="skills__chip-icon" alt="Supabase">
+                                <span class="skills__chip-name">Supabase</span>
+                            </button>
+
+                            <!-- Mobile & Games -->
+                            <button type="button" class="skills__chip" data-skill="flutter" data-category="mobile-game" aria-label="Flutter">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" class="skills__chip-icon" alt="Flutter">
+                                <span class="skills__chip-name">Flutter</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="dart" data-category="mobile-game" aria-label="Dart">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" class="skills__chip-icon" alt="Dart">
+                                <span class="skills__chip-name">Dart</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="androidstudio" data-category="mobile-game" aria-label="Android Studio">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" class="skills__chip-icon" alt="Android Studio">
+                                <span class="skills__chip-name">Android Studio</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="unity" data-category="mobile-game" aria-label="Unity">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" class="skills__chip-icon" alt="Unity">
+                                <span class="skills__chip-name">Unity</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="godot" data-category="mobile-game" aria-label="Godot">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/godot/godot-original.svg" class="skills__chip-icon" alt="Godot">
+                                <span class="skills__chip-name">Godot</span>
+                            </button>
+
+                            <!-- Creative & Hardware -->
+                            <button type="button" class="skills__chip" data-skill="obsidian" data-category="creative" aria-label="Obsidian Notes">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/2023_Obsidian_logo.svg" class="skills__chip-icon" alt="Obsidian">
+                                <span class="skills__chip-name">Obsidian</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="figma" data-category="creative" aria-label="Figma">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="skills__chip-icon" alt="Figma">
+                                <span class="skills__chip-name">Figma</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="photoshop" data-category="creative" aria-label="Photoshop">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" class="skills__chip-icon" alt="Photoshop">
+                                <span class="skills__chip-name">Photoshop</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="illustrator" data-category="creative" aria-label="Illustrator">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" class="skills__chip-icon" alt="Illustrator">
+                                <span class="skills__chip-name">Illustrator</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="blender" data-category="creative" aria-label="Blender">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg" class="skills__chip-icon" alt="Blender">
+                                <span class="skills__chip-name">Blender</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="arduino" data-category="creative" aria-label="Arduino">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" class="skills__chip-icon" alt="Arduino">
+                                <span class="skills__chip-name">Arduino</span>
+                            </button>
+                            <button type="button" class="skills__chip" data-skill="raspberrypi" data-category="creative" aria-label="Raspberry Pi">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" class="skills__chip-icon" alt="Raspberry Pi">
+                                <span class="skills__chip-name">Raspberry Pi</span>
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="skills__list grid">
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="skills__logo" alt="C">
-                            <span class="skills__name">C</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="skills__logo" alt="C++">
-                            <span class="skills__name">C++</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skills__logo" alt="Python">
-                            <span class="skills__name">Python</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" class="skills__logo" alt="Bash">
-                            <span class="skills__name">Bash Scripting</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="skills__logo" alt="Linux">
-                            <span class="skills__name">Linux (CachyOS/ZimaOS)</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" class="skills__logo" alt="Windows">
-                            <span class="skills__name">Windows 11 (3D/CAD)</span>
-                        </div>
-                    </div>
-                </div>
+                    <!-- Right: Skill Dossier Panel -->
+                    <div class="skills__dossier-panel">
+                        <div class="skills__dossier" id="skills-dossier">
+                            <div class="dossier__top-bar">
+                                <span class="dossier__led"></span>
+                                <span class="dossier__prompt" data-i18n="skills.dossierPrompt">SYSTEM DOSSIER // TECHNICAL LOG</span>
+                            </div>
 
-                <!--==================== Databases ====================-->
-                <div class="skills__content">
-                    <div class="skills__header">
-                        <i class="fas fa-database skills__icon" style="color: #fff;"></i>
-                        <h1 class="skills__title">Databases</h1>
-                    </div>
-
-                    <div class="skills__list grid">
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" class="skills__logo" alt="Azure">
-                            <span class="skills__name">Azure</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="skills__logo" alt="Postgres">
-                            <span class="skills__name">Postgres</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="skills__logo" alt="Mongo">
-                            <span class="skills__name">Mongo</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" class="skills__logo" alt="Supabase">
-                            <span class="skills__name">Supabase</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!--==================== Mobile & Game Dev ====================-->
-                <div class="skills__content">
-                    <div class="skills__header">
-                        <i class="fas fa-gamepad skills__icon" style="color: #fff;"></i>
-                        <h1 class="skills__title">Mobile & Game Dev</h1>
-                    </div>
-
-                    <div class="skills__list grid">
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" class="skills__logo" alt="Flutter">
-                            <span class="skills__name">Flutter</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" class="skills__logo" alt="Dart">
-                            <span class="skills__name">Dart</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" class="skills__logo" alt="Android Studio">
-                            <span class="skills__name">Android Studio</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" class="skills__logo" alt="Unity">
-                            <span class="skills__name">Unity</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/godot/godot-original.svg" class="skills__logo" alt="Godot">
-                            <span class="skills__name">Godot</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!--==================== Cloud & Systems Infrastructure ====================-->
-                <div class="skills__content">
-                    <div class="skills__header">
-                        <i class="fas fa-server skills__icon" style="color: #fff;"></i>
-                        <h1 class="skills__title">Cloud & Systems</h1>
-                    </div>
-
-                    <div class="skills__list grid">
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="skills__logo" alt="Docker">
-                            <span class="skills__name">Docker & Portainer</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="skills__logo" alt="Kubernetes">
-                            <span class="skills__name">Kubernetes</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" class="skills__logo" alt="CI/CD & GitHub Actions">
-                            <span class="skills__name">CI/CD (Actions)</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" class="skills__logo" alt="Nginx">
-                            <span class="skills__name">Nginx & TLS</span>
-                        </div>
-                        <div class="skills__data">
-                            <i class="fas fa-network-wired" style="font-size: 1.6rem; color: var(--synth-cyan); margin-bottom: 0.3rem;"></i>
-                            <span class="skills__name">Tailscale Mesh</span>
-                        </div>
-                        <div class="skills__data">
-                            <i class="fas fa-microchip" style="font-size: 1.6rem; color: var(--synth-pink); margin-bottom: 0.3rem;"></i>
-                            <span class="skills__name">Systemd & Sysadmin</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="skills__logo" alt="Git">
-                            <span class="skills__name">Git</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" class="skills__logo" alt="AWS">
-                            <span class="skills__name">AWS</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/2023_Obsidian_logo.svg" class="skills__logo" alt="Obsidian" style="width: 30px;">
-                            <span class="skills__name">Obsidian Notes</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!--==================== Design, Electronics & Media ====================-->
-                <div class="skills__content">
-                    <div class="skills__header">
-                        <i class="fas fa-layer-group skills__icon" style="color: #fff;"></i>
-                        <h1 class="skills__title">Design & Create </h1>
-                    </div>
-
-                    <div class="skills__list grid">
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="skills__logo" alt="Figma">
-                            <span class="skills__name">Figma</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" class="skills__logo" alt="Photoshop">
-                            <span class="skills__name">Photoshop</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" class="skills__logo" alt="Illustrator">
-                            <span class="skills__name">Illustrator</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg" class="skills__logo" alt="Blender">
-                            <span class="skills__name">Blender</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" class="skills__logo" alt="Arduino">
-                            <span class="skills__name">Arduino</span>
-                        </div>
-                        <div class="skills__data">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" class="skills__logo" alt="Raspberry Pi">
-                            <span class="skills__name">Raspberry Pi</span>
+                            <div class="dossier__content" id="dossier-content">
+                                <!-- Populated dynamically by JS -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2087,48 +385,180 @@
 
         <!--==================== SERVICES ====================-->
         <section class="services section" id="services">
-            <h2 class="section__title">Services</h2>
-            <span class="section__subtitle">Core Technical Expertise</span>
+            <h2 class="section__title" data-i18n="services.title">Services & Solutions</h2>
+            <span class="section__subtitle" data-i18n="services.subtitle">Specialized Engineering Deliverables & Architecture</span>
 
-            <div class="services__container container" style="grid-template-columns: repeat(2, max-content); justify-content: center; gap: 2rem;">
-                <!--==================== SERVICES 1 ====================-->
-                <div class="services__content">
-                    <div>
-                        <i class="fas fa-code services__icon" style="color: #fff;"></i>
-                        <h3 class="services__title">Fullstack <br> Development</h3>
+            <div class="services__container container">
+                <!--==================== PILLAR 1: REAL-TIME WEB & APIS ====================-->
+                <div class="services__card" data-aos="fade-up">
+                    <div class="services__card-header">
+                        <div class="services__card-icon-wrap">
+                            <i class="fas fa-code services__card-icon"></i>
+                        </div>
+                        <span class="services__card-tag" data-i18n="services.pillar1.tag">WEB & REAL-TIME</span>
                     </div>
 
-                    <div>
-                        <button class="services__button" data-service="1">
-                            <span>View Details</span>
-                            <i class="fas fa-arrow-right"></i>
+                    <h3 class="services__card-title" data-i18n="services.pillar1.title">Real-Time Web & Resilient APIs</h3>
+                    <p class="services__card-desc" data-i18n="services.pillar1.desc">High-performance fullstack systems engineered for sub-second WebSocket updates, concurrent requests, and strict database integrity.</p>
+
+                    <div class="services__card-deliverables">
+                        <span class="services__deliverables-heading" data-i18n="services.deliverablesLabel">Key Deliverables</span>
+                        <ul class="services__deliverables-list">
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar1.item1">Real-time data streaming & live state synchronization (WebSockets, Supabase).</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar1.item2">Scalable REST & GraphQL API architecture designed in Node.js & TypeScript.</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar1.item3">Relational and NoSQL database modeling with query optimization (PostgreSQL, MongoDB).</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar1.item4">Reactive, accessible frontend interfaces with modern component architectures.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="services__card-stack">
+                        <span class="services__stack-label" data-i18n="services.stackLabel">Tech Stack:</span>
+                        <span class="services__stack-item">Node.js</span> &bull;
+                        <span class="services__stack-item">TypeScript</span> &bull;
+                        <span class="services__stack-item">WebSockets</span> &bull;
+                        <span class="services__stack-item">PostgreSQL</span> &bull;
+                        <span class="services__stack-item">MongoDB</span>
+                    </div>
+
+                    <div class="services__card-actions">
+                        <button type="button" class="services__button" data-service="1">
+                            <i class="fas fa-sliders"></i> <span data-i18n="services.viewSpecs">Technical Specs</span>
+                        </button>
+                        <button type="button" class="services__proof-btn" onclick="openPortfolioModal('portfolioModal7')">
+                            <i class="fas fa-arrow-up-right-from-square"></i> <span data-i18n="services.viewCaseStudy">Case Study</span>
                         </button>
                     </div>
                 </div>
 
-                <!--==================== SERVICES 2 ====================-->
-                <div class="services__content">
-                    <div>
-                        <i class="fas fa-server services__icon" style="color: #fff;"></i>
-                        <h3 class="services__title">Systems & <br> Infrastructure</h3>
+                <!--==================== PILLAR 2: CLOUD & DEVOPS ====================-->
+                <div class="services__card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="services__card-header">
+                        <div class="services__card-icon-wrap">
+                            <i class="fas fa-cubes services__card-icon"></i>
+                        </div>
+                        <span class="services__card-tag" data-i18n="services.pillar2.tag">CLOUD & DEVOPS</span>
                     </div>
 
-                    <div>
-                        <button class="services__button" data-service="2">
-                            <span>View Details</span>
-                            <i class="fas fa-arrow-right"></i>
+                    <h3 class="services__card-title" data-i18n="services.pillar2.title">Cloud, DevOps & CI/CD Pipelines</h3>
+                    <p class="services__card-desc" data-i18n="services.pillar2.desc">Containerized fleet orchestration, declarative infrastructure, and zero-downtime deployment automation.</p>
+
+                    <div class="services__card-deliverables">
+                        <span class="services__deliverables-heading" data-i18n="services.deliverablesLabel">Key Deliverables</span>
+                        <ul class="services__deliverables-list">
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar2.item1">Container fleet orchestration and multi-node clusters with Docker, Portainer & Kubernetes.</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar2.item2">Automated CI/CD pipelines (GitHub Actions) for linting, Jest testing & rolling builds.</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar2.item3">Reverse proxy routing, rate-limiting, and automated Let's Encrypt SSL/TLS via Nginx.</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar2.item4">Hybrid cloud environments bridging AWS, Azure services, and bare-metal nodes.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="services__card-stack">
+                        <span class="services__stack-label" data-i18n="services.stackLabel">Tech Stack:</span>
+                        <span class="services__stack-item">Docker</span> &bull;
+                        <span class="services__stack-item">Kubernetes</span> &bull;
+                        <span class="services__stack-item">GitHub Actions</span> &bull;
+                        <span class="services__stack-item">Nginx</span> &bull;
+                        <span class="services__stack-item">AWS / Azure</span>
+                    </div>
+
+                    <div class="services__card-actions">
+                        <button type="button" class="services__button" data-service="2">
+                            <i class="fas fa-sliders"></i> <span data-i18n="services.viewSpecs">Technical Specs</span>
+                        </button>
+                        <button type="button" class="services__proof-btn" onclick="openPortfolioModal('portfolioModal2')">
+                            <i class="fas fa-arrow-up-right-from-square"></i> <span data-i18n="services.viewCaseStudy">Case Study</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!--==================== PILLAR 3: LINUX & HOMELAB 24/7 ====================-->
+                <div class="services__card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="services__card-header">
+                        <div class="services__card-icon-wrap">
+                            <i class="fas fa-server services__card-icon"></i>
+                        </div>
+                        <span class="services__card-tag" data-i18n="services.pillar3.tag">SYSTEMS & LINUX</span>
+                    </div>
+
+                    <h3 class="services__card-title" data-i18n="services.pillar3.title">Linux Sysadmin & Homelab 24/7</h3>
+                    <p class="services__card-desc" data-i18n="services.pillar3.desc">Enterprise-grade Linux server management, encrypted zero-trust mesh networking, and hardened storage solutions.</p>
+
+                    <div class="services__card-deliverables">
+                        <span class="services__deliverables-heading" data-i18n="services.deliverablesLabel">Key Deliverables</span>
+                        <ul class="services__deliverables-list">
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar3.item1">24/7 self-hosted production homelab hosting 15+ isolated containerized services.</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar3.item2">Zero-trust encrypted private networking with Tailscale mesh VPN & subnet routers.</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar3.item3">Automated encrypted backup pipelines (Restic / Borg) with disaster recovery routines.</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar3.item4">Linux desktop & server hardening (CachyOS, Hyprland, Systemd services, Bash automation).</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="services__card-stack">
+                        <span class="services__stack-label" data-i18n="services.stackLabel">Tech Stack:</span>
+                        <span class="services__stack-item">Linux (CachyOS/ZimaOS)</span> &bull;
+                        <span class="services__stack-item">Tailscale</span> &bull;
+                        <span class="services__stack-item">Systemd</span> &bull;
+                        <span class="services__stack-item">Bash</span> &bull;
+                        <span class="services__stack-item">Restic</span>
+                    </div>
+
+                    <div class="services__card-actions">
+                        <button type="button" class="services__button" data-service="3">
+                            <i class="fas fa-sliders"></i> <span data-i18n="services.viewSpecs">Technical Specs</span>
+                        </button>
+                        <button type="button" class="services__proof-btn" onclick="openPortfolioModal('portfolioModal6')">
+                            <i class="fas fa-arrow-up-right-from-square"></i> <span data-i18n="services.viewCaseStudy">Case Study</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!--==================== PILLAR 4: MULTIPLATFORM & SOFTWARE UTILITIES ====================-->
+                <div class="services__card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="services__card-header">
+                        <div class="services__card-icon-wrap">
+                            <i class="fas fa-laptop-code services__card-icon"></i>
+                        </div>
+                        <span class="services__card-tag" data-i18n="services.pillar4.tag">MOBILE & SOFTWARE</span>
+                    </div>
+
+                    <h3 class="services__card-title" data-i18n="services.pillar4.title">Multiplatform Apps & Software Utilities</h3>
+                    <p class="services__card-desc" data-i18n="services.pillar4.desc">Cross-platform mobile applications, resilient open-source developer utilities, and 3D visual engineering.</p>
+
+                    <div class="services__card-deliverables">
+                        <span class="services__deliverables-heading" data-i18n="services.deliverablesLabel">Key Deliverables</span>
+                        <ul class="services__deliverables-list">
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar4.item1">Cross-platform mobile applications in Flutter integrated with cloud APIs and Firebase.</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar4.item2">Fault-tolerant utility tools featuring API rate limiting, response caching, and Docker packaging.</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar4.item3">High-concurrency bot automation managing atomic database operations and web dashboards.</span></li>
+                            <li><i class="fas fa-circle services__bullet"></i> <span data-i18n="services.pillar4.item4">3D spatial assets, vector graphics, and CAD design workflows (Blender, Figma design tokens).</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="services__card-stack">
+                        <span class="services__stack-label" data-i18n="services.stackLabel">Tech Stack:</span>
+                        <span class="services__stack-item">Flutter</span> &bull;
+                        <span class="services__stack-item">Dart</span> &bull;
+                        <span class="services__stack-item">Firebase</span> &bull;
+                        <span class="services__stack-item">Atomic Concurrency</span> &bull;
+                        <span class="services__stack-item">Blender 3D</span>
+                    </div>
+
+                    <div class="services__card-actions">
+                        <button type="button" class="services__button" data-service="4">
+                            <i class="fas fa-sliders"></i> <span data-i18n="services.viewSpecs">Technical Specs</span>
+                        </button>
+                        <button type="button" class="services__proof-btn" onclick="openPortfolioModal('portfolioModal4')">
+                            <i class="fas fa-arrow-up-right-from-square"></i> <span data-i18n="services.viewCaseStudy">Case Study</span>
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        </section>
-
         <!--==================== PORTFOLIO ====================-->
         <section class="portfolio section" id="portfolio">
-            <h2 class="section__title">Engineering Portfolio</h2>
-            <span class="section__subtitle">Featured Systems & Case Studies</span>
+            <h2 class="section__title" data-i18n="portfolio.title">Engineering Portfolio</h2>
+            <span class="section__subtitle" data-i18n="portfolio.subtitle">Featured Systems & Case Studies</span>
 
             <div class="portfolio__container container">
                 <!--==================== PORTFOLIO 7 (HOSPITAL CASE STUDY - CENTERPIECE) ====================-->
@@ -2137,10 +567,10 @@
 
                     <div class="portfolio__data">
                         <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
-                            <i class="fas fa-hospital-alt"></i> Internship Case Study &bull; Feb 2024 – Jul 2024
+                            <i class="fas fa-hospital-alt"></i> <span data-i18n="portfolio.card7.badge">Internship Case Study &bull; Feb 2024 – Jul 2024</span>
                         </div>
-                        <h3 class="portfolio__title">Viseu Hospital Bed Management</h3>
-                        <p class="portfolio__description">
+                        <h3 class="portfolio__title" data-i18n="portfolio.card7.title">Viseu Hospital Bed Management</h3>
+                        <p class="portfolio__description" data-i18n="portfolio.card7.desc">
                             <strong>Role: Fullstack Engineer (Team of 3)</strong><br>
                             Real-time hospital bed & patient discharge monitoring system built with WebSockets, Node.js, Supabase, and Kubernetes across 6 departments.
                         </p>
@@ -2153,10 +583,10 @@
 
                     <div class="portfolio__data">
                         <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
-                            <i class="fab fa-discord"></i> Production System &bull; 2023 – Present
+                            <i class="fab fa-discord"></i> <span data-i18n="portfolio.card1.badge">Production System &bull; 2023 – Present</span>
                         </div>
-                        <h3 class="portfolio__title">Discord Bot & Dashboard</h3>
-                        <p class="portfolio__description">
+                        <h3 class="portfolio__title" data-i18n="portfolio.card1.title">Discord Bot & Dashboard</h3>
+                        <p class="portfolio__description" data-i18n="portfolio.card1.desc">
                             <strong>Role: Solo Developer</strong><br>
                             Production community bot serving 2,500+ users across 15+ servers with MongoDB atomic concurrency handling, Express dashboard, and comprehensive Jest unit test suites for economy & item systems.
                         </p>
@@ -2169,10 +599,10 @@
 
                     <div class="portfolio__data">
                         <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
-                            <i class="fas fa-mobile-alt"></i> Academic Project &bull; Sep 2023 – Dec 2023
+                            <i class="fas fa-mobile-alt"></i> <span data-i18n="portfolio.card4.badge">Academic Project &bull; Sep 2023 – Dec 2023</span>
                         </div>
-                        <h3 class="portfolio__title">Softskills Mobile App</h3>
-                        <p class="portfolio__description">
+                        <h3 class="portfolio__title" data-i18n="portfolio.card4.title">Softskills Mobile App</h3>
+                        <p class="portfolio__description" data-i18n="portfolio.card4.desc">
                             <strong>Role: Mobile & API Developer (Team of 4)</strong><br>
                             Flutter educational course platform featuring assignment submissions, interactive quizzes, and community forums backed by Node.js & Firebase.
                         </p>
@@ -2185,10 +615,10 @@
 
                     <div class="portfolio__data">
                         <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
-                            <i class="fab fa-steam"></i> Open Source Tool &bull; 2024
+                            <i class="fab fa-steam"></i> <span data-i18n="portfolio.card5.badge">Open Source Tool &bull; 2024</span>
                         </div>
-                        <h3 class="portfolio__title">Steam Family Library Tool</h3>
-                        <p class="portfolio__description">
+                        <h3 class="portfolio__title" data-i18n="portfolio.card5.title">Steam Family Library Tool</h3>
+                        <p class="portfolio__description" data-i18n="portfolio.card5.desc">
                             <strong>Role: Solo Developer</strong><br>
                             JavaScript + Docker tool fetching and aggregating Steam family game libraries with API rate limiting, response caching, and error resilience.
                         </p>
@@ -2201,10 +631,10 @@
 
                     <div class="portfolio__data">
                         <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
-                            <i class="fas fa-server"></i> Infrastructure &bull; Ongoing
+                            <i class="fas fa-server"></i> <span data-i18n="portfolio.card6.badge">Infrastructure &bull; Ongoing</span>
                         </div>
-                        <h3 class="portfolio__title">Self-Hosted Homelab</h3>
-                        <p class="portfolio__description">
+                        <h3 class="portfolio__title" data-i18n="portfolio.card6.title">Self-Hosted Homelab</h3>
+                        <p class="portfolio__description" data-i18n="portfolio.card6.desc">
                             <strong>Role: Systems Administrator</strong><br>
                             24/7 ZimaOS server hosting 15+ Docker microservices via Portainer, Jellyfin, Home Assistant, zero-trust Tailscale exit node, and verified Restic backups.
                         </p>
@@ -2217,10 +647,10 @@
 
                     <div class="portfolio__data">
                         <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
-                            <i class="fab fa-linux"></i> Systems & Workflow &bull; Ongoing
+                            <i class="fab fa-linux"></i> <span data-i18n="portfolio.card8.badge">Systems & Workflow &bull; Ongoing</span>
                         </div>
-                        <h3 class="portfolio__title">Linux & Systems Environment</h3>
-                        <p class="portfolio__description">
+                        <h3 class="portfolio__title" data-i18n="portfolio.card8.title">Linux & Systems Environment</h3>
+                        <p class="portfolio__description" data-i18n="portfolio.card8.desc">
                             <strong>Role: Linux Power User & Sysadmin</strong><br>
                             CachyOS + Hyprland tiling desktop workflow, systemd service automation, SSH hardening, modular Bash tooling, and Obsidian systems vault.
                         </p>
@@ -2233,10 +663,10 @@
 
                     <div class="portfolio__data">
                         <div style="font-size: 0.8rem; color: var(--synth-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">
-                            <i class="fab fa-github"></i> Open Source &bull; Ongoing
+                            <i class="fab fa-github"></i> <span data-i18n="portfolio.card2.badge">Open Source &bull; Ongoing</span>
                         </div>
-                        <h3 class="portfolio__title">GitHub & Pinned Repos</h3>
-                        <p class="portfolio__description">
+                        <h3 class="portfolio__title" data-i18n="portfolio.card2.title">GitHub & Pinned Repos</h3>
+                        <p class="portfolio__description" data-i18n="portfolio.card2.desc">
                             <strong>Role: Developer & Maintainer</strong><br>
                             Curated codebase repositories featuring algorithm implementations, automation scripts, and documented open-source side projects.
                         </p>
@@ -2248,8 +678,8 @@
 
         <!--==================== CONTACT ME ====================-->
         <section class="contact section" id="contact">
-            <h2 class="section__title">Contact Me</h2>
-            <span class="section__subtitle">Get in touch</span>
+            <h2 class="section__title" data-i18n="contact.title">Contact Me</h2>
+            <span class="section__subtitle" data-i18n="contact.subtitle">Get in touch</span>
 
             <div class="contact__container container">
                 <div>
@@ -2257,7 +687,7 @@
                         <i class="synth-icon synth-icon-envelope contact__icon"></i>
                         <div>
                             <h3 class="contact__title">Email</h3>
-                            <span class="contact__subtitle"> skalin151yt@gmail.com </span>
+                            <span class="contact__subtitle"> joao.cruz.ei@gmail.com </span>
                         </div>
                     </div>
                     <div class="contact__information">
@@ -2280,27 +710,27 @@
                     class="contact__form">
                     <div class="contact__inputs">
                         <div class="contact__content">
-                            <label for="" class="contact__label">Name</label>
+                            <label for="" class="contact__label" data-i18n="contact.nameLabel">Name</label>
                             <input name="name" type="text" class="contact__input">
                         </div>
                         <div class="contact__content">
-                            <label for="" class="contact__label">Email</label>
+                            <label for="" class="contact__label" data-i18n="contact.emailLabel">Email</label>
                             <input name="email" type="email" class="contact__input">
                         </div>
                     </div>
                     <div class="contact__content">
-                        <label for="" class="contact__label">Project</label>
+                        <label for="" class="contact__label" data-i18n="contact.projectLabel">Project</label>
                         <input name="message" type="text" class="contact__input">
                     </div>
                     <div class="contact__content">
-                        <label for="" class="contact__label">Message</label>
+                        <label for="" class="contact__label" data-i18n="contact.messageLabel">Message</label>
                         <textarea name="" id="" cols="0" rows="7" class="contact__input" name="message"></textarea>
                     </div>
 
                     <div>
                         <button type="submit" class="button button--flex">
-                            Send Message
-                            <i class="fas fa-paper-plane" style="color: white;"></i>
+                            <span data-i18n="contact.sendBtn">Send Message</span>
+                            <i class="fas fa-paper-plane" style="color: white; margin-left: 0.5rem;"></i>
                         </button>
                     </div>
                 </form>
@@ -2309,69 +739,137 @@
     </main>
 
     <!--==================== SERVICES MODALS ====================-->
+    <!-- MODAL 1 -->
     <div class="services__modal" id="service-modal-1">
         <div class="services__modal-content">
-            <h4 class="services__modal-title">Fullstack <br> Development</h4>
-            <button class="services__modal-close">
+            <h4 class="services__modal-title" data-i18n="services.modal1.title">Real-Time Web & Resilient APIs</h4>
+            <button class="services__modal-close" aria-label="Close modal">
                 <i class="fas fa-times"></i>
             </button>
 
             <ul class="services__modal-services">
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Web application architecture & responsive frontend development.</p>
+                    <p data-i18n="services.modal1.item1">Web application architecture & responsive frontend development.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>RESTful & GraphQL API design using Node.js & TypeScript.</p>
+                    <p data-i18n="services.modal1.item2">RESTful & GraphQL API design using Node.js & TypeScript.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Real-time data synchronization via WebSockets.</p>
+                    <p data-i18n="services.modal1.item3">Real-time data synchronization via WebSockets.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Database schema design & query optimization (PostgreSQL, MongoDB).</p>
+                    <p data-i18n="services.modal1.item4">Database schema design & query optimization (PostgreSQL, MongoDB).</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
+                    <p data-i18n="services.modal1.item5">Frontend component modularity, state management, and accessibility standards.</p>
                 </li>
             </ul>
         </div>
     </div>
 
+    <!-- MODAL 2 -->
     <div class="services__modal" id="service-modal-2">
         <div class="services__modal-content">
-            <h4 class="services__modal-title">Systems & <br> Infrastructure</h4>
-            <button class="services__modal-close">
+            <h4 class="services__modal-title" data-i18n="services.modal2.title">Cloud, DevOps & CI/CD Pipelines</h4>
+            <button class="services__modal-close" aria-label="Close modal">
                 <i class="fas fa-times"></i>
             </button>
 
             <ul class="services__modal-services">
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Container fleet management & orchestration (Docker, Portainer, Kubernetes).</p>
+                    <p data-i18n="services.modal2.item1">Container fleet management & orchestration (Docker, Portainer, Kubernetes).</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Automated CI/CD pipelines (GitHub Actions) for container builds, automated testing & rolling deployments.</p>
+                    <p data-i18n="services.modal2.item2">Automated CI/CD pipelines (GitHub Actions) for container builds, automated testing & rolling deployments.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Linux sysadmin & custom workflows (CachyOS + Hyprland, ZimaOS 24/7 homelab).</p>
+                    <p data-i18n="services.modal2.item3">Reverse proxy routing (Nginx) & automated Let's Encrypt SSL/TLS certificate management.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Reverse proxy routing (Nginx) & automated Let's Encrypt SSL/TLS certificate management.</p>
+                    <p data-i18n="services.modal2.item4">Infrastructure as code, secrets management, and environmental isolation.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Zero-trust networking with Tailscale mesh VPN, subnet routing & exit-node deployment.</p>
+                    <p data-i18n="services.modal2.item5">Cloud provider integration with AWS (Lambda, API Gateway) and Azure.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MODAL 3 -->
+    <div class="services__modal" id="service-modal-3">
+        <div class="services__modal-content">
+            <h4 class="services__modal-title" data-i18n="services.modal3.title">Linux Sysadmin & Homelab 24/7</h4>
+            <button class="services__modal-close" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <ul class="services__modal-services">
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
+                    <p data-i18n="services.modal3.item1">24/7 dedicated homelab administration running ZimaOS & CasaOS.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Automated encrypted backup pipelines (Restic/Borg) with verified disaster restore tests.</p>
+                    <p data-i18n="services.modal3.item2">Tailscale mesh VPN configuration, subnet routing & secure exit-node deployment.</p>
                 </li>
                 <li class="services__modal-service">
                     <i class="fas fa-circle services__modal-icon"></i>
-                    <p>Out-of-band remote hardware management & planned IP-KVM control bridge.</p>
+                    <p data-i18n="services.modal3.item3">Encrypted backup automation (Restic/Borg) with verified disaster restore tests.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
+                    <p data-i18n="services.modal3.item4">Linux workstation customization with CachyOS, Hyprland, Waybar & rofi.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
+                    <p data-i18n="services.modal3.item5">Systemd unit authoring, timer daemons, and automated bash maintenance scripts.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
+                    <p data-i18n="services.modal3.item6">Out-of-band remote hardware management & planned IP-KVM control bridge.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MODAL 4 -->
+    <div class="services__modal" id="service-modal-4">
+        <div class="services__modal-content">
+            <h4 class="services__modal-title" data-i18n="services.modal4.title">Multiplatform Apps & Software Utilities</h4>
+            <button class="services__modal-close" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <ul class="services__modal-services">
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
+                    <p data-i18n="services.modal4.item1">Cross-platform mobile application development with Flutter & Dart.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
+                    <p data-i18n="services.modal4.item2">State management, asynchronous reactive streams, and Firebase integration.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
+                    <p data-i18n="services.modal4.item3">Resilient API integration with rate-limiting backoff algorithms and cache layers.</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
+                    <p data-i18n="services.modal4.item4">Atomic transaction management for high-concurrency bot systems (MongoDB / Node.js).</p>
+                </li>
+                <li class="services__modal-service">
+                    <i class="fas fa-circle services__modal-icon"></i>
+                    <p data-i18n="services.modal4.item5">3D visual design (Blender) and custom vector asset pipelines (Illustrator, Photoshop, Figma).</p>
                 </li>
             </ul>
         </div>
@@ -2382,14 +880,14 @@
         <div class="footer__container">
             <div class="footer__content">
                 <h1 class="footer__title">Skalin</h1>
-                <span class="footer__subtitle">Fullstack Developer</span>
+                <span class="footer__subtitle" data-i18n="footer.subtitle">Fullstack Developer</span>
                 <p class="footer__description">
                     .
                 </p>
             </div>
 
             <div class="footer__content">
-                <h3 class="footer__title">Links</h3>
+                <h3 class="footer__title" data-i18n="footer.linksTitle">Links</h3>
                 <ul class="footer__links">
                     <li>
                         <a href="#about" class="footer__link">
@@ -2410,7 +908,7 @@
             </div>
 
             <div class="footer__content">
-                <h3 class="footer__title">Socials</h3>
+                <h3 class="footer__title" data-i18n="footer.socialsTitle">Socials</h3>
                 <div class="footer__socials">
                     <a href="https://discord.gg/vtPE9BvUS95Qxcrhqb" target="_blank" class="footer__social">
                         <i class="fab fa-discord"></i>
@@ -2425,7 +923,7 @@
             </div>
         </div>
 
-        <p class="footer__copy">&#169; Skalin. All rights reserved</p>
+        <p class="footer__copy" data-i18n="footer.copy">&#169; Skalin. All rights reserved</p>
     </footer>
 
     <!--==================== SCROLL TOP ====================-->
@@ -2437,6 +935,8 @@
     <script src="assets/js/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/skills.js"></script>
     <script src="assets/js/main.js"></script>
 
     <!--==================== PORTFOLIO MODALS ====================-->
